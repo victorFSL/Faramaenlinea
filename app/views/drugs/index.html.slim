@@ -1,0 +1,31 @@
+h1 Listing drugs
+
+table
+  thead
+    tr
+      th Foto
+      th Name
+      th Active ingredient
+      th Description
+      th Dosage
+      th Metric
+      th
+      th
+      th
+
+  tbody
+    - @drugs.each do |drug|
+      tr
+        td = image_tag(drug.picture, height: '60px', width: '70px')
+        td = drug.name
+        td = drug.active_ingredient
+        td = drug.description
+        td = drug.dosage
+        td = drug.metric
+        td = link_to 'Show', drug
+        td = link_to 'Edit', edit_drug_path(drug)
+        td = link_to 'Destroy', drug, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Drug', new_drug_path

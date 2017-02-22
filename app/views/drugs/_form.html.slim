@@ -1,0 +1,13 @@
+= simple_form_for(@drug) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :active_ingredient
+    = f.input :picture, as: :file
+    = f.input :description
+    = f.input :metric
+    = f.input :dosage
+
+  .form-actions
+    = f.button :submit

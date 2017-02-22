@@ -1,0 +1,24 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @drug.name
+p
+  strong Active ingredient:
+  = @drug.active_ingredient
+p
+  strong Picture:
+  = @drug.picture
+p
+  strong Description:
+  = @drug.description
+p
+  strong Metric:
+  = @drug.metric
+p
+  strong Dosage:
+  = @drug.dosage
+
+= link_to 'Edit', edit_drug_path(@drug)
+'|
+= link_to 'Back', drugs_path
