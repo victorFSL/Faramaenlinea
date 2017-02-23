@@ -8,7 +8,9 @@
 .ui.grid
   .stackable.two.column.row
     .column.six.wide.center.aligned.left.floated.center.aligned
-      .ui.header.huge <span class="element">Farma</span> <span>enLinea</span>
+      = link_to(root_path, :class => "ui header huge") do
+        span.element#logo1 Farma
+        span#logo2  enLinea  
     .column.six.wide.right.floated.center.aligned
       .ui.compact.menu.padded.secondary
         a.ui.item.dropdown

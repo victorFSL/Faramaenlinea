@@ -1,0 +1,1 @@
+json.array! @drug_stores, partial: 'drug_stores/drug_store', as: :drug_store

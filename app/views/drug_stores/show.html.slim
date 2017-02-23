@@ -1,0 +1,24 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @drug_store.name
+p
+  strong Address:
+  = @drug_store.address
+p
+  strong Hours:
+  = @drug_store.hours
+p
+  strong Payment options:
+  = @drug_store.payment_options
+p
+  strong Logo:
+  = @drug_store.logo
+p
+  strong Delivery radius:
+  = @drug_store.delivery_radius
+
+= link_to 'Edit', edit_drug_store_path(@drug_store)
+'|
+= link_to 'Back', drug_stores_path

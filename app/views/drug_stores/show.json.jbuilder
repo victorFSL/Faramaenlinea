@@ -1,0 +1,1 @@
+json.partial! "drug_stores/drug_store", drug_store: @drug_store

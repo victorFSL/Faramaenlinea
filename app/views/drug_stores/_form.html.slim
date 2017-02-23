@@ -1,0 +1,13 @@
+= simple_form_for(@drug_store) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :address
+    = f.input :hours
+    = f.input :payment_options
+    = f.input :logo
+    = f.input :delivery_radius
+
+  .form-actions
+    = f.button :submit

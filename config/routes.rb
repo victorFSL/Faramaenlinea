@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :drug_stores
   resources :drugs
   get 'pages/home'
 
