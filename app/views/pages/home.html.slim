@@ -1,11 +1,18 @@
-.ui.centered.grid
-  .column.fourteen.wide
-    .ui.segment.center.aligned.blue.inverted
-      .wrapper-image
-        = image_tag "medicina.jpg", class: "ui medium image centered"
-      .ui.sub.header Pide tus medicamentos por Farma | enLinea y <span>ahorra</span> hasta un <span>5%</span>.
-      h5.ui.header Elige tus medicamentos y nosotros nos encargamos del resto.
-      .ui.icon.input.big
-        input placeholder="¿Qué estás buscando?" type="text"
-        i.icon.circular.search.link.inverted.yellow
-      
+.ui.grid
+  .column.fourteen.wide.centered
+    .wrapper.doctor.image
+      .ui.grid.two.column.centered.padded.doubling
+        .column.five.wide.left.aligned.animated.fadeInLeft
+          br
+          br
+          h1.ui.header Hola soy Farma!
+          h4 Hoy te puedo ayudar a buscar tus medicinas a los mejores precios.
+          h4 Es super sencillo:     
+          .ui.list.ordered
+            .item Busca tu medicina 
+            .item Agregala a tu carrito
+            .item Dale a ordenar en tu carrito
+            .item Espera tu medicina en el comfort de tu casa
+        .column.nine.wide
+          = image_tag "doctor.svg", class: "ui image doctor right floated animated fadeInUp"
+         

@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170222142624) do
+ActiveRecord::Schema.define(version: 20170228160843) do
+
+  create_table "drug_stores", force: :cascade do |t|
+    t.string   "name"
+    t.string   "address"
+    t.integer  "hours"
+    t.string   "payment_options"
+    t.string   "logo"
+    t.integer  "delivery_radius"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
 
   create_table "drugs", force: :cascade do |t|
     t.string   "name"
@@ -19,8 +30,23 @@ ActiveRecord::Schema.define(version: 20170222142624) do
     t.text     "description"
     t.string   "metric"
     t.integer  "dosage"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
+    t.string   "brand"
+  end
+
+  create_table "prices", force: :cascade do |t|
+    t.integer  "drug_store_id"
+    t.integer  "drug_id"
+    t.integer  "price"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["drug_id"], name: "index_prices_on_drug_id"
+    t.index ["drug_store_id"], name: "index_prices_on_drug_store_id"
   end
 
 end

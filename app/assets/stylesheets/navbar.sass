@@ -1,0 +1,54 @@
+//-------------LOGO AND MENU-------------------//
+.ui.secondary.menu.top.fixed
+  background-color: white
+  font-family: $header !important
+  padding: 15px 10px 0 10px !important
+  border-bottom: 1px solid lightgrey !important
+  #logo1, .typed-cursor, #logo2
+    font-family: $header !important
+    color: #F56400
+  .typed-cursor
+    opacity: 1
+    -webkit-animation: blink 0.7s infinite
+    -moz-animation: blink 0.7s infinite
+    animation: blink 0.7s infinite
+
+  @keyframes blink
+    0%
+      opacity: 1
+    50%
+      opacity: 0
+    100%
+      opacity: 1
+  @-webkit-keyframes blink
+    0%
+      opacity: 1
+    50%
+      opacity: 0
+    100%
+      opacity: 1
+  @-moz-keyframes blink
+    0%
+      opacity: 1
+    50%
+      opacity: 0
+    100%
+      opacity: 1
+  .fix-hover:hover
+    background: none
+  .fix-hover:active
+    background: none
+  #fix-radius:hover
+    border-radius: 0.28571429rem !important
+  #shoppingcart
+    border-left: 1px solid lightgrey
+    padding-left: 20px
+    text-align: center
+    &:hover
+      color: grey
+  a.item.fix-hover
+    button.ui.blue.button.basic.hover-effect
+      font-family: $header
+      &:hover
+        color: white !important
+        background-color: #1378c5 !important

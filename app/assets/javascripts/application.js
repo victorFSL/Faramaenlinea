@@ -18,20 +18,9 @@
 
 $(document).on('turbolinks:load', function() {
 
-  $('.cookie.nag')
-  .nag({
-    key      : 'accepts-cookies',
-    value    : true
-  });
-
   $('.ui.dropdown')
   .dropdown({
     on: 'hover'
-  });
-
-  $(".element").typed({
-      strings: ["Farma "],
-      typeSpeed: 200
   });
 
 });

@@ -1,36 +1,34 @@
-
-.ui.grid
-  .row
-    .column.center.aligned
-      .ui.inline.cookie.nag.inverted.segment.blue.attached
-        .sub.header Cuando ordenas por Farma | enLinea ahorras hasta un <span>5% </span> en tus compras.
-        i.yellow.close.icon.inverted   
-.ui.grid
-  .stackable.two.column.row
-    .column.six.wide.center.aligned.left.floated.center.aligned
-      = link_to(root_path, :class => "ui header huge") do
-        span.element#logo1 Farma
-        span#logo2  enLinea  
-    .column.six.wide.right.floated.center.aligned
-      .ui.compact.menu.padded.secondary
-        a.ui.item.dropdown
-          i.icon.user
-          | Mi cuenta
-          i.icon.dropdown
-          .menu
-            .item Applications
-            .item Applications
-        a.item
-          i.icon.shopping.basket
-          | Mi Carrito  
-          .floating.ui.red.label 10
-.ui.three.item.stackable.menu
-  a.item
-    i.icon.search
-    | Buscar medicamentos
-  a.item
-    i.icon.doctor
-    | Mejora tu salud
-  a.item
-    i.icon.help.circle
-    | Ayuda
+.ui.secondary.menu.top.fixed
+  .header.item
+    = link_to(root_path, :class => "ui header huge") do
+      span#logo1 farma 
+      span.typed-cursor |
+      span#logo2  enLinea 
+  .item
+    .ui.search
+      .ui.icon.input
+        input placeholder="Buscar medicamentos" type="text"
+        i.search.icon  
+  .right.menu
+    a.item#fix-radius
+      | Contactanos
+    a.item
+      | Registrate   
+    a.item.fix-hover
+      button.ui.blue.button.basic.hover-effect
+        | Mi cuenta 
+    a.item#shoppingcart.fix-hover
+      .ui.icon
+        i.icon.shop
+        .content
+          | Mi carrito  
+      .floating.ui.red.label.circular.mini 10
+  .ui.clearing.divider       
+     
+.ui.horizontal.divider.hidden
+.ui.horizontal.divider.hidden
+.ui.horizontal.divider.hidden
+.ui.horizontal.divider.hidden
+.ui.horizontal.divider.hidden
+.ui.horizontal.divider.hidden
+.ui.horizontal.divider.hidden

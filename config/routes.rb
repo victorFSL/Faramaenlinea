@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  resources :drug_stores
-  resources :drugs
-  get 'pages/home'
 
+  resources :drugs
+  resources :drug_stores
+
+  get 'pages/home'
   get 'pages/about'
 
   root 'pages#home'
