@@ -56,17 +56,24 @@ GEM
     commonjs (0.2.7)
     concurrent-ruby (1.0.4)
     debug_inspector (0.0.2)
+    elasticsearch (5.0.3)
+      elasticsearch-api (= 5.0.3)
+      elasticsearch-transport (= 5.0.3)
+    elasticsearch-api (5.0.3)
+      multi_json
+    elasticsearch-transport (5.0.3)
+      faraday
+      multi_json
     erb_to_slim (0.0.8)
     erubis (2.7.0)
     execjs (2.7.0)
+    faraday (0.11.0)
+      multipart-post (>= 1.2, < 3)
     ffi (1.9.17)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
+    hashie (3.5.5)
     i18n (0.8.0)
-    inline_svg (0.11.1)
-      activesupport (>= 4.0)
-      loofah (>= 2.0)
-      nokogiri (~> 1.6)
     jbuilder (2.6.1)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
@@ -102,6 +109,7 @@ GEM
     mini_portile2 (2.1.0)
     minitest (5.10.1)
     multi_json (1.12.1)
+    multipart-post (2.0.0)
     nio4r (1.2.1)
     nokogiri (1.7.0.1)
       mini_portile2 (~> 2.1.0)
@@ -150,6 +158,10 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
+    searchkick (2.1.1)
+      activemodel (>= 4.1)
+      elasticsearch (>= 1)
+      hashie
     simple_form (3.3.1)
       actionpack (> 4, < 5.1)
       activemodel (> 4, < 5.1)
@@ -204,7 +216,6 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.2)
   erb_to_slim
-  inline_svg
   jbuilder (~> 2.5)
   jquery-rails
   less-rails-semantic_ui
@@ -214,6 +225,7 @@ DEPENDENCIES
   puma (~> 3.0)
   rails (~> 5.0.1)
   sass-rails (~> 5.0.6)
+  searchkick
   simple_form
   slim-rails
   spring

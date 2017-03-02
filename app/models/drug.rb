@@ -1,6 +1,19 @@
 class Drug < ApplicationRecord
+
+  searchkick
+
+  def search_data
+    {
+      name: name,
+      active_ingredient: active_ingredient,
+      description: description,
+      dosage: dosage,
+      brand: brand
+    }
+  end
   has_many :prices
   has_many :stores, through: :prices
+
 
   validates :name, :active_ingredient, :description, :metric, :dosage, :brand, presence: true
   validates :dosage, numericality: {greater_than_or_equal_to: 0.01}
@@ -18,4 +31,5 @@ class Drug < ApplicationRecord
   def brand=(value)
     write_attribute(:brand, value.capitalize)
   end
+
 end

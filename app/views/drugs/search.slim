@@ -1,0 +1,44 @@
+.ui.fifteen.wide.column.grid.centered.stackable
+  .row
+    .column.fifteen.wide.left.aligned
+      h1.header Medicamentos
+  .row
+    .column.five.wide.center.aligned
+      .segment.ui.padded
+        | Favor proporcionar su sector para ofrecerle un mejor servicio.
+        br
+        br
+        select.ui.fluid.search.dropdown
+          option value="" Sector
+          option value="1" Villa Maria
+          option value="2" Cienfuego
+          option value="3" Cerro Alto
+        br
+        br
+      	.image.ui = image_tag "default.jpeg"
+        br
+        | AQUI VA EL MAPA	  
+    .column.ten.wide.center.aligned
+      .ui.segment
+        .ui.three.column.grid.doubling
+          - cache @drugs do
+            - @drugs.each do |drug|
+              - cache drug do
+                .column 
+                  = link_to drug, class: "ui fluid card"
+                    = image_tag drug.picture, height: "200px"
+                    .content
+                      .header = "#{drug.name} (#{drug.brand})"
+                      .description
+                        = "#{drug.dosage} #{drug.metric}"
+                      .meta = drug.active_ingredient  
+                      .header Price Range
+                  = link_to 'Edit', edit_drug_path(drug)
+                  = link_to 'Destroy', drug, data: { confirm: 'Are you sure?' }, method: :delete
+  .row
+    = link_to 'New Drug', new_drug_path
+//
+                  .ui.segment = truncate(drug.description, length: 200)
+                
+
+br

@@ -1,12 +1,19 @@
 class DrugsController < ApplicationController
   before_action :set_drug, only: [:show, :edit, :update, :destroy]
 
+  def search
+    if params[:search].present?
+      @drugs = Drug.search(params[:search])
+    else
+      @drugs = Drug.all
+    end
+  end
+
   # GET /drugs
   # GET /drugs.json
   def index
     @drugs = Drug.all
   end
-
   # GET /drugs/1
   # GET /drugs/1.json
   def show

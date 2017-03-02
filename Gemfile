@@ -23,6 +23,7 @@ gem 'mail_form'
 gem 'simple_form'
 gem 'therubyracer'
 gem 'paperclip'
+gem 'searchkick'
 
 group :development, :test do
   gem 'byebug', platform: :mri

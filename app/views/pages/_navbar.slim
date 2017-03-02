@@ -5,10 +5,12 @@
       span.typed-cursor |
       span#logo2  enLinea 
   .item
-    .ui.search
+    = form_tag search_drugs_path, method: :get, class: "ui search", id: "search-form" do
       .ui.icon.input
-        input placeholder="Buscar medicamentos" type="text"
-        i.search.icon  
+        = text_field_tag :search, 
+          params[:search], 
+          placeholder: "Buscar medicamentos" 
+        i.search.icon#submit
   .right.menu
     a.item#fix-radius
       | Contactanos
