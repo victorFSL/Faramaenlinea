@@ -1,25 +1,18 @@
-body
-  background-color: #FAF9F5 !important
 //------------------HOME PAGE--------------//
 .pages.wrapper-body
-  margin-bottom: -110px
   background-image: url(home-background.jpg)
-  height: 500px
-  margin-top: -20px
-  overflow: hidden
-  img.doctor
-    max-height: 480px
-    z-index: 100
-  .wrapper.doctor.image
+  max-height: 100%
+  .column.nine.wide
+    padding-bottom: 0
+  .image-wrapper
     max-height: 400px
+    overflow: hidden
+    @media(max-width: 1000px)
+      max-height: 200px
+    img.doctor
+      max-height: 550px
   .column.five.wide.left.aligned.animated.fadeInLeft
     animation-duration: 3s
     animation-delay: 1s
   .ui.image.doctor.right.floated.animated.fadeInUp
     animation-duration: 3s
-//------------------FOOTER------------------//
-.footer
-  background-color: #1378c5
-  height: 100px
-  color: white
-  overflow: hidden

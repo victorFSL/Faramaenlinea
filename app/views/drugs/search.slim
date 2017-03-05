@@ -18,24 +18,31 @@
       	.image.ui = image_tag "default.jpeg"
         br
         | AQUI VA EL MAPA	  
-    .column.ten.wide.center.aligned
+    .column.ten.wide
       .ui.segment
-        .ui.three.column.grid.doubling
+        .ui.grid
           - cache @drugs do
             - @drugs.each do |drug|
               - cache drug do
-                .column 
+                .sixteen.wide.mobile.eight.wide.tablet.five.wide.computer.column 
                   = link_to drug, class: "ui fluid card"
-                    = image_tag drug.picture, height: "200px"
                     .content
-                      .header = "#{drug.name} (#{drug.brand})"
-                      .description
-                        = "#{drug.dosage} #{drug.metric}"
-                      .meta = drug.active_ingredient  
-                      .header Price Range
-                  = link_to 'Edit', edit_drug_path(drug)
-                  = link_to 'Destroy', drug, data: { confirm: 'Are you sure?' }, method: :delete
-  .row
+                      .right.floated.meta RD$200
+                      .left.floated.header = drug.name
+                    = image_tag drug.picture, height: "200px"
+                    .content  
+                      .meta
+                        .right.floated 
+                          i.icon.industry 
+                          = drug.brand
+                        span.left.floated = "#{drug.dosage} #{drug.metric}"
+                      .left.floated.description 
+                        i.icon.lab
+                        = drug.active_ingredient  
+                    
+                  //= link_to 'Edit', edit_drug_path(drug)
+                  //= link_to 'Destroy', drug, data: { confirm: 'Are you sure?' }, method: :delete
+  //.row
     = link_to 'New Drug', new_drug_path
 //
                   .ui.segment = truncate(drug.description, length: 200)
