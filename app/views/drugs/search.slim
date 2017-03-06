@@ -26,7 +26,7 @@
               - cache drug do
                 = link_to drug, class: "ui link card"
                   .content
-                    .right.floated.header = drug.prices
+                    .right.floated.header = " RD$ #{drug.prices.map { |d| d[:price] }.min}"
                     .left.floated.header = drug.name
                   .image.ui= image_tag drug.picture, height: "200px"
                   .content  

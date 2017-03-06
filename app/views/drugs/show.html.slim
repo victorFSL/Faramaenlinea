@@ -5,6 +5,7 @@ p#notice = notice
       .ui.grid.equal.width
         .column
           h2.header = @drug.name
+          span.floated.right = @drug.brand
           .sub.header  = @drug.active_ingredient
           = image_tag @drug.picture.url(:medium)
           p
@@ -21,5 +22,19 @@ p#notice = notice
           '|
           = link_to 'Back', search_drugs_path
         .column
-          p Hello world
+          table.ui.striped.table
+            thead
+              tr
+                th Logo
+                th Farmacia
+                th Precio
+                th Accion
+            tbody
+            - @drug.prices.each do |price|
+              tr
+                td Logo
+                td = link_to price.drug_store.name, drug_store_path(price.drug_store_id)
+                td = "RD$ #{price.price}"
+                td 
+                  button.button.ui Anadir
 .ui.hidden.divider 
