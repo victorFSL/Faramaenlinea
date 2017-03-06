@@ -12,7 +12,7 @@ class Drug < ApplicationRecord
     }
   end
   has_many :prices
-  has_many :stores, through: :prices
+  has_many :drug_stores, through: :prices
 
 
   validates :name, :active_ingredient, :description, :metric, :dosage, :brand, presence: true

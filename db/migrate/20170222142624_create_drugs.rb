@@ -6,7 +6,7 @@ class CreateDrugs < ActiveRecord::Migration[5.0]
       t.text :description
       t.string :metric
       t.integer :dosage
-
+      t.string :brand
       t.timestamps
     end
   end

@@ -3,7 +3,7 @@
     .column.fifteen.wide.left.aligned
       h3.header Medicamentos
   .row
-    .column.five.wide.center.aligned
+    .column.three.wide.center.aligned
       .segment.ui.padded
         | Favor proporcionar su sector para ofrecerle un mejor servicio.
         br
@@ -18,27 +18,27 @@
       	.image.ui = image_tag "default.jpeg"
         br
         | AQUI VA EL MAPA	  
-    .column.ten.wide
-      .ui.segment
-        .ui.grid
+    .column.twelve.wide
+      .ui.segment.padded
+        .ui.three.doubling.cards.stackable
           - cache @drugs do
             - @drugs.each do |drug|
               - cache drug do
-                .sixteen.wide.mobile.eight.wide.tablet.five.wide.computer.column 
-                  = link_to drug, class: "ui fluid card"
-                    .content
-                      .right.floated.meta RD$200
-                      .left.floated.header = drug.name
-                    = image_tag drug.picture, height: "200px"
-                    .content  
-                      .meta
-                        .right.floated 
-                          i.icon.industry 
-                          = drug.brand
-                        span.left.floated = "#{drug.dosage} #{drug.metric}"
-                      .left.floated.description 
-                        i.icon.lab
-                        = drug.active_ingredient  
+                = link_to drug, class: "ui link card"
+                  .content
+                    .right.floated.header = drug.prices
+                    .left.floated.header = drug.name
+                  .image.ui= image_tag drug.picture, height: "200px"
+                  .content  
+                    .meta
+                      .right.floated
+                        i.icon.industry   
+                        =  " #{drug.brand}"
+                      span.left.floated = "#{drug.dosage} #{drug.metric}"
+                  .extra.content
+                    .left.floated.description 
+                      i.icon.lab
+                      = drug.active_ingredient  
                     
                   //= link_to 'Edit', edit_drug_path(drug)
                   //= link_to 'Destroy', drug, data: { confirm: 'Are you sure?' }, method: :delete

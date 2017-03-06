@@ -12,7 +12,6 @@ class DrugsController < ApplicationController
   # GET /drugs
   # GET /drugs.json
   def index
-    @drugs = Drug.all
   end
   # GET /drugs/1
   # GET /drugs/1.json
@@ -76,6 +75,6 @@ class DrugsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def drug_params
-      params.require(:drug).permit(:name, :active_ingredient, :picture, :doctor_name, :description, :metric, :dosage, :brand)
+      params.require(:drug).permit(:name, :active_ingredient, :picture, :doctor_name, :description, :metric, :dosage, :brand, prices_attributes: [:drug_id, :drug_store_id, :price])
     end
 end

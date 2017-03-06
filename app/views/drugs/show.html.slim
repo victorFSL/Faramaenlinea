@@ -1,24 +1,25 @@
 p#notice = notice
+.ui.grid.centered
+  .fourteen.wide.column
+    .ui.segment.padded
+      .ui.grid.equal.width
+        .column
+          h2.header = @drug.name
+          .sub.header  = @drug.active_ingredient
+          = image_tag @drug.picture.url(:medium)
+          p
+            strong Description:
+            = @drug.description
+          p
+            strong Metric:
+            = @drug.metric
+          p
+            strong Dosage:
+            = @drug.dosage
 
-p
-  strong Name:
-  = @drug.name
-p
-  strong Active ingredient:
-  = @drug.active_ingredient
-p
-  strong Picture:
-  = image_tag @drug.picture.url(:medium)
-p
-  strong Description:
-  = @drug.description
-p
-  strong Metric:
-  = @drug.metric
-p
-  strong Dosage:
-  = @drug.dosage
-
-= link_to 'Edit', edit_drug_path(@drug)
-'|
-= link_to 'Back', search_drugs_path
+          = link_to 'Edit', edit_drug_path(@drug)
+          '|
+          = link_to 'Back', search_drugs_path
+        .column
+          p Hello world
+.ui.hidden.divider 
