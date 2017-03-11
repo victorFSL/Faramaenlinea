@@ -26,7 +26,7 @@
               - cache drug do
                 = link_to drug, class: "ui link card"
                   .content
-                    .right.floated.header = " RD$ #{drug.prices.map { |d| d[:price] }.min}"
+                    .right.floated.header = " RD$ #{drug.prices.map(&:price).min}"
                     .left.floated.header = drug.name
                   .image.ui= image_tag drug.picture, height: "200px"
                   .content  
@@ -39,13 +39,3 @@
                     .left.floated.description 
                       i.icon.lab
                       = drug.active_ingredient  
-                    
-                  //= link_to 'Edit', edit_drug_path(drug)
-                  //= link_to 'Destroy', drug, data: { confirm: 'Are you sure?' }, method: :delete
-  //.row
-    = link_to 'New Drug', new_drug_path
-//
-                  .ui.segment = truncate(drug.description, length: 200)
-                
-
-br

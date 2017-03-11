@@ -1,5 +1,6 @@
 class DrugStoresController < ApplicationController
   before_action :set_drug_store, only: [:show, :edit, :update, :destroy]
+  before_action :set_drug
 
   # GET /drug_stores
   # GET /drug_stores.json
@@ -25,10 +26,10 @@ class DrugStoresController < ApplicationController
   # POST /drug_stores.json
   def create
     @drug_store = DrugStore.new(drug_store_params)
-
+    @drug_store.drug_id = @drug.id
     respond_to do |format|
       if @drug_store.save
-        format.html { redirect_to @drug_store, notice: 'Drug store was successfully created.' }
+        format.html { redirect_to drug_path(@drug), notice: 'Drug store was successfully created.' }
         format.json { render :show, status: :created, location: @drug_store }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class DrugStoresController < ApplicationController
   def update
     respond_to do |format|
       if @drug_store.update(drug_store_params)
-        format.html { redirect_to @drug_store, notice: 'Drug store was successfully updated.' }
+        format.html { redirect_to drug_drug_store_path(@drug, @drug_store), notice: 'Drug store was successfully updated.' }
         format.json { render :show, status: :ok, location: @drug_store }
       else
         format.html { render :edit }
@@ -63,8 +64,9 @@ class DrugStoresController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_drug_store
-      @drug_store = DrugStore.find(params[:id])
+
+    def set_drug
+      @drug = Drug.find(params[:drug_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

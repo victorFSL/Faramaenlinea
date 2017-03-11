@@ -5,15 +5,15 @@
       span.typed-cursor |
       span#logo2  enLinea 
   .item
-    = form_tag search_drugs_path, method: :get,class: "ui search", id: "search" do
-      .ui.icon.input
+    = form_tag search_drugs_path, method: :get do
+      .ui.input.action
         = text_field_tag :search, 
           params[:search], 
           placeholder: "Buscar medicamentos",
           type: "text",
-          class: "results"
-        i.search.icon#submit
-        .results
+          id: "search"
+        = button_tag type="submit", class: "ui icon button orange", name: nil
+          i.search.icon  
   .right.menu
     a.item#fix-radius
       | Contactanos

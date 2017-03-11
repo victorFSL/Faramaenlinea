@@ -3,5 +3,9 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).on 'turbolinks:load', ->
-  $('#search').autocomplete
-    source: "/search_suggestions"
+  $( "#search" ).autocomplete(
+    source: "/drugs/autocomplete",
+    minLength: 2,
+    autoFocus: true,
+    classes: {"ui-autocomplete": "results"}
+  )

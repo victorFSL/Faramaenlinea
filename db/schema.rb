@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170302014749) do
+ActiveRecord::Schema.define(version: 20170306201158) do
 
   create_table "drug_stores", force: :cascade do |t|
     t.string   "name"
@@ -25,6 +25,10 @@ ActiveRecord::Schema.define(version: 20170302014749) do
     t.integer  "delivery_radius"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
   end
 
   create_table "drugs", force: :cascade do |t|
@@ -50,13 +54,6 @@ ActiveRecord::Schema.define(version: 20170302014749) do
     t.datetime "updated_at",    null: false
     t.index ["drug_id"], name: "index_prices_on_drug_id"
     t.index ["drug_store_id"], name: "index_prices_on_drug_store_id"
-  end
-
-  create_table "search_suggestions", force: :cascade do |t|
-    t.string   "term"
-    t.integer  "popularity"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
 end

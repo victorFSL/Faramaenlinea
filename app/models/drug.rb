@@ -1,13 +1,12 @@
 class Drug < ApplicationRecord
 
-  searchkick
+  searchkick text_start: [:name, :active_ingredient]
 
   def search_data
     {
       name: name,
       active_ingredient: active_ingredient,
       description: description,
-      dosage: dosage,
       brand: brand
     }
   end

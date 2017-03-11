@@ -1,12 +1,17 @@
-= simple_form_for(@drug_store) do |f|
+= simple_form_for([@drug, @drug_store]) do |f|
   = f.error_notification
 
   .form-inputs
     = f.input :name
     = f.input :address
-    = f.input :hours
-    = f.input :payment_options
-    = f.input :logo
+    = f.input :hour_open_regular
+    = f.input :hour_close_regular
+    = f.input :days_regular
+    = f.input :hour_open_other
+    = f.input :hour_close_other
+    = f.input :days_other
+    = f.input :payment_options, collection: ["Tarjeta", "Efectivo", "Efectivo o Tarjeta"]
+    = f.input :logo, as: :file, required: "true"
     = f.input :delivery_radius
 
   .form-actions

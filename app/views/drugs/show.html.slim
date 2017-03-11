@@ -2,39 +2,38 @@ p#notice = notice
 .ui.grid.centered
   .fourteen.wide.column
     .ui.segment.padded
-      .ui.grid.equal.width
-        .column
-          h2.header = @drug.name
-          span.floated.right = @drug.brand
-          .sub.header  = @drug.active_ingredient
-          = image_tag @drug.picture.url(:medium)
-          p
-            strong Description:
-            = @drug.description
-          p
-            strong Metric:
-            = @drug.metric
-          p
-            strong Dosage:
-            = @drug.dosage
+      .ui.grid.equal.width.stackable
+        .column.center.aligned
+          .ui.segment
+            h2.ui.header 
+              = @drug.name
+              .sub.header 
+                = "#{@drug.dosage} #{@drug.metric}" 
+            .ui.divider    
+            i.icon.industry
+            = @drug.brand
+            |   
+            i.icon.lab
+            = @drug.active_ingredient
+            .ui.hidden.divider  
+            .image.ui 
+              = image_tag @drug.picture.url(:medium)
+            .ui.hidden.divider  
+            p = @drug.description       
 
-          = link_to 'Edit', edit_drug_path(@drug)
-          '|
-          = link_to 'Back', search_drugs_path
+            = button_to search_drugs_path, method: "get", class: "ui labeled icon button" do
+              i.icon.angle.left
+              | Volver
         .column
           table.ui.striped.table
-            thead
-              tr
-                th Logo
-                th Farmacia
-                th Precio
-                th Accion
             tbody
-            - @drug.prices.each do |price|
+            - @drug.prices.order("price ASC").each do |price|
               tr
-                td Logo
-                td = link_to price.drug_store.name, drug_store_path(price.drug_store_id)
+                td = image_tag price.drug_store.logo.url(:thumb)
+                td = link_to price.drug_store.name, drug_drug_store_path(@drug, price.drug_store_id)
                 td = "RD$ #{price.price}"
                 td 
-                  button.button.ui Anadir
+                  = button_to "#", method: "get", class: "ui labeled icon button" do
+                    i.icon.plus
+                    | Añadir
 .ui.hidden.divider 

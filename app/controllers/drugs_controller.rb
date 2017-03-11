@@ -1,12 +1,20 @@
 class DrugsController < ApplicationController
   before_action :set_drug, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_drug_store, only: [:show]
   def search
     if params[:search].present?
-      @drugs = Drug.search(params[:search])
+      @drugs = Drug.search(params[:search], misspellings: {edit_distance: 3})
     else
       @drugs = Drug.all
     end
+  end
+
+  def autocomplete
+    render json: Drug.search(params[:term], {
+      fields: [{name: :text_start}, {active_ingredient: :text_start}],
+      limit: 10,
+      misspellings: {below: 3}
+    }).map(&:name)
   end
 
   # GET /drugs

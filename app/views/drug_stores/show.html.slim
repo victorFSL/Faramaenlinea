@@ -1,24 +1,30 @@
 p#notice = notice
+.ui.grid.centered
+  .fourteen.wide.column
+    .ui.segment.padded
+      .ui.grid.stackable
+        .column.center.aligned
+          .ui.segment
+            h2.ui.header 
+              = @drug_store.name
+              .sub.header 
+                = @drug_store.regular_hours
+              .sub.header  
+                = @drug_store.other_hours
+            .ui.divider                
+            .ui.hidden.divider  
+            .image.ui 
+              = image_tag @drug_store.logo.url(:medium)
+            .ui.hidden.divider  
+            p = @drug_store.address
+            p = @drug_store.payment_options  
+            p = @drug_store.delivery_radius
 
-p
-  strong Name:
-  = @drug_store.name
-p
-  strong Address:
-  = @drug_store.address
-p
-  strong Hours:
-  = @drug_store.hours
-p
-  strong Payment options:
-  = @drug_store.payment_options
-p
-  strong Logo:
-  = @drug_store.logo
-p
-  strong Delivery radius:
-  = @drug_store.delivery_radius
+            = button_to drug_path, method: "get", class: "ui labeled icon button" do
+              i.icon.angle.left
+              | Volver
 
-= link_to 'Edit', edit_drug_store_path(@drug_store)
+
+= link_to 'Edit', edit_drug_drug_store_path(@drug_store)
 '|
-= link_to 'Back', drug_stores_path
+= link_to 'Back', drug_path(@drug)
