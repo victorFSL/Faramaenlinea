@@ -69,6 +69,10 @@ class DrugStoresController < ApplicationController
       @drug = Drug.find(params[:drug_id])
     end
 
+    def set_drug_store
+      @drug_store = DrugStore.find(params[:id])
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def drug_store_params
       params.require(:drug_store).permit(:name, :address, :hours, :payment_options, :logo, :delivery_radius)
