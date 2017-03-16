@@ -6,35 +6,36 @@ git_source(:github) do |repo_name|
 end
 
 
-gem 'rails', '~> 5.0.1'
+gem 'rails', '~> 5.0', '>= 5.0.2'
 gem 'sqlite3'
-gem 'puma', '~> 3.0'
-gem 'sass-rails', '~> 5.0.6'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.2'
+gem 'puma'
+gem 'sass-rails', '~> 5.0', '>= 5.0.4'
+gem 'uglifier'
+gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-gem 'turbolinks', '~> 5'
-gem 'jbuilder', '~> 2.5'
+gem 'turbolinks'
+gem 'jbuilder'
 gem 'erb_to_slim'
 gem 'slim-rails'
-gem 'less-rails-semantic_ui'
-gem 'autoprefixer-rails'
+gem 'autoprefixer-rails', '~> 6.5', '>= 6.5.3'
 gem 'mail_form'
 gem 'simple_form'
 gem 'therubyracer'
 gem 'paperclip'
 gem 'searchkick'
+gem 'sprockets-rails', '~> 3.2'
 
 group :development, :test do
   gem 'byebug', platform: :mri
 end
 
 group :development do
-  gem 'web-console', '>= 3.3.0'
-  gem 'listen', '~> 3.0.5'
+  gem 'web-console'
+  gem 'listen'
   gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring-watcher-listen'
+  gem 'guard-livereload'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

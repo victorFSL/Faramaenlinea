@@ -10,7 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170306201158) do
+ActiveRecord::Schema.define(version: 20170313063459) do
+
+  create_table "carts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "drug_stores", force: :cascade do |t|
     t.string   "name"
@@ -44,6 +49,16 @@ ActiveRecord::Schema.define(version: 20170306201158) do
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
+  end
+
+  create_table "line_items", force: :cascade do |t|
+    t.integer  "price_id"
+    t.integer  "cart_id"
+    t.integer  "quantity",   default: 1
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["cart_id"], name: "index_line_items_on_cart_id"
+    t.index ["price_id"], name: "index_line_items_on_price_id"
   end
 
   create_table "prices", force: :cascade do |t|

@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
-//= require semantic_ui/semantic_ui
 //= require turbolinks
 //= require_tree .
 
@@ -23,5 +22,6 @@ $(document).on('turbolinks:load', function() {
   .dropdown({
     on: 'hover'
   });
-
+  $('#shoppingcart')
+  .popup()
 });

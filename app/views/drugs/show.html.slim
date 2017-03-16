@@ -31,9 +31,9 @@ p#notice = notice
               tr
                 td = image_tag price.drug_store.logo.url(:thumb)
                 td = link_to price.drug_store.name, drug_drug_store_path(@drug, price.drug_store_id)
-                td = "RD$ #{price.price}"
+                td = number_to_currency(price.price, unit: "RD$")
                 td 
-                  = button_to "#", method: "get", class: "ui labeled icon button" do
+                  = button_to line_items_path(price_id: price.id), method: "post", class: "ui labeled icon button" do
                     i.icon.plus
                     | Añadir
 .ui.hidden.divider 

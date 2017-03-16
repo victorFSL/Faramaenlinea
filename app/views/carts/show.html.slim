@@ -1,0 +1,12 @@
+p#notice = notice
+.ui.fifteen.wide.column.grid.center.aligned
+  .column.twelve.wide
+    table.ui.celled.table
+      tbody
+      - @cart.line_items.each do |item| 
+        tr
+          td = image_tag item.price.drug_store.logo.url(:thumb) 
+          td = item.price.drug.name 
+          td = "#{item.quantity} \u00D7 RD$ #{item.price.price}"
+          //td //
+= link_to 'Edit', edit_cart_path(@cart)

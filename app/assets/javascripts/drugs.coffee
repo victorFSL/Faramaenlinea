@@ -7,5 +7,4 @@ $(document).on 'turbolinks:load', ->
     source: "/drugs/autocomplete",
     minLength: 2,
     autoFocus: true,
-    classes: {"ui-autocomplete": "results"}
   )

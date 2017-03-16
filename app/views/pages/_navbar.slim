@@ -22,11 +22,13 @@
     a.item.fix-hover
       button.ui.blue.button.basic.hover-effect
         | Mi cuenta 
-    a.item#shoppingcart.fix-hover
+    = link_to cart_path(@cart), class: "item fix-hover", id: "shoppingcart"
       .ui.icon
         i.icon.shop
         .content
           | Mi carrito  
-      .floating.ui.red.label.circular.mini 10
+      .floating.ui.red.label.circular.mini 
+        = @cart.line_items.to_a.sum { |item| item.quantity}
+    .ui.popup
   .ui.clearing.divider       
 .menu-margin

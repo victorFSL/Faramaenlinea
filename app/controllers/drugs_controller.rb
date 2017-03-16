@@ -2,7 +2,7 @@ class DrugsController < ApplicationController
   before_action :set_drug, only: [:show, :edit, :update, :destroy]
   def search
     if params[:search].present?
-      @drugs = Drug.search(params[:search], misspellings: {edit_distance: 3})
+      @drugs = Drug.search(params[:search])
     else
       @drugs = Drug.all
     end

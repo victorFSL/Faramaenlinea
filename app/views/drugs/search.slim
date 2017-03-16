@@ -1,3 +1,4 @@
+p#notice = notice
 .ui.fifteen.wide.column.grid.centered.stackable
   .row
     .column.fifteen.wide.left.aligned
@@ -26,9 +27,9 @@
               - cache drug do
                 = link_to drug, class: "ui link card"
                   .content
-                    .right.floated.header = " RD$ #{drug.prices.map(&:price).min}"
+                    .right.floated.header = number_to_currency(drug.prices.map(&:price).min, unit: "RD$") 
                     .left.floated.header = drug.name
-                  .image.ui= image_tag drug.picture, height: "200px"
+                  .image.ui = image_tag drug.picture.url(:medium), height: "100px"
                   .content  
                     .meta
                       .right.floated
