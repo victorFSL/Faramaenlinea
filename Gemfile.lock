@@ -133,6 +133,7 @@ GEM
     notiffany (0.1.1)
       nenv (~> 0.1)
       shellany (~> 0.0)
+    oj (2.18.3)
     paperclip (5.1.0)
       activemodel (>= 4.2.0)
       activesupport (>= 4.2.0)
@@ -249,6 +250,7 @@ DEPENDENCIES
   jquery-ui-rails
   listen
   mail_form
+  oj
   paperclip
   puma
   rails (~> 5.0, >= 5.0.2)

@@ -5,6 +5,11 @@
 $(document).on 'turbolinks:load', ->
   $( "#search" ).autocomplete(
     source: "/drugs/autocomplete",
-    minLength: 2,
+    minLength: 3,
+    autoFocus: true,
+  )
+  $( "#searchhome" ).autocomplete(
+    source: "/drugs/autocomplete",
+    minLength: 3,
     autoFocus: true,
   )

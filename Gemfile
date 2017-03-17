@@ -25,6 +25,7 @@ gem 'therubyracer'
 gem 'paperclip'
 gem 'searchkick'
 gem 'sprockets-rails', '~> 3.2'
+gem 'oj'
 
 group :development, :test do
   gem 'byebug', platform: :mri

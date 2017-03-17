@@ -1,5 +1,26 @@
 .ui.grid
   .column.fourteen.wide.centered
+    .row
+      .ui.segment.very.padded.center.aligned
+        h1.header.item.animated.pulse
+          = link_to(root_path, :class => "ui header huge") do
+            span.logo FarmaenLinea
+        br
+        br    
+        .item.center.aligned
+          = form_tag search_drugs_path, method: :get do
+            .ui.action.input.massive.fluid  
+              = text_field_tag :search, 
+                params[:search], 
+                placeholder: "Que medicamentos buscas...",
+                type: "text",
+                id: "searchhome",
+                autocomplete: "off"
+              = button_tag type="submit", class: "transparent-button ui button", name: nil
+                i.search.icon
+        br        
+        .sub.header Pedir tus medicamentos nunca ha sido tan facil!
+                
     .wrapper.doctor.image
       .ui.grid.two.column.centered.padded.doubling
         .column.five.wide.left.aligned.animated.fadeInLeft

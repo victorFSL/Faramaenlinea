@@ -7,13 +7,13 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <link href="https://fonts.googleapis.com/css?family=Quicksand|Raleway" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.9/semantic.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.9/semantic.min.js"></script>
   </head>
 
   <body>
-      <%= render partial: "pages/navbar", object: @drug %>
+    <%= render partial: "pages/navbar", object: @drug %>
     <div class='wrapper-body <%= controller.controller_name %>'>
       <%= yield %>
       <div class="push">
