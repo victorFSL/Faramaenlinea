@@ -4,16 +4,6 @@
     .header.item
       = link_to(root_path, :class => "ui header huge") do
         span.logo FarmaenLinea 
-    .item
-      = form_tag search_drugs_path, method: :get do
-        .ui.input.action
-          = text_field_tag :search, 
-            params[:search], 
-            placeholder: "Que medicamento buscas...",
-            type: "text",
-            id: "search"
-          = button_tag type="submit", class: "ui icon button orange", name: nil
-            i.search.icon  
   .right.menu
     a.item#fix-radius
       | Contactanos

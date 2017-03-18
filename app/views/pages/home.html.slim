@@ -1,40 +1,21 @@
+.background-home
 .ui.grid
-  .column.fourteen.wide.centered
-    .row
-      .ui.segment.very.padded.center.aligned
-        h1.header.item.animated.pulse
-          = link_to(root_path, :class => "ui header huge") do
-            span.logo FarmaenLinea
-        br
-        br    
-        .item.center.aligned
-          = form_tag search_drugs_path, method: :get do
-            .ui.action.input.massive.fluid  
-              = text_field_tag :search, 
-                params[:search], 
-                placeholder: "Que medicamentos buscas...",
-                type: "text",
-                id: "searchhome",
-                autocomplete: "off"
-              = button_tag type="submit", class: "transparent-button ui button", name: nil
-                i.search.icon
-        br        
-        .sub.header Pedir tus medicamentos nunca ha sido tan facil!
-                
-    .wrapper.doctor.image
-      .ui.grid.two.column.centered.padded.doubling
-        .column.five.wide.left.aligned.animated.fadeInLeft
-          br
-          br
-          h1.ui.header Hola soy Farma!
-          h4 Hoy te puedo ayudar a buscar tus medicinas a los mejores precios.
-          h4 Es super sencillo:     
-          .ui.list.ordered
-            .item Busca tu medicina.
-            .item Agregala a tu carrito.
-            .item Dale a ordenar en tu carrito.
-            .item Espera tu medicina en el comfort de tu casa.
-        .column.nine.wide
-          .image-wrapper
-            = image_tag "doctor.svg", class: "ui image doctor right floated animated fadeInUp"
-         
+  .row
+    .column.fifteen.wide.center.aligned.centered
+      h1.header.item.animated.pulse
+        = link_to(root_path, :class => "ui header huge") do
+          .logo FarmaenLinea
+      br
+      br    
+  = render "pages/search-filter"    
+  .row   
+    .column.fifteen.wide.center.aligned.centered       
+      .ui.segment        
+        h2.sub.header Compra tus medicamentos a los mejores precios dentro de una gran variedad de farmacias.
+        .ui.unordered.list.horizontal
+          .item Busca...
+          .item Ordena...
+          .item Nosotros nos encargamos del resto.
+        h4.sub.header Usar nuestra plataforma es completamente gratis!
+        
+	

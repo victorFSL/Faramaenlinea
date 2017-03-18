@@ -1,25 +1,9 @@
 p#notice = notice
 .ui.fifteen.wide.column.grid.centered.stackable
+  = render "pages/search-filter"
   .row
     .column.fifteen.wide.left.aligned
       h3.header Medicamentos
-  .row
-    .column.three.wide.center.aligned
-      .segment.ui.padded
-        | Favor proporcionar su sector para ofrecerle un mejor servicio.
-        br
-        br
-        select.ui.fluid.search.dropdown
-          option value="" Sector
-          option value="1" Villa Maria
-          option value="2" Cienfuego
-          option value="3" Cerro Alto
-        br
-        br
-      	.image.ui = image_tag "default.jpeg"
-        br
-        | AQUI VA EL MAPA	  
-    .column.twelve.wide
       .ui.segment.padded
         .ui.three.doubling.cards.stackable
           - cache @drugs do

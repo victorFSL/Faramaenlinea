@@ -1,32 +1,23 @@
 //------------------HOME PAGE--------------//
+.background-home::after
+  content: ""
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 200%
+  background: rgba(0, 0, 0, .6)
+  z-index: 0
 .pages.wrapper-body
-  background-image: url(home-background.jpg)
-  max-height: 100%
-  .column.nine.wide
-    padding-bottom: 0
-  .image-wrapper
-    max-height: 400px
-    overflow: hidden
-    @media(max-width: 1000px)
-      max-height: 200px
-    img.doctor
-      max-height: 550px
-  .column.five.wide.left.aligned.animated.fadeInLeft
-    animation-duration: 3s
-    animation-delay: 1s
-  .ui.image.doctor.right.floated.animated.fadeInUp
-    animation-duration: 3s
-  .transparent-button
-    background-color: none !important
-    background: none
-    border: 1px solid rgba(34,36,38,.15)
-    border-left: none
-    &:hover
-      background-color: none !important
-      background: none
-    &:focus
-      background-color: none !important
-      background: none
+  background-image: url(home.svg)
+  background-attachment: fixed
+  background-repeat: no-repeat
+  background-position: 0 -10px
+  background-size: cover
+  padding-top: 150px
+  padding-bottom: 70px
+  z-index: 1
   .logo
     font-family: $header !important
     color: $blue
+    text-shadow: 1px 1px 1px black

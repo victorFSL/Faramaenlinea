@@ -14,6 +14,7 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require turbolinks
+//= require owl-carousel/owl-carousel
 //= require_tree .
 
 $(document).on('turbolinks:load', function() {
@@ -24,4 +25,8 @@ $(document).on('turbolinks:load', function() {
   });
   $('#shoppingcart')
   .popup()
+
+  $('.owl-carousel').owlCarousel({
+    items:1
+  });
 });

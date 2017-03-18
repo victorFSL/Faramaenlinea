@@ -1,0 +1,27 @@
+.row
+  .column.fifteen.wide.center.aligned.centered
+    .ui.segment.very.padded.blue.inverted
+      = form_tag search_drugs_path, method: :get do
+        .ui.form
+          .three.fields
+            .field
+              label.white Busqueda
+              .ui.left.icon.input.fluid
+                = text_field_tag :search, 
+                  params[:search], 
+                  placeholder: "Que medicamentos buscas...",
+                  type: "text",
+                  id: "searchhome",
+                  autocomplete: "off"
+                i.search.icon
+            .disabled.field
+              label.white Provincia
+              select.ui.fluid.dropdown
+                option value="" Santiago 
+            .field
+              label.white Sector
+              select.ui.fluid.dropdown
+                option value="" Sector
+                option value="1" Cerro Alto 
+                option value="2" Villa Maria  
+          = button_tag "Buscar", type: "submit", class: "ui button orange", name: nil
