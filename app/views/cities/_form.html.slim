@@ -1,0 +1,8 @@
+= simple_form_for(@city) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.association :state, as: :radio_buttons
+  .form-actions
+    = f.button :submit

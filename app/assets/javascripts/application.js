@@ -11,10 +11,9 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery-ui
 //= require jquery_ujs
+//= require jquery-ui
 //= require turbolinks
-//= require owl-carousel/owl-carousel
 //= require_tree .
 
 $(document).on('turbolinks:load', function() {
@@ -25,8 +24,4 @@ $(document).on('turbolinks:load', function() {
   });
   $('#shoppingcart')
   .popup()
-
-  $('.owl-carousel').owlCarousel({
-    items:1
-  });
 });

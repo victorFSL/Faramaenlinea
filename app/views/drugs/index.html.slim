@@ -1,0 +1,26 @@
+p#notice = notice
+.ui.fifteen.wide.column.grid.centered.stackable
+  / = render "pages/search-filter"
+  .row
+    .column.fifteen.wide.left.aligned
+      h3.header Medicamentos
+      .ui.segment.padded
+        .ui.three.doubling.cards.stackable
+          - cache @drugs do
+            - @drugs.each do |drug|
+              - cache drug do
+                 = link_to state_city_drug_path(@state, @city, drug), class: "ui link card"
+                  .content
+                    .right.floated.header = number_to_currency(drug.prices.map(&:price).min, unit: "RD$") 
+                    .left.floated.header = drug.name
+                  .image.ui = image_tag drug.picture.url(:medium), height: "100px"
+                  .content  
+                    .meta
+                      .right.floated
+                        i.icon.industry   
+                        =  " #{drug.brand}"
+                      span.left.floated = "#{drug.dosage} #{drug.metric}"
+                  .extra.content
+                    .left.floated.description 
+                      i.icon.lab
+                      = drug.active_ingredient  

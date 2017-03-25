@@ -1,27 +1,44 @@
 .row
   .column.fifteen.wide.center.aligned.centered
     .ui.segment.very.padded.blue.inverted
-      = form_tag search_drugs_path, method: :get do
-        .ui.form
-          .three.fields
-            .field
-              label.white Busqueda
-              .ui.left.icon.input.fluid
-                = text_field_tag :search, 
-                  params[:search], 
-                  placeholder: "Que medicamentos buscas...",
-                  type: "text",
-                  id: "searchhome",
-                  autocomplete: "off"
-                i.search.icon
-            .disabled.field
-              label.white Provincia
-              select.ui.fluid.dropdown
-                option value="" Santiago 
-            .field
-              label.white Sector
-              select.ui.fluid.dropdown
-                option value="" Sector
-                option value="1" Cerro Alto 
-                option value="2" Villa Maria  
-          = button_tag "Buscar", type: "submit", class: "ui button orange", name: nil
+      .ui.form
+        .three.fields
+          .field
+            label.white Busqueda
+            .ui.left.icon.input.fluid
+              input#search type="text" placeholder="Buscar medicamentos" autocomplete = "off"
+              i.search.icon
+          .field#provincia
+            label.white Provincia
+            select.ui.fluid.search.dropdown
+              - @states.each do |s|
+                option value="#{s.id}" 
+                  = s.name
+          .field#sector
+            label.white Sector
+            select.ui.fluid.search.dropdown
+              - @cities.each do |c|
+                option value="#{c.id}" 
+                  = c.name
+      a.button.ui.orange#link href="#" Buscar 
+
+javascript:
+  function inputs() {
+    var search = $( "#search").val();
+    var provincia = $( "#provincia select" ).val();
+    var sector = $( "#sector select" ).val();
+    $( "a#link" ).prop( "href", "/states/"+provincia+"/cities/"+sector+"/drugs?utf8=%E2%9C%93&q%5Bname_or_active_ingredient_cont%5D="+search );
+  }
+  $( "select" ).change( inputs );
+  $( "input").keyup( inputs );
+  inputs();
+  
+  $('#search').keypress(function (event) {
+    if (event.keyCode == 10 || event.keyCode == 13) {
+      var submitsearch = function() {
+        document.location.href = $( "a#link" ).attr('href');
+      };
+      $( "a#link" ).click(submitsearch);
+      submitsearch();
+    }
+  });

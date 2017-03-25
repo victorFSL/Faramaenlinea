@@ -1,15 +1,3 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
-
-$(document).on 'turbolinks:load', ->
-  $( "#search" ).autocomplete(
-    source: "/drugs/autocomplete",
-    minLength: 3,
-    autoFocus: true,
-  )
-  $( "#searchhome" ).autocomplete(
-    source: "/drugs/autocomplete",
-    minLength: 3,
-    autoFocus: true,
-  )
+jQuery ->
+  $( '#search' ).autocomplete
+    source: "/drugs"

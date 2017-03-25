@@ -5,6 +5,8 @@ class DrugStore < ApplicationRecord
 
   has_many :prices
   has_many :drugs, through: :prices
+  belongs_to :state
+  belongs_to :city
 
   def regular_hours
     'Abierto de ' + hour_open_regular.strftime(" %l:%M %p") + ' a ' + hour_close_regular.strftime(" %l:%M %p") + ' de ' + days_regular

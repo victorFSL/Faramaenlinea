@@ -23,6 +23,6 @@ p#notice = notice
               b Forma de pago: 
               = @drug_store.payment_options  
 
-            = button_to :back, method: "get", class: "ui labeled icon button" do
+            = link_to state_city_drug_path(@state, @city, @drug), class: "ui labeled icon button" do
               i.icon.angle.left
               | Volver

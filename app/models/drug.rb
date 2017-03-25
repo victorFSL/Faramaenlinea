@@ -1,14 +1,6 @@
 class Drug < ApplicationRecord
-  searchkick text_start: [:name, :active_ingredient]
+  #autocomplete :drug, :name
 
-  def search_data
-    {
-      name: name,
-      active_ingredient: active_ingredient,
-      description: description,
-      brand: brand
-    }
-  end
   has_many :prices
   has_many :drug_stores, through: :prices
 

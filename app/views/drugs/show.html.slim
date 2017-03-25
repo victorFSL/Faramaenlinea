@@ -21,7 +21,7 @@ p#notice = notice
             .ui.hidden.divider  
             p = @drug.description       
 
-            = button_to search_drugs_path, method: "get", class: "ui labeled icon button" do
+            = link_to state_city_drugs_path(@state, @city), method: "get", class: "ui labeled icon button" do
               i.icon.angle.left
               | Volver
         .column
@@ -30,7 +30,7 @@ p#notice = notice
             - @drug.prices.order("price ASC").each do |price|
               tr
                 td = image_tag price.drug_store.logo.url(:thumb)
-                td = link_to price.drug_store.name, drug_drug_store_path(@drug, price.drug_store_id)
+                td = link_to price.drug_store.name, state_city_drug_drug_store_path(@state, @city,@drug, price.drug_store_id)
                 td = number_to_currency(price.price, unit: "RD$")
                 td 
                   = button_to line_items_path(price_id: price.id), method: "post", class: "ui labeled icon button" do

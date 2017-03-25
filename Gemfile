@@ -23,7 +23,7 @@ gem 'mail_form'
 gem 'simple_form'
 gem 'therubyracer'
 gem 'paperclip'
-gem 'searchkick'
+gem 'ransack'
 gem 'sprockets-rails', '~> 3.2'
 gem 'oj'
 

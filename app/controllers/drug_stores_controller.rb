@@ -1,7 +1,7 @@
 class DrugStoresController < ApplicationController
   before_action :set_drug_store, only: [:show, :edit, :update, :destroy]
-  before_action :set_drug
-
+  before_action :set_drug, only: [:show]
+  before_action :state_city
   # GET /drug_stores
   # GET /drug_stores.json
   def index
@@ -26,7 +26,6 @@ class DrugStoresController < ApplicationController
   # POST /drug_stores.json
   def create
     @drug_store = DrugStore.new(drug_store_params)
-    @drug_store.drug_id = @drug.id
     respond_to do |format|
       if @drug_store.save
         format.html { redirect_to drug_path(@drug), notice: 'Drug store was successfully created.' }
@@ -71,6 +70,11 @@ class DrugStoresController < ApplicationController
 
     def set_drug_store
       @drug_store = DrugStore.find(params[:id])
+    end
+
+    def state_city
+      @state = State.find(params[:state_id])
+      @city = City.find(params[:city_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
