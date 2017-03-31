@@ -1,0 +1,19 @@
+h1 Listing drug_store_locations
+
+table
+  thead
+    tr
+      th
+      th
+      th
+
+  tbody
+    - @drug_store_locations.each do |drug_store_location|
+      tr
+        td = link_to 'Show', drug_store_location
+        td = link_to 'Edit', edit_drug_store_location_path(drug_store_location)
+        td = link_to 'Destroy', drug_store_location, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Drug store location', new_drug_store_location_path

@@ -1,22 +1,20 @@
 class DrugsController < ApplicationController
-
+  include SearchFilter
   before_action :set_drug, only: [:show, :edit, :update, :destroy]
-  before_action :set_state_city
+  before_action :set_state_city, :search_filter
 
   def index
-    respond_to do |format|
-      if params[:q].present?
-        format.html {
-          @search = Drug.search(params[:q])
-          @drugs = @search.result
-        }
-        format.json {
-          @search = Drug.search(params[:q])
-        }
-      else
-        @drugs = Drug.all
-      end
-    end
+    query = params[:q].presence || "*"
+    @drugs = Drug.search(query)
+  end
+
+  def autocomplete
+    render json: Drug.search(params[:term], {
+      fields: ["name^10","active_ingredient"],
+      match: :text_start,
+      limit: 10,
+      misspellings: {below: 5}
+    }).map(&:name)
   end
 
   # GET /drugs/1
@@ -40,7 +38,7 @@ class DrugsController < ApplicationController
 
     respond_to do |format|
       if @drug.save
-        format.html { redirect_to @drug, notice: 'Drug was successfully created.' }
+        format.html { redirect_to state_city_drug_path(@state,@city,@drug), notice: 'Drug was successfully created.' }
         format.json { render :show, status: :created, location: @drug }
       else
         format.html { render :new }
@@ -54,7 +52,7 @@ class DrugsController < ApplicationController
   def update
     respond_to do |format|
       if @drug.update(drug_params)
-        format.html { redirect_to @drug, notice: 'Drug was successfully updated.' }
+        format.html { redirect_to state_city_drug_path(@state,@city,@drug), notice: 'Drug was successfully updated.' }
         format.json { render :show, status: :ok, location: @drug }
       else
         format.html { render :edit }

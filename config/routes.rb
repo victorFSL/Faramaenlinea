@@ -1,12 +1,11 @@
 Rails.application.routes.draw do
-resources :line_items
-resources :carts
+  resources :drug_store_locations
+resources :line_items, :carts
 resources :states do
   resources :cities do
     resources :drugs do
       collection do
-        get 'search'
-        get :autocomplete_drug_name
+        get :autocomplete
       end
       resources :drug_stores
     end

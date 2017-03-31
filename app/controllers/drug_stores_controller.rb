@@ -1,6 +1,6 @@
 class DrugStoresController < ApplicationController
   before_action :set_drug_store, only: [:show, :edit, :update, :destroy]
-  before_action :set_drug, only: [:show]
+  before_action :set_drug, only: [:show, :edit, :update, :destroy]
   before_action :state_city
   # GET /drug_stores
   # GET /drug_stores.json
@@ -28,7 +28,7 @@ class DrugStoresController < ApplicationController
     @drug_store = DrugStore.new(drug_store_params)
     respond_to do |format|
       if @drug_store.save
-        format.html { redirect_to drug_path(@drug), notice: 'Drug store was successfully created.' }
+        format.html { redirect_to state_city_drug_drug_store_path(@state, @city, @drug, @drug_store), notice: 'Drug store was successfully created.' }
         format.json { render :show, status: :created, location: @drug_store }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class DrugStoresController < ApplicationController
   def update
     respond_to do |format|
       if @drug_store.update(drug_store_params)
-        format.html { redirect_to drug_drug_store_path(@drug, @drug_store), notice: 'Drug store was successfully updated.' }
+        format.html { redirect_to state_city_drug_drug_store_path(@state, @city, @drug, @drug_store), notice: 'Drug store was successfully updated.' }
         format.json { render :show, status: :ok, location: @drug_store }
       else
         format.html { render :edit }

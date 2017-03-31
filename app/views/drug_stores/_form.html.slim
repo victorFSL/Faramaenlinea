@@ -1,4 +1,4 @@
-= simple_form_for([@drug, @drug_store]) do |f|
+= simple_form_for([@state, @city, @drug, @drug_store]) do |f|
   = f.error_notification
 
   .form-inputs
@@ -11,6 +11,7 @@
     = f.input :hour_close_other
     = f.input :days_other
     = f.input :payment_options, collection: ["Tarjeta", "Efectivo", "Efectivo o Tarjeta"]
+    = image_tag @drug_store.logo.url(:medium)
     = f.input :logo, as: :file, required: "true"
     = f.input :delivery_radius
 

@@ -1,0 +1,2 @@
+module DrugStoreLocationsHelper
+end

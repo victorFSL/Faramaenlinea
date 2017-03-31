@@ -1,8 +1,9 @@
 class Drug < ApplicationRecord
-  #autocomplete :drug, :name
 
   has_many :prices
   has_many :drug_stores, through: :prices
+
+  searchkick text_start: [:name, :active_ingredient]
 
   validates :name, :active_ingredient, :description, :metric, :dosage, :brand, presence: true
   validates :dosage, numericality: {greater_than_or_equal_to: 0.01}

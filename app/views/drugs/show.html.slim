@@ -27,13 +27,17 @@ p#notice = notice
         .column
           table.ui.striped.table
             tbody
-            - @drug.prices.order("price ASC").each do |price|
-              tr
-                td = image_tag price.drug_store.logo.url(:thumb)
-                td = link_to price.drug_store.name, state_city_drug_drug_store_path(@state, @city,@drug, price.drug_store_id)
-                td = number_to_currency(price.price, unit: "RD$")
-                td 
-                  = button_to line_items_path(price_id: price.id), method: "post", class: "ui labeled icon button" do
-                    i.icon.plus
-                    | Añadir
-.ui.hidden.divider 
+              - @drug.prices.order("price ASC").each do |price|
+                - price.drug_store.states.ids.each do |state| 
+                  - if @state.id == state
+                    - price.drug_store.cities.ids.each do |city|
+                      - if @city.id == city 
+                        tr
+                          td = image_tag price.drug_store.logo.url(:thumb)
+                          td = link_to price.drug_store.name, state_city_drug_drug_store_path(@state, @city,@drug, price.drug_store_id)
+                          td = number_to_currency(price.price, unit: "RD$")
+                          td 
+                            = button_to line_items_path(price_id: price.id), method: "post", class: "ui labeled icon button" do
+                              i.icon.plus
+                              | Añadir
+          .ui.hidden.divider 

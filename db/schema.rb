@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170320212137) do
+ActiveRecord::Schema.define(version: 20170330172049) do
 
   create_table "carts", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -23,6 +23,17 @@ ActiveRecord::Schema.define(version: 20170320212137) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["state_id"], name: "index_cities_on_state_id"
+  end
+
+  create_table "drug_store_locations", force: :cascade do |t|
+    t.integer  "state_id"
+    t.integer  "city_id"
+    t.integer  "drug_store_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["city_id"], name: "index_drug_store_locations_on_city_id"
+    t.index ["drug_store_id"], name: "index_drug_store_locations_on_drug_store_id"
+    t.index ["state_id"], name: "index_drug_store_locations_on_state_id"
   end
 
   create_table "drug_stores", force: :cascade do |t|
