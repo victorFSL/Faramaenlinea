@@ -4,6 +4,8 @@ class PagesController < ApplicationController
   before_action :search_filter
 
   def home
+    @state = State.find(1)
+    @city = City.find(1)
   end
 
   def about

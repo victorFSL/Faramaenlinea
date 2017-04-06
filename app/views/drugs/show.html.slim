@@ -2,6 +2,10 @@ p#notice = notice
 .ui.grid.centered
   .fourteen.wide.column
     .ui.segment.padded
+      = link_to state_city_drugs_path(@state, @city), method: "get", class: "ui labeled icon button" do
+        i.icon.arrow.left
+        | Volver
+      .ui.hidden.divider   
       .ui.grid.equal.width.stackable
         .column.center.aligned
           .ui.segment
@@ -20,24 +24,23 @@ p#notice = notice
               = image_tag @drug.picture.url(:medium)
             .ui.hidden.divider  
             p = @drug.description       
-
-            = link_to state_city_drugs_path(@state, @city), method: "get", class: "ui labeled icon button" do
-              i.icon.angle.left
-              | Volver
         .column
-          table.ui.striped.table
-            tbody
-              - @drug.prices.order("price ASC").each do |price|
-                - price.drug_store.states.ids.each do |state| 
-                  - if @state.id == state
-                    - price.drug_store.cities.ids.each do |city|
-                      - if @city.id == city 
-                        tr
-                          td = image_tag price.drug_store.logo.url(:thumb)
-                          td = link_to price.drug_store.name, state_city_drug_drug_store_path(@state, @city,@drug, price.drug_store_id)
-                          td = number_to_currency(price.price, unit: "RD$")
-                          td 
-                            = button_to line_items_path(price_id: price.id), method: "post", class: "ui labeled icon button" do
-                              i.icon.plus
-                              | Añadir
-          .ui.hidden.divider 
+          - @drug.prices.order("price ASC").each do |price|
+            - price.drug_store.states.ids.each do |state| 
+              - if @state.id == state
+                - price.drug_store.cities.ids.each do |city|
+                  - if @city.id == city 
+                    .ui.card.fluid
+                      = link_to state_city_drug_drug_store_path(@state, @city, @drug, price.drug_store_id), class: "content" 
+                        = image_tag price.drug_store.logo.url(:thumb), class: "left floated ui image"
+                        .header.left.floated
+                          = price.drug_store.name
+                        .header.right.floated
+                          = number_to_currency(price.price, unit: "RD$")   
+                      .extra.content
+                        .ui.buttons.icon.left.floated
+                          - price.drug_store.payment_methods.each do |pm|
+                            = render partial: "payment_method_buttons", locals: { pm: pm, price: price} 
+                        = button_to line_items_path(price_id: price.id), method: "post", class: "ui labeled icon button blue right floated" do
+                          i.icon.plus
+                          | Añadir

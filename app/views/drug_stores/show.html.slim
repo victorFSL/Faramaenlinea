@@ -2,6 +2,10 @@ p#notice = notice
 .ui.grid.centered
   .fourteen.wide.column
     .ui.segment.padded
+      = link_to state_city_drug_path(@state, @city, @drug), class: "ui labeled icon button" do
+        i.icon.arrow.left
+        | Volver
+      .ui.hidden.divider  
       .ui.grid.stackable
         .column.center.aligned
           .ui.segment
@@ -19,10 +23,8 @@ p#notice = notice
             p 
               b Direccion: 
               = @drug_store.address
-            p 
+            p
               b Forma de pago: 
-              = @drug_store.payment_options  
-
-            = link_to state_city_drug_path(@state, @city, @drug), class: "ui labeled icon button" do
-              i.icon.angle.left
-              | Volver
+              .ui.icon.buttons
+                - @drug_store.payment_methods.each do |pm|  
+                  = render partial: "drugs/payment_method_buttons", locals: { pm: pm, drug_store: @drug_store} 

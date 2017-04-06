@@ -11,59 +11,24 @@
                 i.search.icon
               .results
           .field#provincia
-            = simple_form_for @state do |s|
-              = s.input :name do
-                = s.select :name, State.all.map { |r| [r.name, r.id] }
-            /  label.white Provincia
-            /  select.ui.fluid.search.dropdown
-            /    - @states.each do |s|
-            /      option value="#{s.id}" 
-            /        = s.name
+            label.white Provincia
+            select.ui.fluid.search.dropdown#states-dp
+              - @states.order('name ASC').each do |s|
+                option value="#{s.id}" 
+                  = s.name
           .field#sector
             label.white Sector
-            select.ui.fluid.search.dropdown
-              - @cities.each do |c|
+            select.ui.fluid.search.dropdown#cities-dp
+              - @cities.order('name ASC').each do |c|
                 option value="#{c.id}" 
                   = c.name
       a.button.ui.orange#link href="#" Buscar 
 
-javascript:
-  function inputs() {
-    var search = $( "#search" ).val();
-    var provincia = $( "#provincia select" ).val();
-    var sector = $( "#sector select" ).val();
-    $( "a#link" ).prop( "href", "/states/"+provincia+"/cities/"+sector+"/drugs?utf8=✓&q="+search );
-  }
-  
-  $( "input").change( inputs );
-  $( "select" ).change( inputs );
-  $( "input").keyup( inputs );
-  inputs();
-  
-  $('#search').keypress(function (event) {
-    if (event.keyCode == 10 || event.keyCode == 13) {
-      var submitsearch = function() {
-        document.location.href = $( "a#link" ).attr('href');
-      };
-      $( "a#link" ).click(submitsearch);
-      submitsearch();
-    }
-  });
-  
-  var provincia = $( "#provincia select" ).val();
-  var sector = $( "#sector select" ).val();
-  var search = $( "#search" ).val();
-  var urlsearch = "/states/"+provincia+"/cities/"+sector+"/drugs/autocomplete";
-  
-  $( "#search" ).autocomplete({
-    source: urlsearch,
-    minLength: 2
-  });
-  
-  //$( '.ui.search' ).search({
-  //  apiSettings: {
-  //    url: urlsearch
-  //  },
-  //  searchFields: [ name ],
-  //  minCharacters : 3
-  //});
+javascript:      
+  $('#cities-dp').dropdown(
+    'set selected', "#{@city.id}"
+  );
+
+  $('#states-dp').dropdown(
+    'set selected', "#{@state.id}"
+  );
