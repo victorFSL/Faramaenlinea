@@ -27,6 +27,7 @@ gem 'paperclip'
 gem 'sprockets-rails', '~> 3.2'
 gem 'oj'
 gem 'searchkick'
+gem 'bonsai-elasticsearch-rails'
 
 group :development, :test do
   gem 'byebug', platform: :mri

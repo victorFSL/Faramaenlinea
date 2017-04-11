@@ -42,6 +42,9 @@ GEM
     autoprefixer-rails (6.7.7.1)
       execjs
     bindex (0.5.0)
+    bonsai-elasticsearch-rails (0.2.0)
+      elasticsearch-model (~> 0)
+      elasticsearch-rails (~> 0)
     builder (3.2.3)
     byebug (9.0.6)
     climate_control (0.1.0)
@@ -61,6 +64,11 @@ GEM
       elasticsearch-transport (= 5.0.4)
     elasticsearch-api (5.0.4)
       multi_json
+    elasticsearch-model (0.1.9)
+      activesupport (> 3)
+      elasticsearch (> 0.4)
+      hashie
+    elasticsearch-rails (0.1.9)
     elasticsearch-transport (5.0.4)
       faraday
       multi_json
@@ -242,6 +250,7 @@ PLATFORMS
 
 DEPENDENCIES
   autoprefixer-rails (~> 6.5, >= 6.5.3)
+  bonsai-elasticsearch-rails
   byebug
   coffee-rails
   erb_to_slim
