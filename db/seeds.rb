@@ -25,6 +25,12 @@ Prices = Price.create([
   { drug_store_id: '3', drug_id: '2', price: '10'}
   ])
 
+## States ##
+States = State.create([
+  { name: 'Santiago'},
+  { name: 'Santo Domingo'}
+  ])
+
 ## City ##
 Cities = City.create([
   { name: 'Villa Maria', state_id: '1'},
@@ -32,11 +38,6 @@ Cities = City.create([
   { name: 'Bella Vista', state_id: '2'}
   ])
 
-## States ##
-States = State.create([
-  { name: 'Santiago'},
-  { name: 'Santo Domingo'}
-  ])
 
 ## Drug Store Locations ##
 
