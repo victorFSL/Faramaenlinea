@@ -9,9 +9,9 @@ Meds = Drug.create([
 ##DRUG_STORES###
 
 DrugS = DrugStore.create([
-  { name: 'Farmacia Carol', address: 'Calle 27 de Febrero #54', hour_open_regular: '8 AM', hour_close_regular: '6 PM', days_regular: 'Lunes - Viernes', hour_open_other: '9 AM', hour_close_other: '3 PM', days_other: 'Sabado - Domingos', payment_options: 'Efectivo', delivery_radius: '20'},
-  { name: 'Farmacia 11', address: 'Calle Israel #14', hour_open_regular: '8 AM', hour_close_regular: '8 PM', days_regular: 'Lunes - Jueves', hour_open_other: '7 AM', hour_close_other: '8 PM', days_other: 'Viernes - Domingos', payment_options: 'Efectivo y Tarjeta', delivery_radius: '20'},
-  { name: 'Farmacia Carol', address: 'Calle 27 de Febrero #54', hour_open_regular: '8 AM', hour_close_regular: '6 PM', days_regular: 'Lunes - Viernes',hour_open_other: '9 AM', hour_close_other: '3 PM', days_other: 'Sabado - Domingos', payment_options: 'Efectivo', delivery_radius: '20'}
+  { name: 'Farmacia Carol', address: 'Calle 27 de Febrero #54', hour_open_regular: '8 AM', hour_close_regular: '6 PM', days_regular: 'Lunes - Viernes', hour_open_other: '9 AM', hour_close_other: '3 PM', days_other: 'Sabado - Domingos', payment_options: 'Efectivo'},
+  { name: 'Farmacia 11', address: 'Calle Israel #14', hour_open_regular: '8 AM', hour_close_regular: '8 PM', days_regular: 'Lunes - Jueves', hour_open_other: '7 AM', hour_close_other: '8 PM', days_other: 'Viernes - Domingos', payment_options: 'Efectivo y Tarjeta'},
+  { name: 'Farmacia Carol', address: 'Calle 27 de Febrero #54', hour_open_regular: '8 AM', hour_close_regular: '6 PM', days_regular: 'Lunes - Viernes',hour_open_other: '9 AM', hour_close_other: '3 PM', days_other: 'Sabado - Domingos', payment_options: 'Efectivo'}
   ])
 ##Prices###
 Prices = Price.create([

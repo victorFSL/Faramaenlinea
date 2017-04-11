@@ -46,7 +46,6 @@ ActiveRecord::Schema.define(version: 20170405014749) do
     t.time     "hour_close_other"
     t.string   "days_other"
     t.string   "payment_options"
-    t.integer  "delivery_radius"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.string   "logo_file_name"
