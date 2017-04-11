@@ -7,7 +7,6 @@ end
 
 
 gem 'rails', '~> 5.0', '>= 5.0.2'
-gem 'sqlite3'
 gem 'puma'
 gem 'sass-rails', '~> 5.0', '>= 5.0.4'
 gem 'uglifier'
@@ -29,6 +28,7 @@ gem 'searchkick'
 
 group :development, :test do
   gem 'byebug', platform: :mri
+  gem 'sqlite3'
 end
 
 group :development do
@@ -37,6 +37,10 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen'
   gem 'guard-livereload'
+end
+
+group :production do
+  gem 'pg'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
