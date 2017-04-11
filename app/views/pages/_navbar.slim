@@ -12,14 +12,13 @@
     a.item.fix-hover
       button.ui.blue.button.basic.hover-effect
         | Mi cuenta 
-    = link_to cart_path(@cart), class: "item fix-hover", id: "shoppingcart"
+    a.item.fix-hover#shoppingcart
       .ui.icon
         i.icon.shop
         .content
           | Mi carrito  
       .floating.ui.red.label.circular.mini 
         = @cart.line_items.to_a.sum { |item| item.quantity}
-    .ui.popup
-      
+    = render partial: "pages/shopping_cart_modal" 
   .ui.clearing.divider       
 .menu-margin

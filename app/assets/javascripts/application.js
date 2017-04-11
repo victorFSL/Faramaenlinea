@@ -22,6 +22,7 @@ $(document).on('turbolinks:load', function() {
   .dropdown({
     on: 'hover'
   });
-  $('#shoppingcart')
-  .popup()
+
+  $('.ui.modal')
+  .modal('attach events', '#shoppingcart', 'show')
 });
