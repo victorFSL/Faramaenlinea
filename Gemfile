@@ -28,7 +28,6 @@ gem 'searchkick'
 
 group :development, :test do
   gem 'byebug', platform: :mri
-  gem 'sqlite3'
 end
 
 group :development do
@@ -37,6 +36,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen'
   gem 'guard-livereload'
+  gem 'sqlite3'
 end
 
 group :production do
