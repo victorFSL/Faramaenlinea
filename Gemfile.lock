@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/doabit/semantic-ui-sass.git
+  revision: 308d74a16d9acad903cd20f829634aa92d68699c
+  specs:
+    semantic-ui-sass (2.2.9.3)
+      sass (>= 3.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -155,6 +162,8 @@ GEM
       slop (~> 3.4)
     puma (3.8.2)
     rack (2.0.1)
+    rack-mini-profiler (0.10.2)
+      rack (>= 1.2.0)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (5.0.2)
@@ -264,9 +273,11 @@ DEPENDENCIES
   paperclip
   pg
   puma
+  rack-mini-profiler
   rails (~> 5.0, >= 5.0.2)
   sass-rails (~> 5.0, >= 5.0.4)
   searchkick
+  semantic-ui-sass!
   simple_form
   slim-rails
   spring

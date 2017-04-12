@@ -1,24 +1,24 @@
 .ui.secondary.menu.top.fixed
   //To add the search and logo in the middle of page just on the root path.
-  - unless controller.controller_name == 'pages' && controller.action_name == 'home'
+  - unless controller.action_name == 'home'
     .header.item
       = link_to(root_path, :class => "ui header huge") do
         span.logo FarmaenLinea 
   .right.menu
     a.item#fix-radius
-      | Contactanos
+      b Contactanos
     a.item
-      | Registrate   
+      b Registrate   
     a.item.fix-hover
       button.ui.blue.button.basic.hover-effect
-        | Mi cuenta 
+        b Mi cuenta 
     a.item.fix-hover#shoppingcart
       .ui.icon
         i.icon.shop
         .content
-          | Mi carrito  
+          b Mi carrito  
       .floating.ui.red.label.circular.mini 
-        = @cart.line_items.to_a.sum { |item| item.quantity}
+        = @cart.line_items.sum { |item| item.quantity}
     = render partial: "pages/shopping_cart_modal" 
-  .ui.clearing.divider       
-.menu-margin
+  .ui.clearing.divider 
+#text-container

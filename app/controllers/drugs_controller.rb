@@ -13,7 +13,7 @@ class DrugsController < ApplicationController
       fields: ["name^10","active_ingredient"],
       match: :text_start,
       limit: 10,
-      misspellings: {below: 5}
+      misspellings: {below: 3}
     }).map(&:name)
   end
 

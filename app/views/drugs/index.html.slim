@@ -9,25 +9,23 @@ p#notice = notice
           - cache @drugs do
             - @drugs.each do |drug|
               - cache drug do
-                - if drug.drug_stores.ids.any? { |drug_store_in_state| @state.drug_stores.ids.include?(drug_store_in_state) }
-                  - if drug.drug_stores.ids.any? { |drug_store_in_city| @city.drug_stores.ids.include?(drug_store_in_city) }
-                    = link_to state_city_drug_path(@state, @city, drug), class: "ui link card"
-                      .content
-                        .right.floated.header 
-                          - billy = Array.new
-                          - drug.prices.each do |price|
-                            - if @city.drug_stores.ids.include? price.drug_store_id
-                              - billy << price.price
-                          = number_to_currency(billy.min, unit: "RD$") 
-                        .left.floated.header = drug.name
-                      .image.ui = image_tag drug.picture.url(:medium), height: "100px"
-                      .content  
-                        .meta
-                          .right.floated
-                            i.icon.industry   
-                            =  " #{drug.brand}"
-                          span.left.floated = "#{drug.dosage} #{drug.metric}"
-                      .extra.content
-                        .left.floated.description 
-                          i.icon.lab
-                          = drug.active_ingredient
+                - if drug.drug_stores.ids.any? { |drug_store_in_city| @city.drug_stores.ids.include?(drug_store_in_city) }
+                  = link_to state_city_drug_path(@state, @city, drug), class: "ui link card"
+                    .content
+                      .right.floated.header 
+                        - pricing = Array.new
+                        - drug.prices.each do |price| 
+                          - pricing << price.price if @city.drug_stores.ids.include? price.drug_store_id
+                        = number_to_currency(pricing.min, unit: "RD$") 
+                      .left.floated.header = drug.name
+                    .image.ui = image_tag drug.picture.url(:medium), height: "100px"
+                    .content  
+                      .meta
+                        .right.floated
+                          i.icon.industry   
+                          =  " #{drug.brand}"
+                        span.left.floated = "#{drug.dosage} #{drug.metric}"
+                    .extra.content
+                      .left.floated.description 
+                        i.icon.lab
+                        = drug.active_ingredient

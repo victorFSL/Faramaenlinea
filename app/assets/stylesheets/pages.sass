@@ -1,26 +1,32 @@
 //------------------HOME PAGE--------------//
-.background-home::after
-  content: ""
-  position: absolute
-  top: 0
-  left: 0
-  width: 100%
-  height: 200%
-  background: transparentize(white, 0.4)
-  z-index: 0
 .pages.wrapper-body
-  background-image: url(home.svg)
-  background-attachment: fixed
-  background-repeat: no-repeat
-  background-position: 0 -10px
-  background-size: cover
-  padding-top: 150px
-  padding-bottom: 70px
-  z-index: 1
+  position: relative
+  width: 100%
+  height: auto
+  .background-home
+    background-image: url(home.svg)
+    background-attachment: fixed
+    background-repeat: no-repeat
+    background-position: 0 -10px
+    background-size: cover
+    height: 100% !important
+    width: 100% !important
+    z-index: -10
+    position: fixed
+    top: 0
+  #overlay-background
+    position: fixed
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    width: 100%
+    height: 100%
+    background: transparentize(white, 0.4)
+    z-index: -9
   .logo
     font-family: $header !important
     color: $blue
+    font-size: 8vw !important
     text-shadow: 1px 1px 1px grey
-    font-size: 1.5em
-    margin-top: -60px
-    margin-bottom: -20px
+    margin-bottom: 50px

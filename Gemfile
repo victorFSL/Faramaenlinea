@@ -28,6 +28,7 @@ gem 'sprockets-rails', '~> 3.2'
 gem 'oj'
 gem 'searchkick'
 gem 'bonsai-elasticsearch-rails'
+gem 'semantic-ui-sass', git: 'https://github.com/doabit/semantic-ui-sass.git'
 
 group :development, :test do
   gem 'byebug', platform: :mri
@@ -40,6 +41,7 @@ group :development do
   gem 'spring-watcher-listen'
   gem 'guard-livereload'
   gem 'sqlite3'
+  gem 'rack-mini-profiler'
 end
 
 group :production do

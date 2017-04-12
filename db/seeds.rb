@@ -1,5 +1,4 @@
 ## DRUGS 3 ###
-
 Meds = Drug.create([
   { name: 'Winasorb', active_ingredient: 'Paracetamol', description: 'Analgésico y antipirético.Para disminuir el dolor y la fiebre que se pueden presentar en la gripe, infecciones de garganta, bronquitis, etc., después de la vacunación.Dolor de cabeza, de oído, muscular, óseo y de la dentición.', metric: 'Miligramos', dosage: '500', brand: 'Sanofi' },
   { name: 'Salbutamol', active_ingredient: 'Salbutamol', description: 'Es un dilatador de las vías respiratorias. Este medicamento descomprime las vías respiratorias y reduce sus síntomas: disnea y respiración entrecortada o sibilante.', metric: 'Microgramos', dosage: '100', brand: 'Sandox' },
@@ -7,12 +6,12 @@ Meds = Drug.create([
   ])
 
 ##DRUG_STORES###
-
 DrugS = DrugStore.create([
   { name: 'Farmacia Carol', address: 'Calle 27 de Febrero #54', hour_open_regular: '8 AM', hour_close_regular: '6 PM', days_regular: 'Lunes - Viernes', hour_open_other: '9 AM', hour_close_other: '3 PM', days_other: 'Sabado - Domingos', payment_options: 'Efectivo'},
   { name: 'Farmacia 11', address: 'Calle Israel #14', hour_open_regular: '8 AM', hour_close_regular: '8 PM', days_regular: 'Lunes - Jueves', hour_open_other: '7 AM', hour_close_other: '8 PM', days_other: 'Viernes - Domingos', payment_options: 'Efectivo y Tarjeta'},
   { name: 'Farmacia Carol', address: 'Calle 27 de Febrero #54', hour_open_regular: '8 AM', hour_close_regular: '6 PM', days_regular: 'Lunes - Viernes',hour_open_other: '9 AM', hour_close_other: '3 PM', days_other: 'Sabado - Domingos', payment_options: 'Efectivo'}
   ])
+
 ##Prices###
 Prices = Price.create([
   { drug_store_id: '1', drug_id: '1', price: '200' },
@@ -40,9 +39,8 @@ Cities = City.create([
 
 
 ## Drug Store Locations ##
-
 DSLocations = DrugStoreLocation.create([
   { state_id: '1', city_id: '1', drug_store_id: '1'},
   { state_id: '1', city_id: '1', drug_store_id: '2'},
-  { state_id: '1', city_id: '2', drug_store_id: '3'},
+  { state_id: '1', city_id: '2', drug_store_id: '3'}
   ])

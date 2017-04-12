@@ -12,9 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui
+//= require jquery-ui/widgets/autocomplete
+//= require semantic-ui
 //= require turbolinks
-//= require_tree .
+//= require pages
 
 $(document).on('turbolinks:load', function() {
 

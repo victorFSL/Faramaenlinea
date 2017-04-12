@@ -1,10 +1,10 @@
 .background-home
+#overlay-background
 .ui.grid
   .row
     .column.fifteen.wide.center.aligned.centered
-      h1.header.item.animated.pulse
-        = link_to(root_path, :class => "ui header huge") do
-          .logo FarmaenLinea
+      = link_to root_path do
+        .huge.animated.pulse.logo FarmaenLinea
       br
       br    
   = render "pages/search-filter"    

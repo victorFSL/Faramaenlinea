@@ -11,38 +11,41 @@
  * file per style scope.
  *
  *= require_self
- *= require jquery-ui
+ *= require jquery-ui/autocomplete
+ *= require jquery-ui/core
+ *= require jquery-ui/theme
+ *= require jquery-ui/selectable
+ *= require jquery-ui/menu
  */
 
 //------------General variables-----------//
-$header: Quicksand
-$body: Raleway
+$header: Pacifico,'Helvetica Neue', Arial, Helvetica, sans-serif
+$body: Raleway !default
+$font-family: $body, 'Helvetica Neue', Arial, Helvetica, sans-serif !default
 $primary: #F56400
 $blue: #2185D0
 $yellow: #FBBD08
+
 //======Imports=====/
+
+@import semantic-ui
 @import navbar
 @import pages
 @import drugs
 
 
-body
-  display: flex
-  max-height: 100%
-  flex-direction: column
-.wrapper-body
-  flex: 1
-  padding: 50px
+
+#text-container
+  margin: 150px 0 100px 0
+  z-index: 0
 footer.footer
   background-color: $primary
   color: white
   padding: 20px
   z-index: 1
+  margin-top: 50px
 i.do.flag
   padding-top: 2px
-.ui-menu.ui-widget.ui-widget-content.ui-autocomplete.ui-front
-  z-index: 500
-  position: fixed
 .field
   label.white
     color: white !important
