@@ -15,6 +15,7 @@ class DrugsController < ApplicationController
       limit: 10,
       misspellings: {below: 3}
     }).map(&:name)
+  
   end
 
   # GET /drugs/1
@@ -84,6 +85,6 @@ class DrugsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def drug_params
-      params.require(:drug).permit(:name, :active_ingredient, :picture, :doctor_name, :description, :metric, :dosage, :brand, prices_attributes: [:drug_id, :drug_store_id, :price])
+      params.require(:drug).permit(:name, :picture, :doctor_name, :description, :metric, :dosage, :brand, prices_attributes: [:drug_id, :drug_store_id, :price])
     end
 end

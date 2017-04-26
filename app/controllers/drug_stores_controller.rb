@@ -29,10 +29,8 @@ class DrugStoresController < ApplicationController
     respond_to do |format|
       if @drug_store.save
         format.html { redirect_to state_city_drug_drug_store_path(@state, @city, @drug, @drug_store), notice: 'Drug store was successfully created.' }
-        format.json { render :show, status: :created, location: @drug_store }
       else
         format.html { render :new }
-        format.json { render json: @drug_store.errors, status: :unprocessable_entity }
       end
     end
   end

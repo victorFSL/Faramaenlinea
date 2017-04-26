@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170405014749) do
+ActiveRecord::Schema.define(version: 20170417192750) do
+
+  create_table "active_ingredients", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "coverage_id"
+    t.integer  "drug_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["coverage_id"], name: "index_active_ingredients_on_coverage_id"
+    t.index ["drug_id"], name: "index_active_ingredients_on_drug_id"
+  end
 
   create_table "carts", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -23,6 +33,12 @@ ActiveRecord::Schema.define(version: 20170405014749) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["state_id"], name: "index_cities_on_state_id"
+  end
+
+  create_table "coverages", force: :cascade do |t|
+    t.string   "minimum_coverage_insurance"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "drug_store_locations", force: :cascade do |t|
@@ -56,7 +72,6 @@ ActiveRecord::Schema.define(version: 20170405014749) do
 
   create_table "drugs", force: :cascade do |t|
     t.string   "name"
-    t.string   "active_ingredient"
     t.text     "description"
     t.string   "metric"
     t.integer  "dosage"
