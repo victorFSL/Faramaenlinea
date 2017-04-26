@@ -7,40 +7,44 @@ p#notice = notice
         | Volver
       .ui.hidden.divider   
       .ui.grid.equal.width.stackable
-        .column.center.aligned
+        .column
           .ui.segment
-            h2.ui.header 
+            - if @drug.active_ingredient.drug_id == @drug.active_ingredient.coverage_id
+              .ui.teal.ribbon.label En seguro
+            - else   
+              .right.ui.red.ribbon.label No asegurado
+            h2.ui.header.center.aligned
               = @drug.name
               .sub.header 
                 = "#{@drug.dosage} #{@drug.metric}" 
-            .ui.divider    
-            i.icon.industry
-            = @drug.brand
-            |   
-            i.icon.lab
-            = @drug.active_ingredient
+            .ui.divider
+            h5.ui.center.aligned.header    
+              span
+                i.icon.industry
+                span = @drug.brand 
+              |  | 
+              span
+                i.icon.lab 
+                span = @drug.active_ingredient.name
             .ui.hidden.divider  
-            .image.ui 
-              = image_tag @drug.picture.url(:medium)
+            = image_tag @drug.picture.url(:medium), class: " image ui centered"
             .ui.hidden.divider  
-            p = @drug.description       
+            h5.ui.center.aligned.header = @drug.description       
         .column
           - @drug.prices.order("price ASC").each do |price|
-            - price.drug_store.states.ids.each do |state| 
-              - if @state.id == state
-                - price.drug_store.cities.ids.each do |city|
-                  - if @city.id == city 
-                    .ui.card.fluid
-                      = link_to state_city_drug_drug_store_path(@state, @city, @drug, price.drug_store_id), class: "content" 
-                        = image_tag price.drug_store.logo.url(:thumb), class: "left floated ui image"
-                        .header.left.floated
-                          = price.drug_store.name
-                        .header.right.floated
-                          = number_to_currency(price.price, unit: "RD$")   
-                      .extra.content
-                        .ui.buttons.icon.left.floated
-                          - price.drug_store.payment_methods.each do |pm|
-                            = render partial: "payment_method_buttons", locals: { pm: pm, price: price} 
-                        = button_to line_items_path(price_id: price.id), method: "post", class: "ui labeled icon button blue right floated" do
-                          i.icon.plus
-                          | Añadir
+            - price.drug_store.cities.ids.each do |city|
+              - if @city.id == city 
+                .ui.card.fluid
+                  = link_to state_city_drug_drug_store_path(@state, @city, @drug, price.drug_store_id), class: "content" 
+                    = image_tag price.drug_store.logo.url(:thumb), class: "left floated ui image"
+                    .header.left.floated
+                      = price.drug_store.name
+                    .header.right.floated
+                      = number_to_currency(price.price, unit: "RD$")   
+                  .extra.content
+                    .ui.buttons.icon.left.floated
+                      - price.drug_store.payment_methods.each do |pm|
+                        = render partial: "payment_method_buttons", locals: { pm: pm, price: price} 
+                    = button_to line_items_path(price_id: price.id), method: "post", class: "ui labeled icon button blue right floated" do
+                      i.icon.plus
+                      | Añadir

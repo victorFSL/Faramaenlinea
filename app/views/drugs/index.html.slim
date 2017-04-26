@@ -1,6 +1,4 @@
-p#notice = notice
 .ui.fifteen.wide.column.grid.centered.stackable
-  = render "pages/search-filter"
   .row
     .column.fifteen.wide.left.aligned
       h3.header Medicamentos
@@ -28,4 +26,12 @@ p#notice = notice
                     .extra.content
                       .left.floated.description 
                         i.icon.lab
-                        = drug.active_ingredient
+                        = drug.active_ingredient.name
+                      .right.floated
+                        - if drug.active_ingredient.drug_id == drug.active_ingredient.coverage_id
+                          .ui.teal.tag.label En seguro
+                        - else   
+                          .ui.red.tag.label No asegurado
+- unless notice.blank?
+  javascript:
+    toastr.success('#{notice}')

@@ -3,22 +3,85 @@
   - unless controller.action_name == 'home'
     .header.item
       = link_to(root_path, :class => "ui header huge") do
-        span.logo FarmaenLinea 
+        span.logo Farmaenlinea 
+    .item#search-area
+      .ui.action.input
+        input.search-drugsnavbar.prompt type="text" placeholder="Buscar medicamentos" autofocus="true"
+        a#search-link href="#"
+          button.ui.icon.button.blue
+            i.search.icon
+    a.item#toggle-secondary-menu
+      = "#{@state.name}, #{@city.name}"    
+      span 
+        i.caret.down.icon 
   .right.menu
-    a.item#fix-radius
-      b Contactanos
-    a.item
-      b Registrate   
     a.item.fix-hover
       button.ui.blue.button.basic.hover-effect
         b Mi cuenta 
     a.item.fix-hover#shoppingcart
       .ui.icon
-        i.icon.shop
-        .content
-          b Mi carrito  
+        i.icon.shop.big
       .floating.ui.red.label.circular.mini 
         = @cart.line_items.sum { |item| item.quantity}
     = render partial: "pages/shopping_cart_modal" 
   .ui.clearing.divider 
 #text-container
+- unless controller.action_name == 'home'
+  .ui.six.item.secondary.menu.top.fixed#secondary-menu
+    .item
+    .item
+      h3 Provincia :
+    .item
+      select.ui.fluid.search.dropdown#states-dp
+        - @states.order('name ASC').each do |s|
+          option value="#{s.id}" 
+            = s.name
+    .item    
+      h3 Sector :
+    .item
+      select.ui.fluid.search.dropdown#cities-dp
+        - @cities.order('name ASC').each do |c|
+          option value="#{c.id}" 
+            = c.name
+    .item        
+javascript:
+  $( "#toggle-secondary-menu" ).click(function() {
+  $( "#secondary-menu" ).fadeToggle( "slow" )
+  $('#secondary-menu').show().css('display', 'inline-flex');
+  });
+  
+  var urlsearch = "/states/"+"#{@state.id}"+"/cities/"+"#{@city.id}"+"/drugs/autocomplete";
+
+  $( ".search-drugsnavbar" ).autocomplete({
+    source: urlsearch,
+    minLength: 2
+  });  
+  
+  function inputs() {
+    var search = $( ".search-drugsnavbar" ).val();
+    var provincia = $( "select#states-dp" ).val();
+    var sector = $( "select#cities-dp" ).val();
+    $( "#search-link" ).prop( "href", "/states/"+provincia+"/cities/"+sector+"/drugs?utf8=✓&q="+search );
+  }
+  
+  $( "input").change( inputs );
+  $( "select" ).change( inputs );
+  $( "input").keyup( inputs );
+  inputs();
+  
+  $('.search-drugsnavbar').keypress(function (event) {
+    if (event.keyCode == 10 || event.keyCode == 13) {
+      var submitsearch = function() {
+        document.location.href = $( "#search-link" ).attr('href');
+      };
+      $( "#search-link" ).click(submitsearch);
+      submitsearch();
+    }
+  });
+  $('#cities-dp').dropdown(
+    'set selected', "#{@city.id}"
+  );
+
+  $('#states-dp').dropdown(
+    'set selected', "#{@state.id}"
+  );

@@ -31,11 +31,9 @@ class LineItemsController < ApplicationController
 
     respond_to do |format|
       if @line_item.save
-        format.html { redirect_to state_city_drugs_path(@state = @line_item.price.drug_store.state_ids.first, @city = @line_item.price.drug_store.city_ids.first), notice: 'Line item was successfully created.' }
-        format.json { render :show, status: :created, location: @line_item }
+        format.html { redirect_to state_city_drugs_path(@state = @line_item.price.drug_store.state_ids.first, @city = @line_item.price.drug_store.city_ids.first), notice: "#{@line_item.price.drug.name} fue agregado a tu carrito." }
       else
-        format.html { render :new }
-        format.json { render json: @line_item.errors, status: :unprocessable_entity }
+        format.html { redirect_to state_city_drugs_path(@state = @line_item.price.drug_store.state_ids.first, @city = @line_item.price.drug_store.city_ids.first), notice: 'Error al agregar tu medicina al carrito intenta de nuevo.' }
       end
     end
   end
