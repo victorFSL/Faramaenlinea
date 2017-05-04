@@ -1,7 +1,5 @@
 class PagesController < ApplicationController
-
-  include SearchFilter
-  before_action :search_filter
+  skip_before_filter :set_state_city
 
   def home
     @state = State.find(1)

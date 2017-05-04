@@ -1,18 +1,13 @@
 p#notice = notice
 .ui.grid.centered
-  .fourteen.wide.column
-    .ui.segment.padded
-      = link_to state_city_drugs_path(@state, @city), method: "get", class: "ui labeled icon button" do
-        i.icon.arrow.left
-        | Volver
-      .ui.hidden.divider   
+  .twelve.wide.column        
+    .ui.segment.padded  
+      .ui.left.rail.attached#back-button
+        = link_to state_city_drugs_path(@state, @city), method: "get", class: "ui icon big button blue right floated" do
+          i.icon.arrow.left
       .ui.grid.equal.width.stackable
-        .column
+        .column.ten.wide
           .ui.segment
-            - if @drug.active_ingredient.drug_id == @drug.active_ingredient.coverage_id
-              .ui.teal.ribbon.label En seguro
-            - else   
-              .right.ui.red.ribbon.label No asegurado
             h2.ui.header.center.aligned
               = @drug.name
               .sub.header 
@@ -26,25 +21,35 @@ p#notice = notice
               span
                 i.icon.lab 
                 span = @drug.active_ingredient.name
+              - if @drug.active_ingredient.drug_id == @drug.active_ingredient.coverage_id
+                .ui.blue.basic.label En seguro
+              - else   
+                .ui.red.basic.label No asegurado
             .ui.hidden.divider  
             = image_tag @drug.picture.url(:medium), class: " image ui centered"
             .ui.hidden.divider  
             h5.ui.center.aligned.header = @drug.description       
-        .column
-          - @drug.prices.order("price ASC").each do |price|
-            - price.drug_store.cities.ids.each do |city|
-              - if @city.id == city 
-                .ui.card.fluid
-                  = link_to state_city_drug_drug_store_path(@state, @city, @drug, price.drug_store_id), class: "content" 
-                    = image_tag price.drug_store.logo.url(:thumb), class: "left floated ui image"
-                    .header.left.floated
-                      = price.drug_store.name
-                    .header.right.floated
-                      = number_to_currency(price.price, unit: "RD$")   
-                  .extra.content
-                    .ui.buttons.icon.left.floated
-                      - price.drug_store.payment_methods.each do |pm|
-                        = render partial: "payment_method_buttons", locals: { pm: pm, price: price} 
-                    = button_to line_items_path(price_id: price.id), method: "post", class: "ui labeled icon button blue right floated" do
-                      i.icon.plus
-                      | Añadir
+        .column.six.wide
+          h3.header Selecciona tu farmacia:
+          .ui.divider
+          .ui.segment
+            .ui.divided.items
+              - @drug.prices.order("price ASC").each do |price|
+                - price.drug_store.cities.ids.each do |city|
+                  - if @city.id == city 
+                    .item
+                      .ui.tiny.image
+                        = image_tag price.drug_store.logo.url(:original)
+                      .content
+                        .header
+                          = link_to "#{price.drug_store.name}", state_city_drug_drug_store_path(@state, @city, @drug, price.drug_store_id) 
+                        .meta.right.floated#price-drug-show
+                          = number_to_currency(price.price, unit: "RD$")
+                        .ui.divider
+                        .extra
+                          = button_to line_items_path(price_id: price.id), method: "post", class: "ui icon right floated orange button small" do
+                            i.icon.add.to.cart.big
+                          - price.drug_store.payment_methods.each do |pm|
+                            = render partial: "payment_method_buttons", locals: { pm: pm, price: price}    
+
+                          

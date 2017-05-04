@@ -2,13 +2,14 @@
 - arg = (controller.controller_name == "drugs")? price.drug_store.insurances.map(&:name).join(", ") : drug_store.insurances.map(&:name).join(", ")
 
 //-----------Buttons----------//
-- if pm.name == 'Tarjeta'
-  <button class="ui button" data-tooltip="Aceptan tarjeta"><i class="payment icon"></i></button>
-- if pm.name == 'Efectivo' 
-  <button class="ui button" data-tooltip="Aceptan efectivo"><i class="money icon"></i></button>
-- if pm.name == 'Seguro' 
-  <button class="ui button" data-tooltip="Aceptan los siguientes seguros: #{arg}."><i >ARS</i></button>
-  
+<span class="left floated ui">
+  - if pm.name == 'Tarjeta'
+    <span data-tooltip="Aceptan tarjeta"><i class="payment icon"></i></span>
+  - if pm.name == 'Efectivo' 
+    <span data-tooltip="Aceptan efectivo"><i class="money icon"></i></span>
+  - if pm.name == 'Seguro' 
+    <span data-tooltip="Seguros: #{arg}."><i class="icon">ARS</i></span>
+</span>  
 
     
     

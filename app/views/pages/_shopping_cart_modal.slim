@@ -6,7 +6,7 @@
       table.ui.celled.table
         tbody
         - cache @cart do
-          - @cart.line_items.each do |item| 
+          - @cart.line_items.each do |item|
             - cache item do
               tr
                 td = image_tag item.price.drug_store.logo.url(:thumb) 

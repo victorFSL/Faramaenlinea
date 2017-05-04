@@ -1,7 +1,7 @@
 class LineItemsController < ApplicationController
-  include CurrentCart
   before_action :set_cart, only: [:create]
   before_action :set_line_item, only: [:show, :edit, :update, :destroy]
+  skip_before_filter :set_state_city
 
   # GET /line_items
   # GET /line_items.json

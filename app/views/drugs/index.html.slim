@@ -1,7 +1,7 @@
-.ui.fifteen.wide.column.grid.centered.stackable
+.ui.twelve.wide.column.grid.centered.stackable
   .row
-    .column.fifteen.wide.left.aligned
-      h3.header Medicamentos
+    .column.twelve.wide.left.aligned
+      h3.header Selecciona tu medicamento:
       .ui.segment.padded
         .ui.three.doubling.cards.stackable
           - cache @drugs do
@@ -11,7 +11,7 @@
                   = link_to state_city_drug_path(@state, @city, drug), class: "ui link card"
                     .content
                       .right.floated.header 
-                        - pricing = Array.new
+                        - pricing = []
                         - drug.prices.each do |price| 
                           - pricing << price.price if @city.drug_stores.ids.include? price.drug_store_id
                         = number_to_currency(pricing.min, unit: "RD$") 
@@ -29,9 +29,9 @@
                         = drug.active_ingredient.name
                       .right.floated
                         - if drug.active_ingredient.drug_id == drug.active_ingredient.coverage_id
-                          .ui.teal.tag.label En seguro
+                          .ui.blue.basic.label En seguro
                         - else   
-                          .ui.red.tag.label No asegurado
+                          .ui.red.basic.label No asegurado
 - unless notice.blank?
   javascript:
     toastr.success('#{notice}')

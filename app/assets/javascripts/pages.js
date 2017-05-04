@@ -29,6 +29,10 @@ $(document).on('turbolinks:load', function() {
 
   $( ".search-drugs" ).autocomplete({
     source: urlsearch,
-    minLength: 2
+    minLength: 2,
+    select: function(e, ui){
+      $('.search-drugs').val(ui.item.value);
+      inputs()
+    }
   });
 });

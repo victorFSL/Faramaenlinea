@@ -1,7 +1,7 @@
 class DrugStoresController < ApplicationController
   before_action :set_drug_store, only: [:show, :edit, :update, :destroy]
   before_action :set_drug, only: [:show, :edit, :update, :destroy]
-  before_action :state_city
+
   # GET /drug_stores
   # GET /drug_stores.json
   def index
@@ -68,11 +68,6 @@ class DrugStoresController < ApplicationController
 
     def set_drug_store
       @drug_store = DrugStore.find(params[:id])
-    end
-
-    def state_city
-      @state = State.find(params[:state_id])
-      @city = City.find(params[:city_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

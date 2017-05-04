@@ -45,6 +45,7 @@
             = c.name
     .item        
 javascript:
+  //---------Secondary Menu-----------//
   $( "#toggle-secondary-menu" ).click(function() {
   $( "#secondary-menu" ).fadeToggle( "slow" )
   $('#secondary-menu').show().css('display', 'inline-flex');
@@ -52,11 +53,16 @@ javascript:
   
   var urlsearch = "/states/"+"#{@state.id}"+"/cities/"+"#{@city.id}"+"/drugs/autocomplete";
 
+  //--------JSON------//
   $( ".search-drugsnavbar" ).autocomplete({
     source: urlsearch,
-    minLength: 2
+    minLength: 2,
+    select: function(e, ui){
+      $('.search-drugsnavbar').val(ui.item.value);
+      inputs()
+    }
   });  
-  
+  //------Update link url---------//
   function inputs() {
     var search = $( ".search-drugsnavbar" ).val();
     var provincia = $( "select#states-dp" ).val();
@@ -68,7 +74,7 @@ javascript:
   $( "select" ).change( inputs );
   $( "input").keyup( inputs );
   inputs();
-  
+  //----------On enter submit info------------//
   $('.search-drugsnavbar').keypress(function (event) {
     if (event.keyCode == 10 || event.keyCode == 13) {
       var submitsearch = function() {
@@ -78,6 +84,7 @@ javascript:
       submitsearch();
     }
   });
+  //---------Dropdown selected fields---------//
   $('#cities-dp').dropdown(
     'set selected', "#{@city.id}"
   );

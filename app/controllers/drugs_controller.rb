@@ -1,7 +1,5 @@
 class DrugsController < ApplicationController
-  include SearchFilter
   before_action :set_drug, only: [:show, :edit, :update, :destroy]
-  before_action :set_state_city, :search_filter
 
   def index
     query = params[:q].presence || "*"
@@ -15,7 +13,7 @@ class DrugsController < ApplicationController
       limit: 10,
       misspellings: {below: 3}
     }).map(&:name)
-  
+
   end
 
   # GET /drugs/1
@@ -76,11 +74,6 @@ class DrugsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_drug
       @drug = Drug.find(params[:id])
-    end
-
-    def set_state_city
-      @state = State.find(params[:state_id])
-      @city = City.find(params[:city_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
