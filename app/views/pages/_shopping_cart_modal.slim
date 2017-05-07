@@ -5,13 +5,11 @@
     .column.twelve.wide
       table.ui.celled.table
         tbody
-        - cache @cart do
           - @cart.line_items.each do |item|
-            - cache item do
-              tr
-                td = image_tag item.price.drug_store.logo.url(:thumb) 
-                td = item.price.drug.name 
-                td = "#{item.quantity} \u00D7 RD$ #{item.price.price}"
+            tr
+              td = image_tag item.price.drug_store.logo.url(:thumb) 
+              td = item.price.drug.name 
+              td = "#{item.quantity} \u00D7 RD$ #{item.price.price}"
   .actions
     .ui.black.deny.button
       | Nope
