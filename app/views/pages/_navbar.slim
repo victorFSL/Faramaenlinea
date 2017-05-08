@@ -19,8 +19,13 @@
       button.ui.blue.button.basic.hover-effect
         b Mi cuenta 
     a.item.fix-hover#shoppingcart
-      .ui.icon
-        i.icon.shop.big
+      .ui.icon.labeled
+        - if @cart.line_items.count > 0
+          i.icon.shop.big.green
+          div Cerrar Orden
+        - else
+          i.icon.shop.big
+          div Cerrar Orden  
       .floating.ui.red.label.circular.mini 
         = @cart.line_items.sum { |item| item.quantity}
     = render partial: "pages/shopping_cart_modal" 

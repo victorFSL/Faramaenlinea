@@ -1,10 +1,17 @@
 .ui.modal
   i.close.icon
   .header Carrito
-  .ui.fifteen.wide.column.grid.center.aligned
-    .column.twelve.wide
-      table.ui.celled.table
-        tbody
+  .ui.fifteen.wide.column.grid
+    .column.fifteen.wide.centered
+      .ui.segment
+        - @cart.line_items.each do |item|
+          h2.ui.header.left.aligned
+            = image_tag item.price.drug_store.logo.url(:thumb), class: "ui circular image"
+            |  | 
+            = item.price.drug_store.name
+            span
+              h2.ui.header.right.floated#fix-align-drug_store_price RD$ 20,000  
+        //tbody
           - @cart.line_items.each do |item|
             tr
               td = image_tag item.price.drug_store.logo.url(:thumb) 

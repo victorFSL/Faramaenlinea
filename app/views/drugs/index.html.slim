@@ -9,10 +9,11 @@
               = link_to state_city_drug_path(@state, @city, drug), class: "ui link card"
                 .content
                   .right.floated.header 
-                    - pricing = []
-                    - drug.prices.each do |price| 
-                      - pricing << price.price if @city.drug_stores.ids.include? price.drug_store_id
-                    = number_to_currency(pricing.min, unit: "RD$") 
+                    | Continuar >>
+                  /   - pricing = []
+                  /   - drug.prices.each do |price| 
+                  /     - pricing << price.price if @city.drug_stores.ids.include? price.drug_store_id
+                  /   = number_to_currency(pricing.min, unit: "RD$") 
                   .left.floated.header = drug.name
                 .image.ui = image_tag drug.picture.url(:medium), height: "100px"
                 .content  
