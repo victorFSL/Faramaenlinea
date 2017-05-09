@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   resources :drug_store_locations
-resources :line_items, :carts
-resources :states do
-  resources :cities do
+  resources :line_items, :carts
+  resources :locations do
     resources :drugs do
       collection do
         get :autocomplete
@@ -10,7 +9,6 @@ resources :states do
       resources :drug_stores
     end
   end
-end
 get 'pages/about'
 root 'pages#home'
 

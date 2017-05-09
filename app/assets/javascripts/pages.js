@@ -2,9 +2,8 @@ $(document).on('turbolinks:load', function() {
 
   function inputs() {
     var search = $( ".search-drugs" ).val();
-    var provincia = $( "#provincia select" ).val();
     var sector = $( "#sector select" ).val();
-    $( "a#link" ).prop( "href", "/states/"+provincia+"/cities/"+sector+"/drugs?utf8=✓&q="+search );
+    $( "a#link" ).prop( "href", "/locations/"+sector+"/drugs?utf8=✓&q="+search );
   }
 
   $( "input").change( inputs );
@@ -22,10 +21,9 @@ $(document).on('turbolinks:load', function() {
     }
   });
 
-  var provincia = $( "#provincia select" ).val();
   var sector = $( "#sector select" ).val();
   var search = $( ".search-drugs" ).val();
-  var urlsearch = "/states/"+provincia+"/cities/"+sector+"/drugs/autocomplete";
+  var urlsearch = "/locations/"+sector+"/drugs/autocomplete";
 
   $( ".search-drugs" ).autocomplete({
     source: urlsearch,

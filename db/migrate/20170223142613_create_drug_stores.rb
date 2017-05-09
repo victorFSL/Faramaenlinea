@@ -9,8 +9,6 @@ class CreateDrugStores < ActiveRecord::Migration[5.0]
       t.time :hour_open_other
       t.time :hour_close_other
       t.string :days_other
-      t.string :payment_options
-
 
       t.timestamps
     end

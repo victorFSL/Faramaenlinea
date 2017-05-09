@@ -4,24 +4,19 @@ Meds = Drug.create([
   { name: 'Salbutamol', description: 'Es un dilatador de las vías respiratorias. Este medicamento descomprime las vías respiratorias y reduce sus síntomas: disnea y respiración entrecortada o sibilante.', metric: 'Microgramos', dosage: '100', brand: 'Sandox', picture_file_name: "dokteronline-salbutamol-833-3-1420818303.jpg" },
   { name: 'Amoxicilina', description: 'La amoxicilina es un antibiótico semisintético derivado de la penicilina. Se trata de una amino penicilina. Actúa contra un amplio espectro de bacterias, tanto Gram positivos como Gram-negativos.', metric: 'Miligramos', dosage: '365', brand: 'Pme', picture_file_name: "amoxicilina.jpeg"}
   ])
-## Coverage if insurance covers
-Coverages = Coverage.create([
-  { minimum_coverage_insurance: '80.00'},
-  { minimum_coverage_insurance: '70.00' }
-  ])
+
 ## Active Ingredient
 AI = ActiveIngredient.create([
-  { name: 'Paracetamol', coverage_id: '1', drug_id: '1'},
-  { name: 'Salbutamol', coverage_id: '2', drug_id: '2'},
+  { name: 'Paracetamol', drug_id: '1', minimum_coverage_insurance: '80.00', under_insurance: true},
+  { name: 'Salbutamol', drug_id: '2', minimum_coverage_insurance: '70.00', under_insurance: true},
   { name: 'Amoxicilina', drug_id: '3'}
   ])
 
-
 ##DRUG_STORES###
 DrugS = DrugStore.create([
-  { name: 'Farmacia Carol', address: 'Calle 27 de Febrero #54', hour_open_regular: '8 AM', hour_close_regular: '6 PM', days_regular: 'Lunes - Viernes', hour_open_other: '9 AM', hour_close_other: '3 PM', days_other: 'Sabado - Domingos', payment_options: 'Efectivo', logo_file_name: "index.png"},
-  { name: 'Farmacia 11', address: 'Calle Israel #14', hour_open_regular: '8 AM', hour_close_regular: '8 PM', days_regular: 'Lunes - Jueves', hour_open_other: '7 AM', hour_close_other: '8 PM', days_other: 'Viernes - Domingos', payment_options: 'Efectivo y Tarjeta', logo_file_name: "__35.JPG"},
-  { name: 'Farmacia Carol', address: 'Calle 27 de Febrero #54', hour_open_regular: '8 AM', hour_close_regular: '6 PM', days_regular: 'Lunes - Viernes',hour_open_other: '9 AM', hour_close_other: '3 PM', days_other: 'Sabado - Domingos', payment_options: 'Efectivo', logo_file_name: "losrobles_g.jpg"}
+  { name: 'Farmacia Carol', address: 'Calle 27 de Febrero #54', hour_open_regular: '8 AM', hour_close_regular: '6 PM', days_regular: 'Lunes - Viernes', hour_open_other: '9 AM', hour_close_other: '3 PM', days_other: 'Sabado - Domingos', logo_file_name: "index.png"},
+  { name: 'Farmacia 11', address: 'Calle Israel #14', hour_open_regular: '8 AM', hour_close_regular: '8 PM', days_regular: 'Lunes - Jueves', hour_open_other: '7 AM', hour_close_other: '8 PM', days_other: 'Viernes - Domingos', logo_file_name: "__35.JPG"},
+  { name: 'Farmacia Carol', address: 'Calle 27 de Febrero #54', hour_open_regular: '8 AM', hour_close_regular: '6 PM', days_regular: 'Lunes - Viernes',hour_open_other: '9 AM', hour_close_other: '3 PM', days_other: 'Sabado - Domingos', logo_file_name: "losrobles_g.jpg"}
   ])
 
 ##Prices###
@@ -37,32 +32,23 @@ Prices = Price.create([
   ])
 
 ## States ##
-States = State.create([
-  { name: 'Santiago'},
-  { name: 'Santo Domingo'}
-  ])
-
-## City ##
-Cities = City.create([
-  { name: 'Villa Maria', state_id: '1'},
-  { name: 'Hoya de Caimito', state_id: '1'},
-  { name: 'Bella Vista', state_id: '2'}
+Locations = Location.create([
+  { state_id: 'santiago', city_name: 'Villa Maria'},
+  { state_id: 'santiago', city_name: 'Hoya de Caimito'},
+  { state_id: 'santiago', city_name: 'Bella Vista'}
   ])
 
 ## Drug Store Locations ##
 DSLocations = DrugStoreLocation.create([
-  { state_id: '1', city_id: '1', drug_store_id: '1'},
-  { state_id: '1', city_id: '1', drug_store_id: '2'},
-  { state_id: '1', city_id: '2', drug_store_id: '3'}
+  { location_id: '1', drug_store_id: '1'},
+  { location_id: '2', drug_store_id: '2'},
+  { location_id: '3', drug_store_id: '3'}
   ])
 ## Payment Methods Efectivo, Tarjeta o Seguro
 PaymentMethods = PaymentMethod.create([
-  { name: "Efectivo", drug_store_id: '1'},
-  { name: "Tarjeta", drug_store_id: '2' },
-  { name: "Seguro", drug_store_id: '2'}
-  ])
-## Insurances if Seguro for PaymentMethod then what type of insurance?
-Insurances = Insurance.create([
-  { name: "Palic", drug_store_id: '2'},
-  { name: "Humano", drug_store_id: '2' }
+  { payment_type: '1', drug_store_id: '1'},
+  { payment_type: '2', drug_store_id: '2'},
+  { payment_type: '3', drug_store_id: '2', insurance_name: "Palic"},
+  { payment_type: '3', drug_store_id: '2', insurance_name: "Monumental"},
+  { payment_type: '3', drug_store_id: '3', insurance_name: "Humano"}
   ])

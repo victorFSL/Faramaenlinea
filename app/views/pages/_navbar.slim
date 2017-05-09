@@ -11,7 +11,7 @@
           button.ui.icon.button.blue
             i.search.icon
     a.item#toggle-secondary-menu
-      = "#{@state.name}, #{@city.name}"    
+      = "#{@location.city_name}, #{@location.state_id.titleize}"    
       span 
         i.caret.down.icon 
   .right.menu
@@ -38,25 +38,23 @@
       h3 Provincia :
     .item
       select.ui.fluid.search.dropdown#states-dp
-        - @states.order('name ASC').each do |s|
-          option value="#{s.id}" 
-            = s.name
+        option value="0" Santiago
     .item    
       h3 Sector :
     .item
       select.ui.fluid.search.dropdown#cities-dp
-        - @cities.order('name ASC').each do |c|
+        - @locations.order('city_name ASC').each do |c|
           option value="#{c.id}" 
-            = c.name
+            = c.city_name
     .item        
-javascript:
+//javascript:
   //---------Secondary Menu-----------//
   $( "#toggle-secondary-menu" ).click(function() {
   $( "#secondary-menu" ).fadeToggle( "slow" )
   $('#secondary-menu').show().css('display', 'inline-flex');
   });
   
-  var urlsearch = "/states/"+"#{@state.id}"+"/cities/"+"#{@city.id}"+"/drugs/autocomplete";
+  var urlsearch = "/locations/"+"#{@location.id}"+"/drugs/autocomplete";
 
   //--------JSON------//
   $( ".search-drugsnavbar" ).autocomplete({

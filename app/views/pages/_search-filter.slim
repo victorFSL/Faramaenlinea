@@ -4,7 +4,7 @@
       .ui.form
         .three.fields
           .field
-            label.white Busqueda
+            label.white Busqueda 
             .ui.search
               .ui.icon.input
                 input.search-drugs.prompt type="text" placeholder="Buscar medicamentos" autofocus="true"
@@ -13,22 +13,11 @@
           .field#provincia
             label.white Provincia
             select.ui.fluid.search.dropdown#states-dp
-              - @states.order('name ASC').each do |s|
-                option value="#{s.id}" 
-                  = s.name
+                option value="0" Santiago
           .field#sector
             label.white Sector
-            select.ui.fluid.search.dropdown#cities-dp
-              - @cities.order('name ASC').each do |c|
+            select.ui.fluid.search.dropdown#location-dp
+              - @locations.order('city_name ASC').each do |c|
                 option value="#{c.id}" 
-                  = c.name
+                  = c.city_name
       a.button.ui.orange#link href="#" Buscar 
-
-javascript:      
-  $('#cities-dp').dropdown(
-    'set selected', "#{@city.id}"
-  );
-
-  $('#states-dp').dropdown(
-    'set selected', "#{@state.id}"
-  );

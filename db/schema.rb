@@ -14,11 +14,11 @@ ActiveRecord::Schema.define(version: 20170417192750) do
 
   create_table "active_ingredients", force: :cascade do |t|
     t.string   "name"
-    t.integer  "coverage_id"
+    t.string   "minimum_coverage_insurance"
+    t.boolean  "under_insurance",            default: false
     t.integer  "drug_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["coverage_id"], name: "index_active_ingredients_on_coverage_id"
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
     t.index ["drug_id"], name: "index_active_ingredients_on_drug_id"
   end
 
@@ -27,29 +27,13 @@ ActiveRecord::Schema.define(version: 20170417192750) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "cities", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "state_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["state_id"], name: "index_cities_on_state_id"
-  end
-
-  create_table "coverages", force: :cascade do |t|
-    t.string   "minimum_coverage_insurance"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-  end
-
   create_table "drug_store_locations", force: :cascade do |t|
-    t.integer  "state_id"
-    t.integer  "city_id"
+    t.integer  "location_id"
     t.integer  "drug_store_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-    t.index ["city_id"], name: "index_drug_store_locations_on_city_id"
     t.index ["drug_store_id"], name: "index_drug_store_locations_on_drug_store_id"
-    t.index ["state_id"], name: "index_drug_store_locations_on_state_id"
+    t.index ["location_id"], name: "index_drug_store_locations_on_location_id"
   end
 
   create_table "drug_stores", force: :cascade do |t|
@@ -61,7 +45,6 @@ ActiveRecord::Schema.define(version: 20170417192750) do
     t.time     "hour_open_other"
     t.time     "hour_close_other"
     t.string   "days_other"
-    t.string   "payment_options"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.string   "logo_file_name"
@@ -84,12 +67,6 @@ ActiveRecord::Schema.define(version: 20170417192750) do
     t.datetime "picture_updated_at"
   end
 
-  create_table "insurances", force: :cascade do |t|
-    t.string  "name"
-    t.integer "drug_store_id"
-    t.index ["drug_store_id"], name: "index_insurances_on_drug_store_id"
-  end
-
   create_table "line_items", force: :cascade do |t|
     t.integer  "price_id"
     t.integer  "cart_id"
@@ -100,8 +77,16 @@ ActiveRecord::Schema.define(version: 20170417192750) do
     t.index ["price_id"], name: "index_line_items_on_price_id"
   end
 
+  create_table "locations", force: :cascade do |t|
+    t.integer  "state_id"
+    t.string   "city_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "payment_methods", force: :cascade do |t|
-    t.string  "name"
+    t.string  "payment_type"
+    t.string  "insurance_name"
     t.integer "drug_store_id"
     t.index ["drug_store_id"], name: "index_payment_methods_on_drug_store_id"
   end
@@ -114,12 +99,6 @@ ActiveRecord::Schema.define(version: 20170417192750) do
     t.datetime "updated_at",    null: false
     t.index ["drug_id"], name: "index_prices_on_drug_id"
     t.index ["drug_store_id"], name: "index_prices_on_drug_store_id"
-  end
-
-  create_table "states", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
 end
