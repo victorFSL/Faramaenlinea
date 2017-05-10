@@ -3,7 +3,7 @@ p#notice = notice
   .twelve.wide.column        
     .ui.segment.padded  
       .ui.left.rail.attached#back-button
-        = link_to state_city_drugs_path(@state, @city), method: "get", class: "ui icon big button blue right floated" do
+        = link_to location_drugs_path(@location), method: "get", class: "ui icon big button blue right floated" do
           i.icon.arrow.left
       .ui.grid.equal.width.stackable
         .column.ten.wide
@@ -21,7 +21,7 @@ p#notice = notice
               span
                 i.icon.lab 
                 span = @drug.active_ingredient.name
-              - if @drug.active_ingredient.drug_id == @drug.active_ingredient.coverage_id
+              - if @drug.active_ingredient.under_insurance
                 .ui.blue.basic.label En seguro
               - else   
                 .ui.red.basic.label No asegurado
@@ -35,21 +35,22 @@ p#notice = notice
           .ui.segment
             .ui.divided.items
               - @drug.prices.order("price ASC").each do |price|
-                - price.drug_store.cities.ids.each do |city|
-                  - if @city.id == city 
+                - price.drug_store.locations.ids.each do |location_id|
+                  - if @location.id == location_id
                     .item
                       .ui.tiny.image
                         = image_tag price.drug_store.logo.url(:original)
                       .content
                         .header
-                          = link_to "#{price.drug_store.name}", state_city_drug_drug_store_path(@state, @city, @drug, price.drug_store_id) 
+                          = link_to "#{price.drug_store.name}", location_drug_drug_store_path(@location, @drug, price.drug_store_id) 
                         .meta.right.floated#price-drug-show
                           = number_to_currency(price.price, unit: "RD$")
                         .ui.divider
                         .extra
                           = button_to line_items_path(price_id: price.id), method: "post", class: "ui icon right floated orange button small" do
                             i.icon.add.to.cart.big
+                          - payment_methods_check_duplicate = []  
                           - price.drug_store.payment_methods.each do |pm|
-                            = render partial: "payment_method_buttons", locals: { pm: pm, price: price}    
+                            = render partial: "payment_method_buttons", locals: { pm: pm, price: price, payment_methods_check_duplicate: payment_methods_check_duplicate}     
 
                           

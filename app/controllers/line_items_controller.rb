@@ -1,7 +1,7 @@
 class LineItemsController < ApplicationController
   before_action :set_cart, only: [:create]
   before_action :set_line_item, only: [:show, :edit, :update, :destroy]
-  skip_before_filter :set_state_city
+  skip_before_filter :set_location
 
   # GET /line_items
   # GET /line_items.json
@@ -31,9 +31,9 @@ class LineItemsController < ApplicationController
 
     respond_to do |format|
       if @line_item.save
-        format.html { redirect_to state_city_drugs_path(@state = @line_item.price.drug_store.state_ids.first, @city = @line_item.price.drug_store.city_ids.first), notice: "#{@line_item.price.drug.name} fue agregado a tu carrito." }
+        format.html { redirect_to location_drugs_path(@location = @line_item.price.drug_store.location_ids.first), notice: "#{@line_item.price.drug.name} fue agregado a tu carrito." }
       else
-        format.html { redirect_to state_city_drugs_path(@state = @line_item.price.drug_store.state_ids.first, @city = @line_item.price.drug_store.city_ids.first), notice: 'Error al agregar tu medicina al carrito intenta de nuevo.' }
+        format.html { redirect_to state_city_drugs_path(@location = @line_item.price.drug_store.location_ids.first), notice: 'Error al agregar tu medicina al carrito intenta de nuevo.' }
       end
     end
   end

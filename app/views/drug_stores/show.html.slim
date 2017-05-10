@@ -3,7 +3,7 @@ p#notice = notice
   .twelve.wide.column
     .ui.segment.padded
       .ui.left.rail.attached#back-button
-        = link_to state_city_drugs_path(@state, @city), method: "get", class: "ui icon big button blue right floated" do
+        = link_to location_drugs_path(@location), method: "get", class: "ui icon big button blue right floated" do
           i.icon.arrow.left
       .ui.hidden.divider  
       .ui.grid.stackable
@@ -24,5 +24,6 @@ p#notice = notice
             = @drug_store.address
           p
             b Forma de pago: 
+            - payment_methods_check_duplicate = []
             - @drug_store.payment_methods.each do |pm|  
-              = render partial: "drugs/payment_method_buttons", locals: { pm: pm, drug_store: @drug_store} 
+              = render partial: "drugs/payment_method_buttons", locals: { pm: pm, drug_store: @drug_store, payment_methods_check_duplicate: payment_methods_check_duplicate} 

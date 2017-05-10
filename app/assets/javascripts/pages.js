@@ -2,7 +2,7 @@ $(document).on('turbolinks:load', function() {
 
   function inputs() {
     var search = $( ".search-drugs" ).val();
-    var sector = $( "#sector select" ).val();
+    var sector = $( "#city-dropdown" ).val();
     $( "a#link" ).prop( "href", "/locations/"+sector+"/drugs?utf8=✓&q="+search );
   }
 
@@ -21,9 +21,7 @@ $(document).on('turbolinks:load', function() {
     }
   });
 
-  var sector = $( "#sector select" ).val();
-  var search = $( ".search-drugs" ).val();
-  var urlsearch = "/locations/"+sector+"/drugs/autocomplete";
+  var urlsearch = "/locations/1/drugs/autocomplete";
 
   $( ".search-drugs" ).autocomplete({
     source: urlsearch,

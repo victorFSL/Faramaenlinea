@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(version: 20170417192750) do
   end
 
   create_table "payment_methods", force: :cascade do |t|
-    t.string  "payment_type"
+    t.integer "payment_type"
     t.string  "insurance_name"
     t.integer "drug_store_id"
     t.index ["drug_store_id"], name: "index_payment_methods_on_drug_store_id"

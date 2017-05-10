@@ -6,8 +6,8 @@
         span.logo Farmaenlinea 
     .item#search-area
       .ui.action.input
-        input.search-drugsnavbar.prompt type="text" placeholder="Buscar medicamentos" autofocus="true"
-        a#search-link href="#"
+        input.search-drugs.prompt type="text" placeholder="Buscar medicamentos" autofocus="true"
+        a#link href="#"
           button.ui.icon.button.blue
             i.search.icon
     a.item#toggle-secondary-menu
@@ -37,61 +37,23 @@
     .item
       h3 Provincia :
     .item
-      select.ui.fluid.search.dropdown#states-dp
+      select.ui.fluid.search.dropdown
         option value="0" Santiago
     .item    
       h3 Sector :
     .item
-      select.ui.fluid.search.dropdown#cities-dp
+      select.ui.fluid.search.dropdown#city-dropdown
         - @locations.order('city_name ASC').each do |c|
           option value="#{c.id}" 
             = c.city_name
     .item        
-//javascript:
+javascript:
   //---------Secondary Menu-----------//
   $( "#toggle-secondary-menu" ).click(function() {
   $( "#secondary-menu" ).fadeToggle( "slow" )
   $('#secondary-menu').show().css('display', 'inline-flex');
   });
   
-  var urlsearch = "/locations/"+"#{@location.id}"+"/drugs/autocomplete";
-
-  //--------JSON------//
-  $( ".search-drugsnavbar" ).autocomplete({
-    source: urlsearch,
-    minLength: 2,
-    select: function(e, ui){
-      $('.search-drugsnavbar').val(ui.item.value);
-      inputs()
-    }
-  });  
-  //------Update link url---------//
-  function inputs() {
-    var search = $( ".search-drugsnavbar" ).val();
-    var provincia = $( "select#states-dp" ).val();
-    var sector = $( "select#cities-dp" ).val();
-    $( "#search-link" ).prop( "href", "/states/"+provincia+"/cities/"+sector+"/drugs?utf8=✓&q="+search );
-  }
-  
-  $( "input").change( inputs );
-  $( "select" ).change( inputs );
-  $( "input").keyup( inputs );
-  inputs();
-  //----------On enter submit info------------//
-  $('.search-drugsnavbar').keypress(function (event) {
-    if (event.keyCode == 10 || event.keyCode == 13) {
-      var submitsearch = function() {
-        document.location.href = $( "#search-link" ).attr('href');
-      };
-      $( "#search-link" ).click(submitsearch);
-      submitsearch();
-    }
-  });
-  //---------Dropdown selected fields---------//
-  $('#cities-dp').dropdown(
-    'set selected', "#{@city.id}"
-  );
-
-  $('#states-dp').dropdown(
-    'set selected', "#{@state.id}"
+  $('#city-dropdown').dropdown(
+    'set selected', "#{params[:location_id]}"
   );

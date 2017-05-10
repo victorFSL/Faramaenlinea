@@ -41,14 +41,15 @@ Locations = Location.create([
 ## Drug Store Locations ##
 DSLocations = DrugStoreLocation.create([
   { location_id: '1', drug_store_id: '1'},
-  { location_id: '2', drug_store_id: '2'},
-  { location_id: '3', drug_store_id: '3'}
+  { location_id: '1', drug_store_id: '2'},
+  { location_id: '1', drug_store_id: '3'},
+  { location_id: '2', drug_store_id: '3'}
   ])
 ## Payment Methods Efectivo, Tarjeta o Seguro
 PaymentMethods = PaymentMethod.create([
-  { payment_type: '1', drug_store_id: '1'},
-  { payment_type: '2', drug_store_id: '2'},
-  { payment_type: '3', drug_store_id: '2', insurance_name: "Palic"},
-  { payment_type: '3', drug_store_id: '2', insurance_name: "Monumental"},
-  { payment_type: '3', drug_store_id: '3', insurance_name: "Humano"}
+  { payment_type: 'tarjeta', drug_store_id: '1'},
+  { payment_type: 'efectivo', drug_store_id: '2'},
+  { payment_type: 'seguro', drug_store_id: '2', insurance_name: "Palic"},
+  { payment_type: 'seguro', drug_store_id: '2', insurance_name: "Monumental"},
+  { payment_type: 'seguro', drug_store_id: '3', insurance_name: "Humano"}
   ])

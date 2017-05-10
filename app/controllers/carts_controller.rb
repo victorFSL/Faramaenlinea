@@ -1,7 +1,7 @@
 class CartsController < ApplicationController
   before_action :set_cart, only: [:show, :edit, :update, :destroy]
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart
-  skip_before_filter :set_state_city
+  skip_before_filter :set_location
 
   # GET /carts/1
   # GET /carts/1.json

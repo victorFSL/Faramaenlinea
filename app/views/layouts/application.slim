@@ -19,6 +19,6 @@ html lang="en"
   body
     = render partial: "pages/navbar", object: @drug
     div class="wrapper-body #{controller.controller_name}"
-      == yield
-      .push
+      .push      
+        == yield
     = render 'pages/footer'
