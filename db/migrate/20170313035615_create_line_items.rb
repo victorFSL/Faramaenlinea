@@ -6,6 +6,8 @@ class CreateLineItems < ActiveRecord::Migration[5.0]
       t.integer :quantity, default: 1
       t.integer :status, default: 0
       t.integer :payment_method, default: 1
+      t.integer :total_price
+      t.integer :unit_price
       t.timestamps
     end
   end

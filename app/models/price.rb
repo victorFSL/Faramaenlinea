@@ -5,7 +5,9 @@ class Price < ApplicationRecord
   belongs_to :drug
   belongs_to :drug_store
   has_many :line_items
-  
+
+  enum status: [ :active, :inactive]
+
 private
   def ensure_not_referenced_by_any_line_item
     unless line_items.empty?

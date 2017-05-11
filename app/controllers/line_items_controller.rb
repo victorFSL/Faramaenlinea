@@ -31,9 +31,9 @@ class LineItemsController < ApplicationController
 
     respond_to do |format|
       if @line_item.save
-        format.html { redirect_to location_drugs_path(@location = @line_item.price.drug_store.location_ids.first), notice: "#{@line_item.price.drug.name} fue agregado a tu carrito." }
+        format.html { redirect_to location_drugs_path(@location = @line_item.price.drug_store.locations.last.id), notice: "#{@line_item.price.drug.name} fue agregado a tu carrito." }
       else
-        format.html { redirect_to state_city_drugs_path(@location = @line_item.price.drug_store.location_ids.first), notice: 'Error al agregar tu medicina al carrito intenta de nuevo.' }
+        format.html { redirect_to locations_drugs_path(@location = '0'), notice: 'Error al agregar tu medicina al carrito intenta de nuevo.' }
       end
     end
   end
