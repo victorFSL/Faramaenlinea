@@ -9,43 +9,43 @@ end
 
 
 gem 'rails', '~> 5.0', '>= 5.0.2'
-gem 'puma'
+gem 'puma', '~> 3.8', '>= 3.8.2'
 gem 'sass-rails', '~> 5.0', '>= 5.0.4'
-gem 'uglifier'
-gem 'coffee-rails'
-gem 'jquery-rails'
-gem 'jquery-ui-rails'
-gem 'turbolinks'
-gem 'jbuilder'
-gem 'erb_to_slim'
-gem 'slim-rails'
-gem 'autoprefixer-rails', '~> 6.5', '>= 6.5.3'
-gem 'mail_form'
-gem 'simple_form'
-gem 'therubyracer'
-gem 'paperclip'
+gem 'uglifier', '~> 3.2'
+gem 'coffee-rails', '~> 4.2', '>= 4.2.1'
+gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
+gem 'jquery-ui-rails', '~> 6.0', '>= 6.0.1'
+gem 'turbolinks', '~> 5.0', '>= 5.0.1'
+gem 'jbuilder', '~> 2.6', '>= 2.6.4'
+gem 'erb_to_slim', '~> 0.0.8'
+gem 'slim-rails', '~> 3.1', '>= 3.1.2'
+gem 'autoprefixer-rails', '~> 7.0', '>= 7.0.1'
+gem 'mail_form', '~> 1.6'
+gem 'simple_form', '~> 3.4'
+gem 'therubyracer', '~> 0.12.3'
+gem 'paperclip', '~> 5.1'
 gem 'sprockets-rails', '~> 3.2'
-gem 'oj'
-gem 'searchkick'
-gem 'bonsai-elasticsearch-rails'
-gem 'semantic-ui-sass', git: 'https://github.com/doabit/semantic-ui-sass.git'
+gem 'oj', '~> 3.0', '>= 3.0.6'
+gem 'searchkick', '~> 2.3'
+gem 'bonsai-elasticsearch-rails', '~> 0.2.0'
+gem 'semantic-ui-sass', '~> 2.2', '>= 2.2.10.1'
 
 group :development, :test do
-  gem 'byebug', platform: :mri
+  gem 'byebug', '~> 9.0', '>= 9.0.6', platform: :mri
 end
 
 group :development do
-  gem 'web-console'
-  gem 'listen'
-  gem 'spring'
-  gem 'spring-watcher-listen'
-  gem 'guard-livereload'
-  gem 'sqlite3'
-  gem 'rack-mini-profiler'
+  gem 'web-console', '~> 3.5'
+  gem 'listen', '~> 3.1', '>= 3.1.5'
+  gem 'spring', '~> 2.0', '>= 2.0.1'
+  gem 'spring-watcher-listen', '~> 2.0', '>= 2.0.1'
+  gem 'guard-livereload', '~> 2.5', '>= 2.5.2'
+  gem 'sqlite3', '~> 1.3', '>= 1.3.13'
+  gem 'rack-mini-profiler', '~> 0.10.2'
 end
 
 group :production do
-  gem 'pg'
+  gem 'pg', '~> 0.20.0'
 end
 
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', '~> 1.2017', '>= 1.2017.2', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

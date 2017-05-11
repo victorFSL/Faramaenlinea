@@ -1,12 +1,65 @@
-p#notice = notice
-.ui.fifteen.wide.column.grid.center.aligned
-  .column.twelve.wide
-    table.ui.celled.table
-      tbody
-      - @cart.line_items.each do |item| 
-        tr
-          td = image_tag item.price.drug_store.logo.url(:thumb) 
-          td = item.price.drug.name 
-          td = "#{item.quantity} \u00D7 RD$ #{item.price.price}"
-          //td //
-= link_to 'Edit', edit_cart_path(@cart)
+.ui.grid
+  .row
+    .column.twelve.wide.center.aligned.centered
+      - if @cart.line_items.count == 0 
+        .ui.hidden.divider
+        .ui.center.aligned.icon.header.huge
+          i.icon.cart.circular
+          | Mi Carrito
+          .ui.hidden.divider
+          h2.sub.header Tu carrito no tiene medicinas todavia, ya estas sano?
+          .ui.hidden.divider
+          .ui.hidden.divider
+          .sub.header 
+            | Si necesitas ayuda no dudes en contactarnos al (XXX) XXX XXXX
+            |  y con gusto te atenderemos... 
+      - else 
+        h1.ui.header.left.floated          
+          = "#{pluralize(@cart.line_items.count,'producto')}  en tu carrito"
+        .ui.hidden.divider
+        .ui.hidden.divider
+  .row
+    .column.twelve.wide.centered
+      - array = [] 
+      - @cart.line_items.each do |line_item|
+        - array << line_item.price.drug_store
+        - array.sort_by! do |item|
+          - item[:name]   
+      - array.uniq.each do |drug_store| 
+        .ui.segments.blue
+          .ui.segment.blue
+            h3.ui.header 
+              = image_tag drug_store.logo.url(:thumb), class: "ui circular image mini"
+              span
+                |  
+                = drug_store.name  
+            .ui.form
+              .inline.fields
+                label for="forma-de-pago"  Seleccione su forma de pago:
+                .field
+                  .ui.radio.checkbox
+                    input.hidden checked="" name="forma-de-pago" tabindex="0" type="radio"
+                    label Tarjeta
+                .field
+                  .ui.radio.checkbox
+                    input.hidden name="forma-de-pago" tabindex="0" type="radio"
+                    label Efectivo
+                .field
+                  .ui.radio.checkbox
+                    input.hidden name="forma-de-pago" tabindex="0" type="radio"
+                    label Seguro
+            span
+              h3.header.ui.right.aligned#price-cart-drug-store RD$ 20,000
+          .ui.secondary.segment
+            .ui.divided.items
+              - @cart.line_items.each do |line_item|
+                - if drug_store.id == line_item.price.drug_store.id
+                  .item
+                    .ui.small.image 
+                      = image_tag line_item.price.drug.picture
+                    .middle.aligned.content   
+                      .header 
+                        = line_item.price.drug.name
+                      .header.right.floated 
+                        = number_to_currency(line_item.price.price, unit: 'RD$')
+                      .description  

@@ -47,8 +47,12 @@ p#notice = notice
                           = number_to_currency(price.price, unit: "RD$")
                         .ui.divider
                         .extra
-                          = button_to line_items_path(price_id: price.id), method: "post", class: "ui icon right floated orange button small" do
-                            i.icon.add.to.cart.big
+                          - if @cart.line_items.collect(&:price_id).flatten.uniq.any? { |items_on_cart| price.id == items_on_cart }
+                            button.ui.icon.right.floated.button.small.disabled.fix-disabled-button
+                              i.icon.check.big
+                          - else    
+                            = button_to line_items_path(price_id: price.id), method: "post", class: "ui icon right floated orange button small" do
+                              i.icon.add.to.cart.big
                           - payment_methods_check_duplicate = []  
                           - price.drug_store.payment_methods.each do |pm|
                             = render partial: "payment_method_buttons", locals: { pm: pm, price: price, payment_methods_check_duplicate: payment_methods_check_duplicate}     

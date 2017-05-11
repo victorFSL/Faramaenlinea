@@ -1,17 +1,16 @@
 //-----------Determine which variable to display-------------//
-- arg = (controller.controller_name == "drugs")? price.drug_store.payment_methods.map(&:insurance_name).join(", ") : drug_store.payment_methods.map(&:insurance_name).join(", ")
+- arg = (controller.controller_name == "drugs")? price.drug_store.payment_methods.seguro.map(&:insurance_name).join(", ") : drug_store.payment_methods.seguro.map(&:insurance_name).join(", ")
 //-----------Buttons----------//
 
 <span class="left floated ui">
   - if pm.tarjeta?
-    <span data-tooltip="Aceptan tarjeta"><i class="payment icon"></i></span>
+    <span data-tooltip="Aceptan Tarjeta"><i class="payment icon"></i></span>
   - if pm.efectivo?
-    <span data-tooltip="Aceptan efectivo"><i class="money icon"></i></span>
+    <span data-tooltip="Aceptan Efectivo"><i class="money icon"></i></span>
   - if pm.seguro? 
+    //----------So that we do not get more than one insurance "ARS" on show
     - payment_methods_check_duplicate << pm 
-  - if pm.seguro? && payment_methods_check_duplicate.count <= 1
+  - if pm.seguro? && payment_methods_check_duplicate.count == 1
     <span data-tooltip="Seguros: #{arg}."><i class="icon">ARS</i></span>
 </span>  
-
-    
-    
+  

@@ -10,15 +10,16 @@
         a#link href="#"
           button.ui.icon.button.blue
             i.search.icon
-    a.item#toggle-secondary-menu
-      = "#{@location.city_name}, #{@location.state_id.titleize}"    
-      span 
-        i.caret.down.icon 
+    - unless controller.action_name == 'show' && controller.controller_name == 'carts'
+      a.item#toggle-secondary-menu
+        = "#{@location.city_name || @line_items.first.drug_store.location.city_name}, #{@location.state_id.titleize}"    
+        span 
+          i.caret.down.icon 
   .right.menu
     a.item.fix-hover
       button.ui.blue.button.basic.hover-effect
         b Mi cuenta 
-    a.item.fix-hover#shoppingcart
+    = link_to(cart_path(@cart), class: " item fix-hover", id: "shoppingcart") do
       .ui.icon.labeled
         - if @cart.line_items.count > 0
           i.icon.shop.big.green
@@ -26,9 +27,8 @@
         - else
           i.icon.shop.big
           div Cerrar Orden  
-      .floating.ui.red.label.circular.mini 
-        = @cart.line_items.sum { |item| item.quantity}
-    = render partial: "pages/shopping_cart_modal" 
+      .floating.ui.red.label.circular.mini#floating-circle
+        = @cart.line_items.sum { |item| item.quantity}     
   .ui.clearing.divider 
 #text-container
 - unless controller.action_name == 'home'
@@ -55,5 +55,5 @@ javascript:
   });
   
   $('#city-dropdown').dropdown(
-    'set selected', "#{params[:location_id]}"
+    'set selected', "#{params[:location_id] || '1'}"
   );

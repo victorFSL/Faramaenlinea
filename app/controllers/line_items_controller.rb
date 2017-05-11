@@ -27,7 +27,7 @@ class LineItemsController < ApplicationController
   # POST /line_items.json
   def create
     price = Price.find(params[:price_id])
-    @line_item = @cart.add_drug_price(price)
+    @line_item = @cart.line_items.build(price_id: price.id)
 
     respond_to do |format|
       if @line_item.save

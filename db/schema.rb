@@ -70,9 +70,11 @@ ActiveRecord::Schema.define(version: 20170417192750) do
   create_table "line_items", force: :cascade do |t|
     t.integer  "price_id"
     t.integer  "cart_id"
-    t.integer  "quantity",   default: 1
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.integer  "quantity",       default: 1
+    t.integer  "status",         default: 0
+    t.integer  "payment_method", default: 1
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.index ["cart_id"], name: "index_line_items_on_cart_id"
     t.index ["price_id"], name: "index_line_items_on_price_id"
   end

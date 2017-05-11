@@ -1,11 +1,11 @@
 class CartsController < ApplicationController
   before_action :set_cart, only: [:show, :edit, :update, :destroy]
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart
-  skip_before_filter :set_location
-
+  skip_before_action :set_location
   # GET /carts/1
   # GET /carts/1.json
   def show
+
   end
 
   # GET /carts/new
@@ -58,10 +58,6 @@ class CartsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_cart
-      @cart = Cart.find(params[:id])
-    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cart_params
