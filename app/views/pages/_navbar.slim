@@ -12,7 +12,7 @@
             i.search.icon
     - unless controller.action_name == 'show' && controller.controller_name == 'carts'
       a.item#toggle-secondary-menu
-        = "#{@location.city_name || @line_items.first.drug_store.location.city_name}, #{@location.state_id.titleize}"    
+        = "#{@location.city_name || @line_items.last.price.location.city_name}, #{@location.state_id.titleize}"    
         span 
           i.caret.down.icon 
   .right.menu
@@ -28,32 +28,6 @@
           i.icon.shop.big
           div Cerrar Orden  
       .floating.ui.red.label.circular.mini#floating-circle
-        = @cart.line_items.sum { |item| item.quantity}     
+        = @cart.line_items.count    
   .ui.clearing.divider 
-#text-container
-- unless controller.action_name == 'home'
-  .ui.six.item.secondary.menu.top.fixed#secondary-menu
-    .item
-    .item
-      h3 Provincia :
-    .item
-      select.ui.fluid.search.dropdown
-        option value="0" Santiago
-    .item    
-      h3 Sector :
-    .item
-      select.ui.fluid.search.dropdown#city-dropdown
-        - @locations.order('city_name ASC').each do |c|
-          option value="#{c.id}" 
-            = c.city_name
-    .item        
-javascript:
-  //---------Secondary Menu-----------//
-  $( "#toggle-secondary-menu" ).click(function() {
-  $( "#secondary-menu" ).fadeToggle( "slow" )
-  $('#secondary-menu').show().css('display', 'inline-flex');
-  });
-  
-  $('#city-dropdown').dropdown(
-    'set selected', "#{params[:location_id] || '1'}"
-  );
+= render 'pages/secondary_menu_dropdown'

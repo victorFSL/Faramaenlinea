@@ -1,5 +1,6 @@
 class Location < ApplicationRecord
-  has_many :drug_stores, through: :drug_store_locations
-  has_many :drug_store_locations
+  has_many :prices
+  has_many :drugs, through: :prices
+  has_many :drug_stores, through: :prices
   enum state_id: [ :santiago]
 end

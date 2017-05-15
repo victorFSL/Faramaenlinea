@@ -21,14 +21,20 @@ DrugS = DrugStore.create([
 
 ##Prices###
 Prices = Price.create([
-  { drug_store_id: '1', drug_id: '1', price: '200' },
-  { drug_store_id: '1', drug_id: '2', price: '400' },
-  { drug_store_id: '1', drug_id: '3', price: '500' },
-  { drug_store_id: '2', drug_id: '1', price: '700' },
-  { drug_store_id: '2', drug_id: '2', price: '200' },
-  { drug_store_id: '2', drug_id: '3', price: '600' },
-  { drug_store_id: '3', drug_id: '1', price: '100' },
-  { drug_store_id: '3', drug_id: '2', price: '10'}
+  { drug_store_id: '1', drug_id: '1', price: '200', location_id: '1'},
+  { drug_store_id: '1', drug_id: '2', price: '400', location_id: '2' },
+  { drug_store_id: '1', drug_id: '3', price: '500', location_id: '3' },
+  { drug_store_id: '2', drug_id: '1', price: '700', location_id: '1' },
+  { drug_store_id: '2', drug_id: '2', price: '200', location_id: '2' },
+  { drug_store_id: '2', drug_id: '3', price: '600', location_id: '3' },
+  { drug_store_id: '3', drug_id: '1', price: '100', location_id: '1' },
+  { drug_store_id: '1', drug_id: '1', price: '200', location_id: '2'},
+  { drug_store_id: '2', drug_id: '1', price: '700', location_id: '2' },
+  { drug_store_id: '3', drug_id: '1', price: '100', location_id: '2' },
+  { drug_store_id: '1', drug_id: '1', price: '200', location_id: '3'},
+  { drug_store_id: '2', drug_id: '1', price: '700', location_id: '3' },
+  { drug_store_id: '3', drug_id: '1', price: '100', location_id: '3' },
+  { drug_store_id: '3', drug_id: '2', price: '10', location_id: '2'}
   ])
 
 ## States ##
@@ -38,13 +44,6 @@ Locations = Location.create([
   { state_id: 'santiago', city_name: 'Bella Vista'}
   ])
 
-## Drug Store Locations ##
-DSLocations = DrugStoreLocation.create([
-  { location_id: '1', drug_store_id: '1'},
-  { location_id: '1', drug_store_id: '2'},
-  { location_id: '1', drug_store_id: '3'},
-  { location_id: '2', drug_store_id: '3'}
-  ])
 ## Payment Methods Efectivo, Tarjeta o Seguro
 PaymentMethods = PaymentMethod.create([
   { payment_type: 'tarjeta', drug_store_id: '1'},

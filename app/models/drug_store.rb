@@ -5,8 +5,7 @@ class DrugStore < ApplicationRecord
 
   has_many :prices
   has_many :drugs, through: :prices
-  has_many :drug_store_locations
-  has_many :locations, through: :drug_store_locations
+  has_many :locations, through: :prices
   has_many :payment_methods
 
   def regular_hours

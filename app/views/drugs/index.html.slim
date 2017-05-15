@@ -1,11 +1,12 @@
 .ui.twelve.wide.column.grid.centered.stackable
   .row
-    .column.twelve.wide.left.aligned
+    .column.thirteen.wide.left.aligned
       h3.header Selecciona tu medicamento:
       .ui.segment.padded
-        .ui.three.doubling.cards.stackable
+        .ui.four.doubling.cards.stackable
+          - message_if_empty = []
           - @drugs.each do |drug|
-            - if drug.drug_stores.ids.any? { |drug_store_in_location| @location.drug_stores.ids.include?(drug_store_in_location) }
+            - if drug.locations.ids.any? { |drug_store_in_location| @location.id == drug_store_in_location }
               = link_to location_drug_path(@location, drug), class: "ui link card"
                 .content
                   .right.floated.header 
@@ -27,6 +28,25 @@
                       .ui.blue.basic.label En seguro
                     - else   
                       .ui.red.basic.label No asegurado
+              - message_if_empty << drug.id 
+        .ui.grid
+          .row
+            .ui.column.center.aligned
+              - if message_if_empty.empty? 
+                .ui.hidden.divider
+                .ui.center.aligned.icon.header
+                  i.icon.meh
+                  .ui.hidden.divider
+                  | Lo sentimos la busqueda especificada no retorno ningun resultado, 
+                  |  intente de nuevo. 
+                  .ui.hidden.divider
+                .ui.sub.header.center.aligned  
+                  | Si necesita ayuda no dude en contactanos al (XXX)-XXX-XXXX.
 - unless notice.blank?
   javascript:
     toastr.success('#{notice}')
+    
+- unless alert.blank?
+  javascript:
+    toastr.warning('#{alert}') 
+    

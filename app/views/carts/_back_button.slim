@@ -1,0 +1,3 @@
+.ui.left.rail.attached#back-button
+  = link_to location_drugs_path(@location = @cart.line_items.nil? ?  1 : @cart.line_items.last.price.location_id), method: "get", class: "ui icon big button blue right floated" do
+    i.icon.arrow.left

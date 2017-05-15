@@ -5,6 +5,7 @@ class CreatePrices < ActiveRecord::Migration[5.0]
       t.belongs_to :drug_store, index: true
       t.integer :price
       t.integer :status, default: 0
+      t.belongs_to :location, index: true
 
       t.timestamps
     end

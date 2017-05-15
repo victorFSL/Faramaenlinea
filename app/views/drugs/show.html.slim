@@ -1,6 +1,6 @@
 p#notice = notice
 .ui.grid.centered
-  .twelve.wide.column        
+  .thirteen.wide.column        
     .ui.segment.padded  
       .ui.left.rail.attached#back-button
         = link_to location_drugs_path(@location), method: "get", class: "ui icon big button blue right floated" do
@@ -35,26 +35,25 @@ p#notice = notice
           .ui.segment
             .ui.divided.items
               - @drug.prices.order("price ASC").each do |price|
-                - price.drug_store.locations.ids.each do |location_id|
-                  - if @location.id == location_id
-                    .item
-                      .ui.tiny.image
-                        = image_tag price.drug_store.logo.url(:original)
-                      .content
-                        .header
-                          = link_to "#{price.drug_store.name}", location_drug_drug_store_path(@location, @drug, price.drug_store_id) 
-                        .meta.right.floated#price-drug-show
-                          = number_to_currency(price.price, unit: "RD$")
-                        .ui.divider
-                        .extra
-                          - if @cart.line_items.collect(&:price_id).flatten.uniq.any? { |items_on_cart| price.id == items_on_cart }
-                            button.ui.icon.right.floated.button.small.disabled.fix-disabled-button
-                              i.icon.check.big
-                          - else    
-                            = button_to line_items_path(price_id: price.id), method: "post", class: "ui icon right floated orange button small" do
-                              i.icon.add.to.cart.big
-                          - payment_methods_check_duplicate = []  
-                          - price.drug_store.payment_methods.each do |pm|
-                            = render partial: "payment_method_buttons", locals: { pm: pm, price: price, payment_methods_check_duplicate: payment_methods_check_duplicate}     
+                - if @location.id == price.location_id
+                  .item
+                    .ui.tiny.image
+                      = image_tag price.drug_store.logo.url(:original)
+                    .content
+                      .header
+                        = link_to "#{price.drug_store.name}", location_drug_drug_store_path(@location, @drug, price.drug_store_id) 
+                      .meta.right.floated#price-drug-show
+                        = number_to_currency(price.price, unit: "RD$ ")
+                      .ui.divider
+                      .extra
+                        - if @cart.line_items.collect(&:price_id).flatten.uniq.any? { |items_on_cart| price.id == items_on_cart }
+                          button.ui.icon.right.floated.button.small.disabled.fix-disabled-button
+                            i.icon.check.big
+                        - else    
+                          = button_to line_items_path(price_id: price.id, location_id: @location.id), method: "post", class: "ui icon right floated orange button small" do
+                            i.icon.add.to.cart.big
+                        - payment_methods_check_duplicate = []  
+                        - price.drug_store.payment_methods.each do |pm|
+                          = render partial: "payment_method_buttons", locals: { pm: pm, price: price, payment_methods_check_duplicate: payment_methods_check_duplicate}     
 
-                          
+                        

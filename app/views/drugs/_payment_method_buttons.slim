@@ -1,5 +1,5 @@
 //-----------Determine which variable to display-------------//
-- arg = (controller.controller_name == "drugs")? price.drug_store.payment_methods.seguro.map(&:insurance_name).join(", ") : drug_store.payment_methods.seguro.map(&:insurance_name).join(", ")
+- arg = (controller.controller_name == "drugs")? price.drug_store.payment_methods.map(&:insurance_name) : drug_store.payment_methods.map(&:insurance_name)
 //-----------Buttons----------//
 
 <span class="left floated ui">
@@ -8,9 +8,16 @@
   - if pm.efectivo?
     <span data-tooltip="Aceptan Efectivo"><i class="money icon"></i></span>
   - if pm.seguro? 
-    //----------So that we do not get more than one insurance "ARS" on show
-    - payment_methods_check_duplicate << pm 
-  - if pm.seguro? && payment_methods_check_duplicate.count == 1
-    <span data-tooltip="Seguros: #{arg}."><i class="icon">ARS</i></span>
-</span>  
-  
+    - payment_methods_check_duplicate << pm
+    - if payment_methods_check_duplicate.count == 1
+      <span class="ars"><i class="icon">ARS</i></span>
+      <div class="ui popup">
+        <div class="header">Se aceptan los seguros: </div>
+        <div class="ui bulleted list">
+          - arg.compact.each do |seguro|
+            <div class="item"> 
+              = seguro
+            </div>
+        </div>  
+      </div>
+    

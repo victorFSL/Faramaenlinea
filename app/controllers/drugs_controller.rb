@@ -8,9 +8,10 @@ class DrugsController < ApplicationController
 
   def autocomplete
     render json: Drug.search(params[:term], {
-      fields: ["name^10","active_ingredient"],
-      match: :text_start,
+      fields: ["name^5","active_ingredient"],
+      match: :word_start,
       limit: 10,
+      load: false,
       misspellings: {below: 3}
     }).map(&:name)
 
@@ -37,7 +38,7 @@ class DrugsController < ApplicationController
 
     respond_to do |format|
       if @drug.save
-        format.html { redirect_to state_city_drug_path(@state,@city,@drug), notice: 'Drug was successfully created.' }
+        format.html { redirect_to location_drug_path(@location, @drug), notice: 'Drug was successfully created.' }
         format.json { render :show, status: :created, location: @drug }
       else
         format.html { render :new }
@@ -51,7 +52,7 @@ class DrugsController < ApplicationController
   def update
     respond_to do |format|
       if @drug.update(drug_params)
-        format.html { redirect_to state_city_drug_path(@state,@city,@drug), notice: 'Drug was successfully updated.' }
+        format.html { redirect_to location_drug_path(@location, @drug), notice: 'Drug was successfully updated.' }
         format.json { render :show, status: :ok, location: @drug }
       else
         format.html { render :edit }

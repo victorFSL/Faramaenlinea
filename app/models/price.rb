@@ -4,6 +4,7 @@ class Price < ApplicationRecord
 
   belongs_to :drug
   belongs_to :drug_store
+  belongs_to :location
   has_many :line_items
 
   enum status: [ :active, :inactive]

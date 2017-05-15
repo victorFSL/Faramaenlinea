@@ -13,13 +13,13 @@ class LineItem < ApplicationRecord
       price.price
     end
   end
-        
+
   def total_price
     price.price * quantity
   end
 
   private
-    def product_present
+    def drug_present
       if price.status == "inactive"
         errors.add(:price, "Esta medicina esta temporalmente desabilitada")
       end

@@ -5,7 +5,6 @@ class CartsController < ApplicationController
   # GET /carts/1
   # GET /carts/1.json
   def show
-
   end
 
   # GET /carts/new
@@ -21,7 +20,6 @@ class CartsController < ApplicationController
   # POST /carts.json
   def create
     @cart = Cart.new(cart_params)
-
     respond_to do |format|
       if @cart.save
         format.html { redirect_to @cart, notice: 'Cart was successfully created.' }
@@ -61,11 +59,11 @@ class CartsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cart_params
-      params.fetch(:cart, {})
+      params.require(:cart).permit( :total_asegurado, :order_status, :total_no_asegurado, :total_general)
     end
 
     def invalid_cart
       logger.error "Carrito invalido #{params[:id]}"
-      redirect_to search_drugs_path, notice: 'Carrito invalido'
+      redirect_to root_path, notice: 'Carrito invalido'
     end
 end

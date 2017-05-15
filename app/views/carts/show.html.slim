@@ -1,65 +1,119 @@
-.ui.grid
+.ui.grid.container
   .row
-    .column.twelve.wide.center.aligned.centered
-      - if @cart.line_items.count == 0 
-        .ui.hidden.divider
-        .ui.center.aligned.icon.header.huge
-          i.icon.cart.circular
-          | Mi Carrito
-          .ui.hidden.divider
-          h2.sub.header Tu carrito no tiene medicinas todavia, ya estas sano?
-          .ui.hidden.divider
-          .ui.hidden.divider
-          .sub.header 
-            | Si necesitas ayuda no dudes en contactarnos al (XXX) XXX XXXX
-            |  y con gusto te atenderemos... 
-      - else 
-        h1.ui.header.left.floated          
-          = "#{pluralize(@cart.line_items.count,'producto')}  en tu carrito"
-        .ui.hidden.divider
-        .ui.hidden.divider
-  .row
-    .column.twelve.wide.centered
-      - array = [] 
-      - @cart.line_items.each do |line_item|
-        - array << line_item.price.drug_store
-        - array.sort_by! do |item|
-          - item[:name]   
-      - array.uniq.each do |drug_store| 
-        .ui.segments.blue
-          .ui.segment.blue
-            h3.ui.header 
-              = image_tag drug_store.logo.url(:thumb), class: "ui circular image mini"
-              span
-                |  
-                = drug_store.name  
-            .ui.form
-              .inline.fields
-                label for="forma-de-pago"  Seleccione su forma de pago:
-                .field
-                  .ui.radio.checkbox
-                    input.hidden checked="" name="forma-de-pago" tabindex="0" type="radio"
-                    label Tarjeta
-                .field
-                  .ui.radio.checkbox
-                    input.hidden name="forma-de-pago" tabindex="0" type="radio"
-                    label Efectivo
-                .field
-                  .ui.radio.checkbox
-                    input.hidden name="forma-de-pago" tabindex="0" type="radio"
-                    label Seguro
-            span
-              h3.header.ui.right.aligned#price-cart-drug-store RD$ 20,000
-          .ui.secondary.segment
-            .ui.divided.items
-              - @cart.line_items.each do |line_item|
-                - if drug_store.id == line_item.price.drug_store.id
-                  .item
-                    .ui.small.image 
-                      = image_tag line_item.price.drug.picture
-                    .middle.aligned.content   
-                      .header 
-                        = line_item.price.drug.name
-                      .header.right.floated 
-                        = number_to_currency(line_item.price.price, unit: 'RD$')
-                      .description  
+    .fifteen.wide.column.center.aligned.centered
+      = render 'carts/check_if_line_items'
+      = render 'carts/back_button.slim'
+  - unless @cart.line_items.count == 0
+    .row  
+      .column.ten.wide.centered
+        - @cart.line_items.collect(&:price).collect(&:drug_store).uniq.sort.each do |drug_store|
+          .ui.segments
+            .ui.segment
+              .ui.grid.centered
+                .column.ten.wide
+                  .row
+                    .ui.horizontal.list
+                      .item
+                        = image_tag drug_store.logo.url(:thumb), class: "ui circular image mini"
+                        .content 
+                          .ui.header = drug_store.name  
+                  .ui.hidden.divider        
+                  .row  
+                    .ui.form
+                      .inline.fields
+                        label for="forma-de-pago"  Forma de pago:
+                        .field
+                          .ui.radio.checkbox
+                            input.hidden checked="" name="forma-de-pago-#{drug_store.id}" tabindex="0" type="radio"
+                            label Tarjeta
+                        .field
+                          .ui.radio.checkbox
+                            input.hidden name="forma-de-pago-#{drug_store.id}" tabindex="0" type="radio"
+                            label Efectivo
+                      
+                .column.six.wide.right.aligned 
+                  .ui.hidden.divider
+                  .row
+                    h2.ui.header
+                      - total_price = []
+                      - @cart.line_items.each do |line_item|  
+                        - if line_item.price.drug_store == drug_store
+                          - total_price << line_item.total_price
+                      | Total :     
+                      = number_to_currency(total_price.sum, unit: "RD$ ")
+            .ui.secondary.segment
+              .ui.grid.centered
+                .row
+                  .column.ten.wide.center.aligned
+                    | Informacion general
+                  .column.three.wide.center.aligned  
+                    | Cantidad
+                  .column.three.wide.center.aligned
+                    | Subtotal
+            .ui.secondary.segment
+              .ui.grid.centered
+                - @cart.line_items.each do |line_item|
+                  - if drug_store.id == line_item.price.drug_store_id
+                    .row
+                      .column.five.wide.center.aligned
+                        .ui.small.image 
+                          = image_tag line_item.price.drug.picture
+                      .column.five.wide.center.aligned  
+                        .row
+                          .ui.header
+                            = line_item.price.drug.name 
+                        .row
+                          .ui.sub.header
+                            = number_to_currency(line_item.unit_price, unit: 'RD$') 
+                        .ui.hidden.divider 
+                        .row
+                          - if line_item.price.drug.active_ingredient.under_insurance
+                            .ui.toggle.checkbox
+                              label Usar seguro ?
+                              input type="checkbox" name="insurance"
+                          - else   
+                            .ui.red.basic.label No asegurado
+                      .column.three.wide.center.aligned
+                        .ui.sub.header.large
+                        = simple_form_for line_item do |li|
+                          = li.input :quantity, label: false
+                          = li.submit 'actualizar', class: 'ui basic button'
+                      .column.three.wide.center.aligned  
+                        .ui.header 
+                          = number_to_currency(line_item.total_price, unit: 'RD$')   
+                        div  
+                          = link_to 'Eliminar',  { controller: :line_items, action: :destroy, id: line_item.id }, method: :delete, data: { confirm: 'Seguro que quieres eliminar este articulo de tu carrito?' }
+                      //  
+                        .header   
+                          = 
+                        .header.right.floated 
+                          = number_to_currency(line_item.total_price, unit: 'RD$')  
+                        .ui.hidden.divider  
+                        .p
+                            - if line_item.price.drug.active_ingredient.under_insurance
+                              .ui.blue.basic.label En seguro
+                            - else   
+                              .ui.red.basic.label No asegurado
+                        
+                        .description  
+      .column.five.wide.centered.center.aligned
+        .ui.segment.green
+          .ui.header.large.labeled
+            i.icon.shopping.bag
+            | Orden
+          .ui.divider  
+          .ui.header
+            | Total : 
+            = number_to_currency(@cart.line_items.collect(&:total_price).sum, unit: "RD$ ")
+          .ui.header.medium.blue
+            | * Total asegurado : $20,000 pendiente
+          .ui.header.medium.red
+            | Total no asegurado : $20,000  
+          .ui.divider   
+          .ui.hidden.divider 
+          .ui.button.blue data-tooltip="Haga click en AQUI para el proximo paso 
+            y lo guiaremos por todo el proceso."
+            | Procesar orden
+- unless notice.blank?
+  javascript:
+    toastr.success('#{notice}')

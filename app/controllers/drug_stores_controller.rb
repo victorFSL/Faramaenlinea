@@ -28,7 +28,7 @@ class DrugStoresController < ApplicationController
     @drug_store = DrugStore.new(drug_store_params)
     respond_to do |format|
       if @drug_store.save
-        format.html { redirect_to state_city_drug_drug_store_path(@state, @city, @drug, @drug_store), notice: 'Drug store was successfully created.' }
+        format.html { redirect_to location_drug_path(@location, @drug), notice: 'Drug store was successfully created.' }
       else
         format.html { render :new }
       end
@@ -40,7 +40,7 @@ class DrugStoresController < ApplicationController
   def update
     respond_to do |format|
       if @drug_store.update(drug_store_params)
-        format.html { redirect_to state_city_drug_drug_store_path(@state, @city, @drug, @drug_store), notice: 'Drug store was successfully updated.' }
+        format.html { redirect_to location_drug_path(@location, @drug), notice: 'Drug store was successfully updated.' }
         format.json { render :show, status: :ok, location: @drug_store }
       else
         format.html { render :edit }
@@ -54,7 +54,7 @@ class DrugStoresController < ApplicationController
   def destroy
     @drug_store.destroy
     respond_to do |format|
-      format.html { redirect_to drug_stores_url, notice: 'Drug store was successfully destroyed.' }
+      format.html { redirect_to location_drug_path(@location, @drug), notice: 'Drug store was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

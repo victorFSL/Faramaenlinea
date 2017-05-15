@@ -1,0 +1,17 @@
+- if @cart.line_items.count == 0 
+  .ui.hidden.divider
+  .ui.center.aligned.icon.header.huge
+    i.icon.cart.circular
+    | Mi Carrito
+    .ui.hidden.divider
+    h2.sub.header Tu carrito no tiene medicinas todavia, ya estas sano?
+    .ui.hidden.divider
+    .ui.hidden.divider
+    .sub.header 
+      | Si necesitas ayuda no dudes en contactarnos al (XXX) XXX XXXX
+      |  y con gusto te atenderemos... 
+- else 
+  h1.ui.header.left.floated.grey         
+    = "#{pluralize(@cart.line_items.count,'producto')}  en tu carrito"
+  .ui.hidden.divider
+  .ui.hidden.divider

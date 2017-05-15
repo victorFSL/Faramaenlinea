@@ -26,4 +26,11 @@ $(document).on('turbolinks:load', function() {
 
   $('.ui.modal')
   .modal('attach events', '#shoppingcart', 'show')
+
+  $('.ui.checkbox')
+  .checkbox();
+
+  $('.ars')
+  .popup();
+
 });

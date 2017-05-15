@@ -23,20 +23,12 @@ ActiveRecord::Schema.define(version: 20170417192750) do
   end
 
   create_table "carts", force: :cascade do |t|
-    t.integer  "subtotal"
-    t.integer  "total"
-    t.integer  "order_status", default: 0
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-  end
-
-  create_table "drug_store_locations", force: :cascade do |t|
-    t.integer  "location_id"
-    t.integer  "drug_store_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.index ["drug_store_id"], name: "index_drug_store_locations_on_drug_store_id"
-    t.index ["location_id"], name: "index_drug_store_locations_on_location_id"
+    t.integer  "total_asegurado"
+    t.integer  "order_status",       default: 0
+    t.integer  "total_no_asegurado"
+    t.integer  "total_general"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   create_table "drug_stores", force: :cascade do |t|
@@ -103,10 +95,12 @@ ActiveRecord::Schema.define(version: 20170417192750) do
     t.integer  "drug_store_id"
     t.integer  "price"
     t.integer  "status",        default: 0
+    t.integer  "location_id"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.index ["drug_id"], name: "index_prices_on_drug_id"
     t.index ["drug_store_id"], name: "index_prices_on_drug_store_id"
+    t.index ["location_id"], name: "index_prices_on_location_id"
   end
 
 end

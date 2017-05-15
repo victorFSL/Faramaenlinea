@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-resources :line_items, only: [:create, :update, :destroy]
-resources :carts, only: [:show, :create, :update, :destroy]
-resources :locations, only: [:show] do
-  resources :drugs, only: [:index, :show] do
+resources :line_items
+resources :carts
+resources :locations do
+  resources :drugs do
     collection do
       get :autocomplete
     end
