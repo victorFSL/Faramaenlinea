@@ -19,6 +19,13 @@ DrugS = DrugStore.create([
   { name: 'Farmacia Carol', address: 'Calle 27 de Febrero #54', hour_open_regular: '8 AM', hour_close_regular: '6 PM', days_regular: 'Lunes - Viernes',hour_open_other: '9 AM', hour_close_other: '3 PM', days_other: 'Sabado - Domingos', logo_file_name: 'losrobles_g.jpg'}
   ])
 
+## States ##
+Locations = Location.create([
+  { state_id: 'santiago', city_name: 'Villa Maria'},
+  { state_id: 'santiago', city_name: 'Hoya de Caimito'},
+  { state_id: 'santiago', city_name: 'Bella Vista'}
+  ])
+
 ##Prices###
 Prices = Price.create([
   { drug_store_id: '1', drug_id: '1', price: '200', location_id: '1'},
@@ -35,13 +42,6 @@ Prices = Price.create([
   { drug_store_id: '2', drug_id: '1', price: '700', location_id: '3' },
   { drug_store_id: '3', drug_id: '1', price: '100', location_id: '3' },
   { drug_store_id: '3', drug_id: '2', price: '10', location_id: '2'}
-  ])
-
-## States ##
-Locations = Location.create([
-  { state_id: 'santiago', city_name: 'Villa Maria'},
-  { state_id: 'santiago', city_name: 'Hoya de Caimito'},
-  { state_id: 'santiago', city_name: 'Bella Vista'}
   ])
 
 ## Payment Methods Efectivo, Tarjeta o Seguro
