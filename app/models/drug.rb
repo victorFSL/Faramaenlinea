@@ -12,13 +12,6 @@ class Drug < ApplicationRecord
   has_attached_file :picture, styles: { medium: "300x300#", thumb: "100x100#" }, default_url: "default.jpg"
   validates_attachment :picture, content_type: { content_type: ["image/jpeg", "image/gif", "image/png"] }
 
-  def search_data
-    {
-      name: name,
-      active_ingredient: active_ingredient.name
-    }
-  end
-
   def name=(value)
     write_attribute(:name, value.capitalize)
   end

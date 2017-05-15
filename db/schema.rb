@@ -23,12 +23,12 @@ ActiveRecord::Schema.define(version: 20170417192750) do
   end
 
   create_table "carts", force: :cascade do |t|
-    t.integer  "total_asegurado"
-    t.integer  "order_status",       default: 0
-    t.integer  "total_no_asegurado"
-    t.integer  "total_general"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.integer  "total_insured"
+    t.integer  "order_status",      default: 0
+    t.integer  "total_not_insured"
+    t.integer  "total"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
   create_table "drug_stores", force: :cascade do |t|
@@ -70,8 +70,9 @@ ActiveRecord::Schema.define(version: 20170417192750) do
     t.integer  "payment_method", default: 1
     t.integer  "total_price"
     t.integer  "unit_price"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.boolean  "insured",        default: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.index ["cart_id"], name: "index_line_items_on_cart_id"
     t.index ["price_id"], name: "index_line_items_on_price_id"
   end

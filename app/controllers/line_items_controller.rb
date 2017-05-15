@@ -73,7 +73,7 @@ class LineItemsController < ApplicationController
   def destroy
     @line_item.destroy
     respond_to do |format|
-      format.html { redirect_to cart_path(@cart = session[:cart_id]), notice: 'Line item was successfully destroyed.' }
+      format.html { redirect_to cart_path(@cart = session[:cart_id]), notice: 'Medicina elimnada de tu carrito' }
       format.json { head :no_content }
     end
   end
@@ -86,6 +86,6 @@ class LineItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def line_item_params
-      params.require(:line_item).permit(:price_id, :quantity)
+      params.require(:line_item).permit(:price_id, :quantity, :insured)
     end
 end

@@ -16,7 +16,7 @@
                       .item
                         = image_tag drug_store.logo.url(:thumb), class: "ui circular image mini"
                         .content 
-                          .ui.header = drug_store.name  
+                          .ui.header = drug_store.name
                   .ui.hidden.divider        
                   .row  
                     .ui.form
@@ -68,34 +68,22 @@
                         .ui.hidden.divider 
                         .row
                           - if line_item.price.drug.active_ingredient.under_insurance
-                            .ui.toggle.checkbox
-                              label Usar seguro ?
-                              input type="checkbox" name="insurance"
+                              = simple_form_for line_item do |li|
+                                .ui.slider.checkbox
+                                  = li.input :insured, type: "checkbox", name: "line_item"
+                                = li.submit 'actualizar', style: "display: none;"
                           - else   
                             .ui.red.basic.label No asegurado
                       .column.three.wide.center.aligned
                         .ui.sub.header.large
                         = simple_form_for line_item do |li|
                           = li.input :quantity, label: false
-                          = li.submit 'actualizar', class: 'ui basic button'
+                          = li.submit 'actualizar',style: "display: none;"
                       .column.three.wide.center.aligned  
                         .ui.header 
                           = number_to_currency(line_item.total_price, unit: 'RD$')   
                         div  
                           = link_to 'Eliminar',  { controller: :line_items, action: :destroy, id: line_item.id }, method: :delete, data: { confirm: 'Seguro que quieres eliminar este articulo de tu carrito?' }
-                      //  
-                        .header   
-                          = 
-                        .header.right.floated 
-                          = number_to_currency(line_item.total_price, unit: 'RD$')  
-                        .ui.hidden.divider  
-                        .p
-                            - if line_item.price.drug.active_ingredient.under_insurance
-                              .ui.blue.basic.label En seguro
-                            - else   
-                              .ui.red.basic.label No asegurado
-                        
-                        .description  
       .column.five.wide.centered.center.aligned
         .ui.segment.green
           .ui.header.large.labeled
