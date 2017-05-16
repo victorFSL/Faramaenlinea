@@ -28,20 +28,20 @@ Locations = Location.create([
 
 ##Prices###
 Prices = Price.create([
-  { drug_store_id: '1', drug_id: '1', price: '200', location_id: '1'},
+  { drug_store_id: '1', drug_id: '1', price: '200', location_id: '1' },
   { drug_store_id: '1', drug_id: '2', price: '400', location_id: '2' },
   { drug_store_id: '1', drug_id: '3', price: '500', location_id: '3' },
   { drug_store_id: '2', drug_id: '1', price: '700', location_id: '1' },
   { drug_store_id: '2', drug_id: '2', price: '200', location_id: '2' },
   { drug_store_id: '2', drug_id: '3', price: '600', location_id: '3' },
   { drug_store_id: '3', drug_id: '1', price: '100', location_id: '1' },
-  { drug_store_id: '1', drug_id: '1', price: '200', location_id: '2'},
+  { drug_store_id: '1', drug_id: '1', price: '200', location_id: '2' },
   { drug_store_id: '2', drug_id: '1', price: '700', location_id: '2' },
   { drug_store_id: '3', drug_id: '1', price: '100', location_id: '2' },
-  { drug_store_id: '1', drug_id: '1', price: '200', location_id: '3'},
+  { drug_store_id: '1', drug_id: '1', price: '200', location_id: '3' },
   { drug_store_id: '2', drug_id: '1', price: '700', location_id: '3' },
   { drug_store_id: '3', drug_id: '1', price: '100', location_id: '3' },
-  { drug_store_id: '3', drug_id: '2', price: '10', location_id: '2'}
+  { drug_store_id: '3', drug_id: '2', price: '10', location_id: '2' }
   ])
 
 ## Payment Methods Efectivo, Tarjeta o Seguro
