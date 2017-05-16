@@ -1,10 +1,10 @@
 ## States ##
 Locations = Location.create([
-  { state_id: 'santiago', city_name: 'Villa Maria'},
-  { state_id: 'santiago', city_name: 'Hoya de Caimito'},
-  { state_id: 'santiago', city_name: 'Bella Vista'}
+  { state_number: 'santiago', city_name: 'Villa Maria'},
+  { state_number: 'santiago', city_name: 'Hoya de Caimito'},
+  { state_number: 'santiago', city_name: 'Bella Vista'}
   ])
-  
+
 ## DRUGS 3 ###
 Meds = Drug.create([
   { name: 'Winasorb', description: 'Analgésico y antipirético.Para disminuir el dolor y la fiebre que se pueden presentar en la gripe, infecciones de garganta, bronquitis, etc., después de la vacunación.Dolor de cabeza, de oído, muscular, óseo y de la dentición.', metric: 'Miligramos', dosage: '500', brand: 'Sanofi', picture_file_name: '261-53web-780x600.jpg' },
