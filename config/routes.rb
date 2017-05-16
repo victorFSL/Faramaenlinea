@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 resources :line_items
-resources :carts
 resources :locations do
+  resources :carts
   resources :drugs do
     collection do
       get :autocomplete
