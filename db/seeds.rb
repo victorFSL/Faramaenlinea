@@ -1,8 +1,8 @@
 ## States ##
 Locations = Location.create([
-  { state_number: 'santiago', city_name: 'Villa Maria'},
-  { state_number: 'santiago', city_name: 'Hoya de Caimito'},
-  { state_number: 'santiago', city_name: 'Bella Vista'}
+  { city_name: 'Villa Maria'},
+  { city_name: 'Hoya de Caimito'},
+  { city_name: 'Bella Vista'}
   ])
 
 ## DRUGS 3 ###
