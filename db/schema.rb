@@ -78,10 +78,10 @@ ActiveRecord::Schema.define(version: 20170417192750) do
   end
 
   create_table "locations", force: :cascade do |t|
-    t.integer  "state_number"
+    t.integer  "state_number", default: 0
     t.string   "city_name"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "payment_methods", force: :cascade do |t|
