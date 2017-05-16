@@ -29,6 +29,7 @@ gem 'oj', '~> 3.0', '>= 3.0.6'
 gem 'searchkick', '~> 2.3'
 gem 'bonsai-elasticsearch-rails', '~> 0.2.0'
 gem 'semantic-ui-sass', '~> 2.2', '>= 2.2.10.1'
+gem 'airbrake', '~> 6.1'
 
 group :development, :test do
   gem 'byebug', '~> 9.0', '>= 9.0.6', platform: :mri
