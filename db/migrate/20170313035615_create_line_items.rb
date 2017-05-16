@@ -10,7 +10,6 @@ class CreateLineItems < ActiveRecord::Migration[5.0]
       t.integer :unit_price
       t.boolean :insured, default: false
 
-
       t.timestamps
     end
   end
