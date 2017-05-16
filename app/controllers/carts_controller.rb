@@ -5,7 +5,6 @@ class CartsController < ApplicationController
   # GET /carts/1
   # GET /carts/1.json
   def show
-    @location = @cart.line_items.last.price.location_id
   end
 
   # GET /carts/new

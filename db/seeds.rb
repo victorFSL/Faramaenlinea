@@ -8,8 +8,8 @@ Locations = Location.create([
 ## DRUGS 3 ###
 Meds = Drug.create([
   { name: 'Winasorb', description: 'Analgésico y antipirético.Para disminuir el dolor y la fiebre que se pueden presentar en la gripe, infecciones de garganta, bronquitis, etc., después de la vacunación.Dolor de cabeza, de oído, muscular, óseo y de la dentición.', metric: 'Miligramos', dosage: '500', brand: 'Sanofi', picture_file_name: '261-53web-780x600.jpg' },
-  { name: 'Salbutamol', description: 'Es un dilatador de las vías respiratorias. Este medicamento descomprime las vías respiratorias y reduce sus síntomas: disnea y respiración entrecortada o sibilante.', metric: 'Microgramos', dosage: '100', brand: 'Sandox', picture_file_name: 'dokteronline-salbutamol-833-3-1420818303.jpg' },
-  { name: 'Amoxicilina', description: 'La amoxicilina es un antibiótico semisintético derivado de la penicilina. Se trata de una amino penicilina. Actúa contra un amplio espectro de bacterias, tanto Gram positivos como Gram-negativos.', metric: 'Miligramos', dosage: '365', brand: 'Pme', picture_file_name: 'amoxicilina.jpeg'}
+  { name: 'Salbutyl XD', description: 'Es un dilatador de las vías respiratorias. Este medicamento descomprime las vías respiratorias y reduce sus síntomas: disnea y respiración entrecortada o sibilante.', metric: 'Microgramos', dosage: '100', brand: 'Sandox', picture_file_name: 'dokteronline-salbutamol-833-3-1420818303.jpg' },
+  { name: 'Amoxicut', description: 'La amoxicilina es un antibiótico semisintético derivado de la penicilina. Se trata de una amino penicilina. Actúa contra un amplio espectro de bacterias, tanto Gram positivos como Gram-negativos.', metric: 'Miligramos', dosage: '365', brand: 'Pme', picture_file_name: 'amoxicilina.jpeg'}
   ])
 
 ## Active Ingredient

@@ -7,6 +7,13 @@ class Drug < ApplicationRecord
 
   searchkick word_start: [:name, :active_ingredient]
 
+  def search_data
+    {
+      name: name,
+      active_ingredient: active_ingredient.name,
+    }
+  end
+
   validates :name, :description, :metric, :dosage, :brand, presence: true
   validates :dosage, numericality: {greater_than_or_equal_to: 0.01}
   has_attached_file :picture, styles: { medium: "300x300#", thumb: "100x100#" }, default_url: "default.jpg"
