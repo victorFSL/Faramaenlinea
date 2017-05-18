@@ -23,7 +23,7 @@ AI = ActiveIngredient.create([
 DrugS = DrugStore.create([
   { name: 'Farmacia Carol', address: 'Calle 27 de Febrero #54', hour_open_regular: '8 AM', hour_close_regular: '6 PM', days_regular: 'Lunes - Viernes', hour_open_other: '9 AM', hour_close_other: '3 PM', days_other: 'Sabado - Domingos', logo_file_name: 'index.png'},
   { name: 'Farmacia 11', address: 'Calle Israel #14', hour_open_regular: '8 AM', hour_close_regular: '8 PM', days_regular: 'Lunes - Jueves', hour_open_other: '7 AM', hour_close_other: '8 PM', days_other: 'Viernes - Domingos', logo_file_name: '__35.JPG'},
-  { name: 'Farmacia Carol', address: 'Calle 27 de Febrero #54', hour_open_regular: '8 AM', hour_close_regular: '6 PM', days_regular: 'Lunes - Viernes',hour_open_other: '9 AM', hour_close_other: '3 PM', days_other: 'Sabado - Domingos', logo_file_name: 'losrobles_g.jpg'}
+  { name: 'Farmacia Robles', address: 'Calle 27 de Febrero #54', hour_open_regular: '8 AM', hour_close_regular: '6 PM', days_regular: 'Lunes - Viernes',hour_open_other: '9 AM', hour_close_other: '3 PM', days_other: 'Sabado - Domingos', logo_file_name: 'losrobles_g.jpg'}
   ])
 
 
@@ -48,8 +48,7 @@ Prices = Price.create([
 ## Payment Methods Efectivo, Tarjeta o Seguro
 PaymentMethods = PaymentMethod.create([
   { payment_type: 'tarjeta', drug_store_id: '1'},
-  { payment_type: 'efectivo', drug_store_id: '2'},
-  { payment_type: 'seguro', drug_store_id: '2', insurance_name: 'Palic'},
-  { payment_type: 'seguro', drug_store_id: '2', insurance_name: 'Monumental'},
-  { payment_type: 'seguro', drug_store_id: '3', insurance_name: 'Humano'}
+  { payment_type: 'efectivo', drug_store_id: '2', accepts_insurance: true, insurance_name: 'Palic'},
+  { payment_type: 'tarjeta', drug_store_id: '2', accepts_insurance: true, insurance_name: 'Humano'},
+  { payment_type: 'efectivo', drug_store_id: '3', accepts_insurance: true, insurance_name: 'Monumental'}
   ])

@@ -10,7 +10,7 @@
           button.ui.icon.button.blue
             i.search.icon
       a.item#toggle-secondary-menu
-        = "#{@location.city_name}, #{@location.state_number.titleize}"    
+        = "#{@location.city_name}, #{@location.state_name.titleize}"    
         span 
           i.caret.down.icon 
     .right.menu
@@ -28,5 +28,5 @@
         .floating.ui.red.label.circular.mini#floating-circle
           = @cart.line_items.count    
     .ui.clearing.divider 
-  = render 'pages/secondary_menu_dropdown'
+  = render 'shared/secondary_menu_dropdown'
 .ui.hidden.divider

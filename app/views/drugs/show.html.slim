@@ -2,9 +2,7 @@ p#notice = notice
 .ui.grid.centered
   .thirteen.wide.column        
     .ui.segment.padded  
-      .ui.left.rail.attached#back-button
-        = link_to location_drugs_path(@location), method: "get", class: "ui icon big button blue right floated" do
-          i.icon.arrow.left
+      = render partial: "shared/back_button"
       .ui.grid.equal.width.stackable
         .column.ten.wide
           .ui.segment
@@ -54,6 +52,6 @@ p#notice = notice
                             i.icon.add.to.cart.big
                         - payment_methods_check_duplicate = []  
                         - price.drug_store.payment_methods.each do |pm|
-                          = render partial: "payment_method_buttons", locals: { pm: pm, price: price, payment_methods_check_duplicate: payment_methods_check_duplicate}     
+                          = render partial: "shared/payment_method_buttons", locals: { pm: pm, price: price, payment_methods_check_duplicate: payment_methods_check_duplicate}     
 
                         

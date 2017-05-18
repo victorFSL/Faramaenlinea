@@ -8,22 +8,25 @@ p#notice = notice
       .ui.hidden.divider  
       .ui.grid.stackable
         .column.center.aligned
-          h2.ui.header 
-            = @drug_store.name
+          .row
+            h2.ui.header 
+              = @drug_store.name
             .sub.header 
               = @drug_store.regular_hours
             .sub.header  
               = @drug_store.other_hours
           .ui.divider                
           .ui.hidden.divider  
-          .image.ui 
-            = image_tag @drug_store.logo.url(:medium)
+          .row
+            .image.ui 
+              = image_tag @drug_store.logo.url(:medium)
           .ui.hidden.divider  
-          p 
-            b Direccion: 
-            = @drug_store.address
-          p
-            b Forma de pago: 
-            - payment_methods_check_duplicate = []
-            - @drug_store.payment_methods.each do |pm|  
-              = render partial: "drugs/payment_method_buttons", locals: { pm: pm, drug_store: @drug_store, payment_methods_check_duplicate: payment_methods_check_duplicate} 
+          .row
+            p 
+              b Direccion: 
+              = @drug_store.address
+            .ui.header.small
+              | Forma de pago: 
+              - payment_methods_check_duplicate = []
+              - @drug_store.payment_methods.each do |pm|  
+                = render partial: "shared/payment_method_buttons", locals: { pm: pm, drug_store: @drug_store, payment_methods_check_duplicate: payment_methods_check_duplicate} 

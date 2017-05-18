@@ -3,21 +3,23 @@
 //-----------Buttons----------//
 
 <span class="left floated ui">
-  - if pm.tarjeta?
+  - if pm.Tarjeta?
     <span data-tooltip="Aceptan Tarjeta"><i class="payment icon"></i></span>
-  - if pm.efectivo?
+  - if pm.Efectivo?
     <span data-tooltip="Aceptan Efectivo"><i class="money icon"></i></span>
-  - if pm.seguro? 
+  - if pm.accepts_insurance?
     - payment_methods_check_duplicate << pm
     - if payment_methods_check_duplicate.count == 1
       <span class="ars"><i class="icon">ARS</i></span>
       <div class="ui popup">
-        <div class="header">Se aceptan los seguros: </div>
+        <div class="ui header small">Se aceptan los seguros: </div>
         <div class="ui bulleted list">
           - arg.compact.each do |seguro|
-            <div class="item"> 
-              = seguro
+            <div class="item">
+              <div class="content">
+                = seguro
+              </div>
             </div>
         </div>  
       </div>
-    
+</span>    

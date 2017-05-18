@@ -17,8 +17,8 @@ html lang="en"
     = csrf_meta_tag
 
   body
-    = render partial: "pages/navbar", object: @drug
+    = render partial: "shared/navbar", object: @drug
     div class="wrapper-body #{controller.controller_name}"
       .push      
         == yield
-    = render 'pages/footer'
+    = render 'shared/footer'

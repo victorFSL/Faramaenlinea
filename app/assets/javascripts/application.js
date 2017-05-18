@@ -16,6 +16,7 @@
 //= require semantic-ui
 //= require turbolinks
 //= require pages
+//= require cart
 
 $(document).on('turbolinks:load', function() {
 
@@ -33,4 +34,15 @@ $(document).on('turbolinks:load', function() {
   $('.ars')
   .popup();
 
+});
+
+$(document).on('turbolinks:load', function() {
+
+  $( ".radio.ui.checkbox" ).click(function() {
+    $(this).parents('form').submit();
+  });
+
+  $( ".toggle.ui.checkbox" ).click(function() {
+    $(this).parents('form').submit();
+  });
 });

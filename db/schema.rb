@@ -65,27 +65,27 @@ ActiveRecord::Schema.define(version: 20170417192750) do
   create_table "line_items", force: :cascade do |t|
     t.integer  "price_id"
     t.integer  "cart_id"
-    t.integer  "quantity",       default: 1
-    t.integer  "status",         default: 0
-    t.integer  "payment_method", default: 1
-    t.integer  "total_price"
+    t.integer  "quantity",         default: 1
+    t.integer  "payment_method",   default: 1
+    t.integer  "unit_total_price"
     t.integer  "unit_price"
-    t.boolean  "insured",        default: false
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.boolean  "insured",          default: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.index ["cart_id"], name: "index_line_items_on_cart_id"
     t.index ["price_id"], name: "index_line_items_on_price_id"
   end
 
   create_table "locations", force: :cascade do |t|
-    t.string   "state_number", default: "Santiago"
+    t.string   "state_name", default: "Santiago"
     t.string   "city_name"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   create_table "payment_methods", force: :cascade do |t|
     t.integer "payment_type"
+    t.boolean "accepts_insurance"
     t.string  "insurance_name"
     t.integer "drug_store_id"
     t.index ["drug_store_id"], name: "index_payment_methods_on_drug_store_id"

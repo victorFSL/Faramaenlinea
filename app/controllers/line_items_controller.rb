@@ -1,7 +1,6 @@
 class LineItemsController < ApplicationController
-  before_action :set_cart, only: [:create]
+  before_action :set_cart, only: [:create, :update]
   before_action :set_line_item, only: [:show, :edit, :update, :destroy]
-  skip_before_filter :set_location
 
   # GET /line_items
   # GET /line_items.json
@@ -59,11 +58,11 @@ class LineItemsController < ApplicationController
   def update
     respond_to do |format|
       if @line_item.update(line_item_params)
-        format.html { redirect_to cart_path(@cart = session[:cart_id]), notice: 'Carrito actualizado.' }
-        format.json { render :show, status: :ok, location: @line_item }
+        format.js { render 'line_items/update.js', layout: false}
+        format.html { redirect_to location_cart_path(@location = params[:location_id], @cart = session[:cart_id]), notice: 'Carrito actualizado.' }
       else
-        format.html { render :edit }
-        format.json { render json: @cart.errors, status: :unprocessable_entity }
+        ##format.html { render :edit }
+        format.js @cart.errors, status: :unprocessable_entity
       end
     end
   end
@@ -73,7 +72,7 @@ class LineItemsController < ApplicationController
   def destroy
     @line_item.destroy
     respond_to do |format|
-      format.html { redirect_to cart_path(@cart = session[:cart_id]), notice: 'Medicina elimnada de tu carrito' }
+      format.html { redirect_to location_cart_path(@location = params[:location_id], @cart = session[:cart_id]), notice: 'Medicina elimnada de tu carrito' }
       format.json { head :no_content }
     end
   end
@@ -86,6 +85,6 @@ class LineItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def line_item_params
-      params.require(:line_item).permit(:price_id, :quantity, :insured)
+      params.require(:line_item).permit(:price_id, :quantity, :insured, :payment_method)
     end
 end

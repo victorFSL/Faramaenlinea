@@ -1,0 +1,86 @@
+.ui.grid.container#everything
+  .row
+    .fifteen.wide.column.center.aligned.centered
+      = render 'carts/check_if_line_items'
+      = render 'shared/back_button.slim'
+  - unless @cart.line_items.count == 0
+    .row
+      .column.ten.wide.centered
+        - @cart.line_items.collect(&:price).collect(&:drug_store).uniq.sort.each do |drug_store|
+          .ui.segments
+            .ui.segment
+              .ui.grid.centered
+                .column.ten.wide
+                  .row
+                    .ui.horizontal.list
+                      .item
+                        = image_tag drug_store.logo.url(:thumb), class: "ui circular image mini"
+                        .content
+                          .ui.header = drug_store.name
+                .column.six.wide.right.aligned
+                  .row
+                    h2.ui.header.fix-position
+                      - unit_total_price = []
+                      - @cart.line_items.each do |line_item|
+                        - if line_item.price.drug_store == drug_store
+                          - unit_total_price << line_item.unit_total_price
+                      | Total :
+                      = number_to_currency(unit_total_price.sum, unit: 'RD$ ')
+            .ui.secondary.segment
+              .ui.grid.centered
+                .row
+                  .column.ten.wide.center.aligned
+                    | Informacion general
+                  .column.three.wide.center.aligned
+                    | Cantidad
+                  .column.three.wide.center.aligned
+                    | Subtotal
+            .ui.secondary.segment
+              .ui.grid.centered
+                - @cart.line_items.each do |line_item|
+                  - if drug_store.id == line_item.price.drug_store_id
+                    .row
+                      .column.five.wide.center.aligned
+                        .ui.small.image
+                          = image_tag line_item.price.drug.picture
+                      .column.five.wide.center.aligned
+                        .row
+                          .ui.header
+                            = line_item.price.drug.name
+                        .row
+                          .ui.sub.header
+                            = number_to_currency(line_item.unit_price, unit: 'RD$ ')
+                        .ui.hidden.divider
+                        .row
+                          = simple_form_for line_item, remote: true, html: { data: { url: '/line_items', type: :script } } do |li|
+                            = li.input :payment_method, collection: line_item.price.drug_store.payment_methods.map(&:payment_type) , as: :radio_buttons, label: "Forma de pago?"
+                            = hidden_field_tag(:location_id, @location.id)
+                            = li.button :submit,style: "display: none;"
+                        .row
+                          - if line_item.price.drug.active_ingredient.under_insurance && line_item.price.drug_store.payment_methods.any? { |s| s.accepts_insurance?}
+                              = simple_form_for line_item, remote: true, html: { data: { url: '/line_item', type: :script} } do |li|
+                                .ui.toggle.checkbox data-tooltip="Seguro cubre #{line_item.price.drug.active_ingredient.minimum_coverage_insurance}%."
+                                  = li.input :insured, type: "checkbox", name: "line_item", label: "Usar seguro?"
+                                = hidden_field_tag(:location_id, @location.id)
+                                = li.submit 'actualizar', style: "display: none;"
+                          - elsif !line_item.price.drug.active_ingredient.under_insurance && line_item.price.drug_store.payment_methods.any? { |s| s.accepts_insurance?}
+                            .ui.red.basic.label Medicina no esta asegurada
+                          - else
+                            .ui.red.basic.label Farmacia no acepta seguro
+                      .column.three.wide.center.aligned
+                        .ui.sub.header.large
+                        = simple_form_for line_item, remote: true, html: { data: { url: '/line_item', type: :script} } do |li|
+                          = li.input :quantity, label: false
+                          = hidden_field_tag(:location_id, @location.id)
+                          = li.submit 'actualizar', class: "ui basic button"
+                      .column.three.wide.center.aligned
+                        .ui.header.line_item_total
+                          = number_to_currency(line_item.unit_total_price, unit: 'RD$')
+                        div
+                          = link_to 'Eliminar',  { controller: :line_items, action: :destroy, id: line_item.id, location_id: @location.id }, method: :delete, data: { confirm: 'Seguro que quieres eliminar este articulo de tu carrito?' }
+                    .ui.divider
+      .column.five.wide.centered.center.aligned#checkout
+        = render partial: "carts/checkout", locals: { cart: @cart }
+- unless notice.blank?
+  javascript:
+    toastr.success('#{notice}')
