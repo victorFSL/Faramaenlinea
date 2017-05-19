@@ -69,7 +69,7 @@
                             .ui.red.basic.label Farmacia no acepta seguro
                       .column.three.wide.center.aligned
                         .ui.sub.header.large
-                        = simple_form_for line_item, remote: true, html: { data: { url: '/line_item', type: :script} } do |li|
+                        = simple_form_for line_item do |li|
                           = li.input :quantity, label: false
                           = hidden_field_tag(:location_id, @location.id)
                           = li.submit 'actualizar', class: "ui basic button"
