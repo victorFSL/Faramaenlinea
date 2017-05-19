@@ -47,8 +47,8 @@ Prices = Price.create([
 
 ## Payment Methods Efectivo, Tarjeta o Seguro
 PaymentMethods = PaymentMethod.create([
-  { payment_type: 'tarjeta', drug_store_id: '1'},
-  { payment_type: 'efectivo', drug_store_id: '2', accepts_insurance: true, insurance_name: 'Palic'},
-  { payment_type: 'tarjeta', drug_store_id: '2', accepts_insurance: true, insurance_name: 'Humano'},
-  { payment_type: 'efectivo', drug_store_id: '3', accepts_insurance: true, insurance_name: 'Monumental'}
+  { payment_type: 'Tarjeta', drug_store_id: '1'},
+  { payment_type: 'Efectivo', drug_store_id: '2', accepts_insurance: true, insurance_name: 'Palic'},
+  { payment_type: 'Tarjeta', drug_store_id: '2', accepts_insurance: true, insurance_name: 'Humano'},
+  { payment_type: 'Efectivo', drug_store_id: '3', accepts_insurance: true, insurance_name: 'Monumental'}
   ])
