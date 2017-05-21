@@ -13,11 +13,11 @@
           .field#provincia
             label.white Provincia
             select.ui.fluid.search.dropdown
-                option value="0" Santiago
+              option value="0" Santiago
           .field
             label.white Sector
             select.ui.fluid.search.dropdown#city-dropdown
-              - @locations.order('city_name ASC').each do |c|
+              - @locations.each do |c|
                 option value="#{c.id}" 
                   = c.city_name
       a.button.ui.orange#link href="#" Buscar 

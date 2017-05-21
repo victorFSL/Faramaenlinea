@@ -1,0 +1,25 @@
+h3.header Selecciona tu farmacia:
+.ui.divider
+.ui.segment
+  .ui.divided.items
+    - @drug.prices.order("price ASC").each do |price|
+      - if @location.id == price.location_id
+        .item
+          .ui.tiny.image
+            = image_tag price.drug_store.logo.url(:original)
+          .content
+            .ui.header.small
+              = link_to "#{price.drug_store.name}", location_drug_drug_store_path(@location, @drug, price.drug_store_id) 
+            .meta.right.floated#price-drug-show
+              = number_to_currency(price.price, unit: "RD$ ")
+            .ui.divider
+            .extra
+              - if @cart.line_items.collect(&:price_id).flatten.uniq.any? { |items_on_cart| price.id == items_on_cart }
+                button.ui.icon.right.floated.button.small.disabled.fix-disabled-button
+                  i.icon.check.big
+              - else    
+                = button_to line_items_path(price_id: price.id, location_id: @location.id), method: "post", class: "ui icon right floated orange button small" do
+                  i.icon.add.to.cart.big
+              - payment_methods_check_duplicate = []  
+              - price.drug_store.payment_methods.each do |pm|
+                = render partial: "shared/payment_method_buttons", locals: { pm: pm, price: price, payment_methods_check_duplicate: payment_methods_check_duplicate}     

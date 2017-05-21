@@ -1,57 +1,13 @@
 p#notice = notice
 .ui.grid.centered
-  .thirteen.wide.column        
-    .ui.segment.padded  
-      = render partial: "shared/back_button"
-      .ui.grid.equal.width.stackable
-        .column.ten.wide
-          .ui.segment
-            h2.ui.header.center.aligned
-              = @drug.name
-              .sub.header 
-                = "#{@drug.dosage} #{@drug.metric}" 
-            .ui.divider
-            h5.ui.center.aligned.header    
-              span
-                i.icon.industry
-                span = @drug.brand 
-              |  | 
-              span
-                i.icon.lab 
-                span = @drug.active_ingredient.name
-              - if @drug.active_ingredient.under_insurance
-                .ui.blue.basic.label En seguro
-              - else   
-                .ui.red.basic.label No asegurado
-            .ui.hidden.divider  
-            = image_tag @drug.picture.url(:medium), class: " image ui centered"
-            .ui.hidden.divider  
-            h5.ui.center.aligned.header = @drug.description       
-        .column.six.wide
-          h3.header Selecciona tu farmacia:
-          .ui.divider
-          .ui.segment
-            .ui.divided.items
-              - @drug.prices.order("price ASC").each do |price|
-                - if @location.id == price.location_id
-                  .item
-                    .ui.tiny.image
-                      = image_tag price.drug_store.logo.url(:original)
-                    .content
-                      .header
-                        = link_to "#{price.drug_store.name}", location_drug_drug_store_path(@location, @drug, price.drug_store_id) 
-                      .meta.right.floated#price-drug-show
-                        = number_to_currency(price.price, unit: "RD$ ")
-                      .ui.divider
-                      .extra
-                        - if @cart.line_items.collect(&:price_id).flatten.uniq.any? { |items_on_cart| price.id == items_on_cart }
-                          button.ui.icon.right.floated.button.small.disabled.fix-disabled-button
-                            i.icon.check.big
-                        - else    
-                          = button_to line_items_path(price_id: price.id, location_id: @location.id), method: "post", class: "ui icon right floated orange button small" do
-                            i.icon.add.to.cart.big
-                        - payment_methods_check_duplicate = []  
-                        - price.drug_store.payment_methods.each do |pm|
-                          = render partial: "shared/payment_method_buttons", locals: { pm: pm, price: price, payment_methods_check_duplicate: payment_methods_check_duplicate}     
-
-                        
+  .row
+    .column.thirteen.wide
+      = render partial: "shared/breadcrumb"
+  .row
+    .thirteen.wide.column    
+      .ui.segment.padded  
+        .ui.grid.equal.width.stackable
+          .nine.wide.computer.seven.wide.tablet.column.center.aligned
+            = render partial: "drugs/show_drug_description", locals: { drug: @drug}       
+          .seven.wide.computer.nine.wide.tablet.column
+            = render partial: "drugs/drug_stores_list", locals: { drug: @drug }

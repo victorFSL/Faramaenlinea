@@ -34,6 +34,9 @@ $(document).on('turbolinks:load', function() {
   $('.ars')
   .popup();
 
+  $('#show-mobile').click(function(){
+    $('.ui.sidebar').sidebar('toggle');
+  });
 });
 
 $(document).on('turbolinks:load', function() {

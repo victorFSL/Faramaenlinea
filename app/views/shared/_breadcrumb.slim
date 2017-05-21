@@ -1,0 +1,13 @@
+.ui.breadcrumb
+  = link_to "Home", root_path, class: "section"
+  i.right.angle.icon.divider
+  = link_to "Search", location_drugs_path, class: "section #{active?(location_drugs_path)}"
+  - if drug_breadcrumb
+    i.right.angle.icon.divider
+    = link_to "#{@drug.name}", location_drug_path(@location, @drug), class: "#{active?(location_drug_path)} section" 
+  - if drug_store_breadcrumb
+    i.right.angle.icon.divider
+    = link_to "#{@drug_store.name}", location_drug_drug_store_path(@location, @drug, @drug_store), class: "section #{active?(location_drug_drug_store_path)}" 
+  - if cart_breadcrumb
+   i.right.angle.icon.divider
+   = link_to "Carrito", location_cart_path, class: "section #{active?(location_cart_path)}" 

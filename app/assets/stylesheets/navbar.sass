@@ -1,22 +1,47 @@
 //-------------LOGO AND MENU-------------------//
+$break-point: 1085px
+
+#hide-1085px_or_less
+  @media screen and (max-width: $break-point)
+    display: none
+    height: 0px
 .ui.secondary.menu.top.fixed
   background-color: white
   padding: 0px !important
   border-bottom: 1px solid lightgrey !important
   .right.menu
     padding-right: 1%
+    @media screen and (max-width: 730px)
+      padding-right: 5%
   .logo
-    font-family: $header !important
+    font-family: $header
     color: $blue
+    @media screen and (max-width: 400px)
+      display: none
+  .logo-red
+    color: red
+    font-family: $body
+    @media screen and (max-width: 400px)
+      display: none
+  .logo-white
+    color: white
+    text-shadow: -2px -1px 6px rgba(150, 150, 150, 0.87)
+    font-family: $body
+    @media screen and (max-width: 400px)
+      display: none
   .fix-hover:hover
     background: none
   .fix-hover:active
     background: none
-  #search-area
+  #search-drugs
     min-width: 600px
     padding: 0 10px 0 40px
+    @media screen and (max-width: 730px)
+      min-width: 200px
+      padding: 0
+      margin-right: 0
     .ui.icon.input
-      min-width: 400px
+      max-width: 600px
       color: blue !important
   #fix-radius:hover
     border-radius: 0.28571429rem !important
@@ -45,3 +70,21 @@
   display: none
   h3
     color: white
+
+//---------MOBILE MENU----------//
+.ui.right.vertical.inverted.sidebar.labeled.icon.menu
+  .logo
+    font-family: $header
+    color: $blue
+  .logo-red
+    color: red
+    font-family: $body
+  .logo-white
+    color: white
+    text-shadow: -2px -1px 6px rgba(150, 150, 150, 0.87)
+    font-family: $body
+
+#hide-1085px_or_more
+  @media screen and (min-width: $break-point)
+    display: none
+    height: 0px

@@ -31,4 +31,12 @@ $(document).on('turbolinks:load', function() {
       inputs()
     }
   });
+
+  var submit = function() {
+    document.location.href = $( "a#link" ).attr('href')
+    $( "a#link" ).click( submit );
+  };
+  
+  $(".city-dp").change( submit )
+
 });

@@ -1,0 +1,21 @@
+- unless controller.action_name == 'home'
+  .ui.right.vertical.inverted.sidebar.labeled.icon.menu
+    .header.item
+      = link_to(root_path, :class => "ui header huge") do
+        span.logo Farmaenlinea 
+        span.logo-red R
+        span.logo-white D 
+    = link_to "#{@location.city_name}, #{@location.state_name.titleize}", root_path, class: "item"
+    a.item
+      i.user.icon 
+      | Mi cuenta
+    = link_to(location_cart_path(@location,@cart), class: " item") do
+      - if @cart.line_items.count > 0
+        .ui.red.horizontal.label
+          = @cart.line_items.count 
+        i.icon.shop.green
+        | Cerrar Orden
+      - else
+        i.icon.shop
+        | Cerrar Orden  
+        

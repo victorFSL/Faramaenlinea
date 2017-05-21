@@ -1,19 +1,20 @@
-  .ui.segment.green
-    .ui.header.large.labeled
-      i.icon.shopping.bag
-      | Orden
-    .ui.divider  
-    .ui.header
-      | Total : 
-      = number_to_currency(unit_total_price = @cart.line_items.collect(&:unit_total_price).sum, unit: "RD$ ")
-    .ui.header.medium.blue#total_insured
-      | * Total asegurado : 
-      = number_to_currency(total_insured = @cart.line_items.collect(&:total_insured).compact.sum, unit: "RD$ ")
-    .ui.header.medium.red#total_not_insured
-      | Total no asegurado : 
-      = number_to_currency(unit_total_price - total_insured, unit: "RD$ ")  
-    .ui.divider   
-    .ui.hidden.divider 
-    .ui.button.blue data-tooltip="Haga click en AQUI para el proximo paso 
-      y lo guiaremos por todo el proceso."
-      | Procesar orden
+.ui.segment.green
+  .ui.header.large.labeled
+    i.icon.shopping.bag
+    | Finalizar orden
+  .ui.divider  
+  h4.ui.header
+    | Total : 
+    = number_to_currency(unit_total_price = @cart.line_items.collect(&:unit_total_price).sum, unit: "RD$ ")
+  h4.ui.header.blue#total_insured
+    | * Total asegurado : 
+    = number_to_currency(total_insured = @cart.line_items.collect(&:total_insured).compact.sum, unit: "RD$ ")
+  .ui.divider 
+  h3.ui.header#total_not_insured
+    | Monto a Pagar : 
+    = number_to_currency(unit_total_price - total_insured, unit: "RD$ ")  
+  .ui.divider   
+  .ui.hidden.divider 
+  .ui.button.blue data-tooltip="Haga click en AQUI para el proximo paso 
+    y lo guiaremos por todo el proceso."
+    | Procesar orden

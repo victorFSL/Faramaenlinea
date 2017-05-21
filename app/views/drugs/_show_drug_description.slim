@@ -1,0 +1,28 @@
+.ui.segment
+  .row
+    h2.ui.header
+      .content
+        = @drug.name
+        .sub.header 
+          = "#{@drug.dosage} #{@drug.metric}" 
+  .ui.divider
+  .row
+    h5.ui.center.aligned.header    
+      span
+        i.icon.industry
+        span = @drug.brand 
+      |  | 
+      span
+        i.icon.lab 
+        span = @drug.active_ingredient.name
+      span.ui.center.aligned.header
+        - if @drug.active_ingredient.under_insurance
+          .ui.blue.basic.label En seguro
+        - else   
+          .ui.red.basic.label No asegurado
+  .ui.hidden.divider  
+  .row
+    = image_tag @drug.picture.url(:medium), class: " image ui centered"
+  .ui.hidden.divider  
+  .row
+    h5.ui.center.aligned.header = @drug.description

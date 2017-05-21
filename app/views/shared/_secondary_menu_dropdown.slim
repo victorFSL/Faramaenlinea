@@ -10,16 +10,19 @@
     .item    
       h3 Sector :
     .item
-      select.ui.fluid.search.dropdown#city-dropdown
-        - @locations.order('city_name ASC').each do |c|
+      select.ui.fluid.search.dropdown.city-dp#city-dropdown
+        - @locations.each do |c|
           option value="#{c.id}" 
             = c.city_name
     .item        
 javascript:
   //---------Secondary Menu-----------//
   $( "#toggle-secondary-menu" ).click(function() {
-  $( "#secondary-menu" ).fadeToggle( "slow" )
-  $('#secondary-menu').show().css('display', 'inline-flex');
+    $( "#secondary-menu" ).fadeToggle( "slow" )
+    $('#secondary-menu').show().css('display', 'inline-flex');
+    $("#secondary-menu").mouseleave(function() {
+      $(this).fadeOut( "slow" );
+    });
   });
   
   $('#city-dropdown').dropdown(

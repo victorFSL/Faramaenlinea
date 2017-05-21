@@ -1,9 +1,11 @@
 - unless controller.action_name == 'home'
-  .ui.secondary.menu.top.fixed
+  .ui.secondary.menu.top.fixed#hide-1085px_or_less
     .header.item
       = link_to(root_path, :class => "ui header huge") do
         span.logo Farmaenlinea 
-    .item#search-area
+        span.logo-red R
+        span.logo-white D 
+    .item#search-drugs
       .ui.action.input
         input.search-drugs.prompt type="text" placeholder="Buscar medicamentos" autofocus="true"
         a#link href="#"
@@ -22,11 +24,25 @@
           - if @cart.line_items.count > 0
             i.icon.shop.big.green
             div Cerrar Orden
+            .floating.ui.red.label.circular.mini#floating-circle
+              = @cart.line_items.count 
           - else
             i.icon.shop.big
-            div Cerrar Orden  
-        .floating.ui.red.label.circular.mini#floating-circle
-          = @cart.line_items.count    
+            div Cerrar Orden     
     .ui.clearing.divider 
   = render 'shared/secondary_menu_dropdown'
-.ui.hidden.divider
+  .ui.secondary.menu.top.fixed#hide-1085px_or_more
+    .header.item
+      = link_to(root_path, :class => "ui header huge") do
+        span.logo F
+        span.logo-red R 
+        span.logo-white D
+    .item#search-drugs
+      .ui.action.input
+        input.search-drugs.prompt type="text" placeholder="Buscar medicamentos" autofocus="true"
+        a#link href="#"
+          button.ui.icon.button.blue
+            i.search.icon
+    .right.menu
+      button.item.icon#show-mobile
+        i.sidebar.icon.blue.large
