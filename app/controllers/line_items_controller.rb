@@ -38,7 +38,7 @@ class LineItemsController < ApplicationController
           end
         end
       else
-        redirect_to location_drugs_path(@location = params[:location_id]), alert: 'Medicinas tienen que ser de la misma ciudad.'
+        redirect_to location_drugs_path(@location = params[:location_id]), alert: "No se pueden hacer pedidos de varios sectores, favor eliminar articulos del carrito o volver al sector #{ @cart.line_items.last.price.location.city_name}."
       end
     else
       price = Price.find(params[:price_id])
