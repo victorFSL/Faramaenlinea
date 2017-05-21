@@ -28,7 +28,7 @@
                     = number_to_currency(@unit_total_price.sum, unit: 'RD$ ')
           .ui.secondary.segment
             .ui.grid.centered.stackable
-              - @cart.line_items.each do |line_item|
+              - @cart.line_items.order(" id DESC").each do |line_item|
                 - if drug_store.id == line_item.price.drug_store_id
                   .row
                     .column.five.wide.center.aligned
