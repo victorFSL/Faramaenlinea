@@ -3,11 +3,11 @@
     i.icon.shopping.bag
     | Finalizar orden
   .ui.divider  
-  h4.ui.header
-    | Total : 
+  h4.ui.header.red
+    | Total sin seguro: 
     = number_to_currency(unit_total_price = @cart.line_items.collect(&:unit_total_price).sum, unit: "RD$ ")
   h4.ui.header.blue#total_insured
-    | * Total asegurado : 
+    | Total asegurado : 
     = number_to_currency(total_insured = @cart.line_items.collect(&:total_insured).compact.sum, unit: "RD$ ")
   .ui.divider 
   h3.ui.header#total_not_insured

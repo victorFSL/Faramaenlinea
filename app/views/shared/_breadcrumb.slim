@@ -1,7 +1,7 @@
 .ui.breadcrumb
-  = link_to "Home", root_path, class: "section"
+  = link_to "Página Principal", root_path, class: "section"
   i.right.angle.icon.divider
-  = link_to "Search", location_drugs_path, class: "section #{active?(location_drugs_path)}"
+  = link_to "Búsqueda", location_drugs_path, class: "section #{active?(location_drugs_path)}"
   - if drug_breadcrumb
     i.right.angle.icon.divider
     = link_to "#{@drug.name}", location_drug_path(@location, @drug), class: "#{active?(location_drug_path)} section" 
