@@ -5,12 +5,13 @@
   .row
     .column.twelve.wide.center.aligned.centered
       = link_to root_path do
-        h1.animated.pulse.logo 
-          | Farmaenlinea
-          span.logo-red R
-          span.logo-red D
-      h2.ui.header 
-        i Tus farmacias favoritas mas cerca de ti!
+        h1.animated.pulse.ui.header
+          .content
+            .logo 
+              | farma
+              span.logo-two enlineard
+            .sub.header
+              i Tus farmacias favoritas mas cerca de ti!
       br
       br    
   = render "pages/search-filter"    

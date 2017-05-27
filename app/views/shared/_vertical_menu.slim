@@ -2,9 +2,8 @@
   .ui.right.vertical.sidebar.labeled.icon.menu
     .header.item
       = link_to(root_path, :class => "ui header huge") do
-        span.logo Farmaenlinea 
-        span.logo-red R
-        span.logo-red D 
+        span.logo farma
+        span.logo-two enlineard
     = link_to "#{@location.city_name}, #{@location.state_name.titleize}", root_path, class: "item"
     a.item
       i.user.icon 

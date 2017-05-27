@@ -40,9 +40,12 @@ group :development do
   gem 'listen', '~> 3.1', '>= 3.1.5'
   gem 'spring', '~> 2.0', '>= 2.0.1'
   gem 'spring-watcher-listen', '~> 2.0', '>= 2.0.1'
-  gem 'guard-livereload', '~> 2.5', '>= 2.5.2'
   gem 'sqlite3', '~> 1.3', '>= 1.3.13'
   gem 'rack-mini-profiler', '~> 0.10.2'
+  gem 'guard', '~> 2.14', '>= 2.14.1', :require => false
+  gem 'guard-livereload', '~> 2.5', '>= 2.5.2', :require => false
+  gem 'rack-livereload', '~> 0.3.16'
+  gem 'rb-fsevent', '~> 0.9.8', :require => false
 end
 
 group :production do

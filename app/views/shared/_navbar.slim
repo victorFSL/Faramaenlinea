@@ -2,9 +2,8 @@
   .ui.secondary.menu.top.fixed#hide-1085px_or_less
     .header.item
       = link_to(root_path, :class => "ui header huge") do
-        span.logo Farmaenlinea 
-        span.logo-red R
-        span.logo-red D 
+        span.logo farma
+        span.logo-two enlineard
     .item#search-drugs
       .ui.action.input
         input.search-drugs.prompt type="text" placeholder="Buscar medicamentos" autofocus="true"
@@ -33,10 +32,6 @@
   = render 'shared/secondary_menu_dropdown'
   .ui.secondary.menu.top.fixed#hide-1085px_or_more
     .header.item
-      = link_to(root_path, :class => "ui header huge") do
-        span.logo F
-        span.logo-red R 
-        span.logo-red D
     .item#search-drugs
       .ui.action.input
         input.search-drugs.prompt type="text" placeholder="Buscar medicamentos" autofocus="true"
