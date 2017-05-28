@@ -24,20 +24,24 @@
     height: 100%
     background: transparentize(white, 0.4)
     z-index: -9
+  h1.animated.pulse.ui.header
+    font-family: $header
+    font-size: 10vw
   .content
     .logo
-      font-family: $header
       color: $blue
-      font-size: 8vw
       text-shadow: 1px 1px 1px grey
       margin: 50px 0
     .logo-two
       color: $lightblue
-      font-family: $header
-      font-size: 8vw
+      text-shadow: 1px 1px 1px grey
     .sub.header
       color: black
-      font-size: 4vw
+      font-size: 3vw
+      margin-top: -60px
+      @media screen and (max-width: 500px)
+        font-size: 4vw
+        margin-top: -40px
 .toast-success
   margin-top: 100px
 #fix-align-drug_store_price
